@@ -1,10 +1,10 @@
 # Bodegas del Atuel — Auditoría y plan de finalización
 
 Auditoría original: 9 de noviembre de 2026, fase A. **El estado vigente al cierre
-de G está en [§15](#15-estado-vigente-tras-fase-g)**. El cierre de E y su informe
+de H está en [§16](#16-estado-vigente-tras-fase-h)**. El cierre de E y su informe
 de rendimiento están en §13. Las secciones 1–9 conservan el diagnóstico inicial;
 los cierres 10–12 describen cada fase anterior, no bloqueos actuales. La frase
-«no se modificó SQL» y los pendientes de esos cortes no describen el estado G.
+«no se modificó SQL» y los pendientes de esos cortes no describen el estado H.
 
 **Actualización de fase B:** el inventario, matriz y hallazgos siguientes
 conservan la fotografía inicial de fase A. H2, H3 y los defectos nominales y de
@@ -540,3 +540,28 @@ Compose incluye frontend Nginx y dependencias con healthchecks. Su configuració
 es válida, pero el motor Docker Desktop no estaba disponible: el arranque de
 contenedores permanece sin verificar. Etapa 7 funciona localmente; fase H
 (nube), diccionario y demostración académica de concurrencia siguen pendientes.
+
+## 16. Estado vigente tras fase H
+
+Docker Compose funciona realmente con frontend en **8081**, PostgreSQL y API
+saludables. La base inicial `bodegas` estaba vacía y se conservó. Se cargó una
+base nueva `bodegas_c_docker_demo` con el generador C, semilla 42: 357.894 filas,
+26 controles sin incidencias y los mismos datos de C (28 SHA directos; permisos
+coincide usando COLLATE C por la diferencia de locale). La aplicación activa
+usa esa base; las pruebas de escritura se hicieron solo sobre copias restauradas.
+
+Se completaron el [diccionario físico](diccionario_datos.md), la conservación
+del [DER editable original](DER.drawio.xml), la prueba de dos sesiones/última
+botella y la restauración verificada de un dump custom. Pasaron nuevamente
+22 pruebas API, 14 de navegador y las suites SQL 08/09. La cadena con Nginx real,
+incluida la caída de una API temporal, también se ejecutó. Se rotaron las
+contraseñas de ejemplo sin borrar el volumen. No cambió el modelo ni sus reglas.
+
+El [informe final](informe_integracion_final.md) reúne la trazabilidad y el
+procedimiento de despliegue HTTPS/TLS preparado; los resultados están en
+[fase_h_resultados.json](evidencias/fase_h_resultados.json). La nube queda
+pendiente de cuenta/VM/dominio/certificados externos; no hay URL pública ni HTTPS
+público comprobado. El grupo debe revisar visualmente las cardinalidades del
+DER, verificar sus contribuciones reales al repositorio y preparar su defensa.
+Los pendientes anteriores de Docker, diccionario, concurrencia y datos ya no
+describen el estado vigente.

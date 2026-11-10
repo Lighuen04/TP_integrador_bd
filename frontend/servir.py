@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import ProxyHandler, Request, build_opener
 
 
-def crear_servidor(host="127.0.0.1", puerto=8080, api="http://127.0.0.1:8000"):
+def crear_servidor(host="127.0.0.1", puerto=8081, api="http://127.0.0.1:8000"):
     class Handler(SimpleHTTPRequestHandler):
         def handle_request(self):
             # Igual que Nginx: un archivo estático existente se sirve aquí;
@@ -47,7 +47,7 @@ def crear_servidor(host="127.0.0.1", puerto=8080, api="http://127.0.0.1:8000"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--puerto", type=int, default=8080)
+    parser.add_argument("--puerto", type=int, default=8081)
     parser.add_argument("--api", default="http://127.0.0.1:8000")
     args = parser.parse_args()
     with crear_servidor(puerto=args.puerto, api=args.api) as server:

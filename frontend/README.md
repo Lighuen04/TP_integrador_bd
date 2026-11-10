@@ -10,27 +10,29 @@ ventas usa barras CSS y una tabla con los mismos valores recibidos del backend.
 Con Docker Desktop funcionando, desde la raíz:
 
 ```powershell
+# Solo la primera vez: no sobrescribir un .env existente.
 Copy-Item .env.example .env
 # Editar .env: reemplazar las contraseñas y definir DB_NAME y DB_USER.
 docker compose config --quiet
 docker compose up --build
 ```
 
-Frontend: <http://127.0.0.1:8080>. Swagger: <http://127.0.0.1:8080/docs>.
+Frontend: <http://127.0.0.1:8081>. Swagger: <http://127.0.0.1:8081/docs>.
 PostgreSQL no publica un puerto al host. Nginx sirve los cuatro archivos del
 frontend y deriva `/api/` a la API dentro de la red de Compose.
-Las rutas originales de OpenAPI también se derivan a la API si no corresponden
-a archivos estáticos, para que Swagger pueda ejecutar operaciones desde `/docs`.
+Las rutas originales de recursos de OpenAPI también se derivan a la API mediante
+una lista explícita, para que Swagger pueda ejecutar operaciones desde `/docs`.
 Las comprobaciones de salud ordenan PostgreSQL → API → frontend. No se eliminan volúmenes ni se
 migran datos automáticamente. En un volumen nuevo se instala el esquema vacío;
 los datos se cargan mediante el proceso aprobado de [fase C](../database/seed/README.md).
 Sin datos, la interfaz muestra estados vacíos, no inventa etiquetas ni clientes.
 
-**Estado comprobado en esta fase:** `docker compose config` es válido; se intentó
-`docker compose up`, pero Docker Desktop Linux Engine no estaba disponible.
-El arranque de los tres contenedores y el proxy Nginx quedan sin verificar.
-La integración completa sí se probó localmente, con navegador, proxy de desarrollo,
-Uvicorn, cuenta API y PostgreSQL reales.
+**Actualización H:** los tres contenedores y Nginx se verificaron realmente;
+PostgreSQL/API saludables y frontend publicado en `127.0.0.1:8081`. Se cargaron
+357.894 filas con el generador C y se ejecutaron operaciones de navegador sobre
+una copia descartable a través de Nginx/FastAPI/PostgreSQL Docker.
+El diagnóstico de Docker no disponible del corte G es histórico. El
+[informe H](../docs/informe_integracion_final.md) registra resultados y pendientes de nube.
 
 ### Alternativa local sin Docker
 
@@ -45,10 +47,10 @@ En una terminal:
 En otra:
 
 ```powershell
-.venv/Scripts/python.exe frontend/servir.py --puerto 8080 --api http://127.0.0.1:8000
+.venv/Scripts/python.exe frontend/servir.py --puerto 8081 --api http://127.0.0.1:8000
 ```
 
-Abrir <http://127.0.0.1:8080>. El servidor de desarrollo usa solo la biblioteca
+Abrir <http://127.0.0.1:8081>. El servidor de desarrollo usa solo la biblioteca
 estándar de Python y mantiene el mismo origen; no es un servidor de producción.
 No abrir `index.html` mediante `file://`, porque utiliza módulos JavaScript.
 La URL base se configura en el meta `api-base` de `index.html` (predeterminada
@@ -135,5 +137,5 @@ verificar el mensaje de desconexión. Se elimina solo la base creada por la suit
 Resultados y límites: [evidencia G](../docs/evidencias/fase_g_resultados.json).
 Capturas de escritorio, reportes y móvil se generan en `.local/g/`; los datos
 de esas capturas son fixtures guardados en PostgreSQL, no respuestas simuladas.
-Etapa 7 implementada y probada localmente; queda verificar el empaquetado Compose
-con su motor disponible. No se realizó despliegue en la nube (fase H).
+Etapa 7 implementada y probada localmente y con Docker/Nginx en H.
+La publicación con HTTPS en la nube sigue pendiente de una cuenta externa.

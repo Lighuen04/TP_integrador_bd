@@ -20,7 +20,7 @@ export async function request(path, { method = "GET", data, params, signal } = {
   if (response.status === 204) return null;
   const result = await response.json().catch(() => undefined);
   if (!response.ok) {
-    const error = new Error(result?.detalle ?? (response.status === 503 || response.status === 502
+    const error = new Error(result?.detalle ?? ([502, 503, 504].includes(response.status)
       ? "El servicio no está disponible temporalmente. Intentá nuevamente."
       : `No se pudo completar la operación (HTTP ${response.status}).`));
     error.status = response.status;

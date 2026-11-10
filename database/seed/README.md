@@ -1,5 +1,13 @@
 # Carga reproducible — Etapa 3
 
+Para Docker Compose, la fase H reutiliza este mismo generador mediante
+`scripts/operar_docker.py cargar`, en una imagen de herramientas definida por
+`database/seed/Dockerfile`. No publica PostgreSQL al host ni instala Faker en
+la API. La base inicial vacía se conserva; se crea una base nueva identificada
+`bodegas_c_docker_*` y solo después de validar se activa en la aplicación.
+Los comandos probados, las precauciones con datos existentes y la restauración
+están en el [README principal](../../README.md#herramientas-y-carga-masiva).
+
 Ejecutar desde la raíz, después de instalar los SQL `01`–`07` vigentes (o migrar
 una instalación B con `migracion_b2.sql`). No usar una base con datos reales.
 El generador no crea tablas, no ejecuta DROP/TRUNCATE y rechaza cualquier tabla

@@ -1,0 +1,556 @@
+{
+  "fecha": "2026-11-09",
+  "entorno": {
+    "python_host": "3.9.13",
+    "postgresql_docker": "18.6 (Debian 18.6-1.pgdg13+2)",
+    "docker": "29.4.0"
+  },
+  "compose": {
+    "api": {
+      "State": "running",
+      "Health": "healthy",
+      "Image": "base_de_datos-api",
+      "Ports": "127.0.0.1:8000->8000/tcp"
+    },
+    "db": {
+      "State": "running",
+      "Health": "healthy",
+      "Image": "postgres:18",
+      "Ports": "5432/tcp"
+    },
+    "frontend": {
+      "State": "running",
+      "Health": "",
+      "Image": "base_de_datos-frontend",
+      "Ports": "127.0.0.1:8081->80/tcp"
+    }
+  },
+  "volumen_preservado": "base_de_datos_postgres_data",
+  "base_inicial": {
+    "nombre": "bodegas",
+    "filas_antes": 0,
+    "filas_finales": 0,
+    "conservada": true
+  },
+  "base_activa": "bodegas_c_docker_demo",
+  "carga": {
+    "seed": 42,
+    "fecha_ref": "2026-11-09",
+    "total_filas": 357894,
+    "tablas": {
+      "analisis_calidad": {
+        "filas": 240,
+        "sha256": "f1daa8e952b459dcd9e5f0ed5794c070b4bd8284e66f7b24fb728737f7a86b7e"
+      },
+      "auditoria_precios": {
+        "filas": 40,
+        "sha256": "9817903bd12b1f2c1d41e2a0f2343a32f44832bf7e21a2f645b385715ce66ef4"
+      },
+      "bodega": {
+        "filas": 4,
+        "sha256": "beda162c40c4b61e07f01acc14986ce723fdea692b8a6c481922703823387cc2"
+      },
+      "cepa": {
+        "filas": 12,
+        "sha256": "e40ef825bd27950b08060954e836aa140f76fa9657b7c73efb1c313f934286ff"
+      },
+      "cliente": {
+        "filas": 20000,
+        "sha256": "b772ef2124b4c47fbe617a7e245d94f0cf93d52608d4e253d03e583fb7668512"
+      },
+      "composicion_vino_cepa": {
+        "filas": 60,
+        "sha256": "b02ccfda2b3844088a7b3264d1bc9410518895eb53e5d48152b54108c05af2c2"
+      },
+      "comprobante": {
+        "filas": 100001,
+        "sha256": "e5da613f5868be12a14eddfaccaa45401a7a290a85b5ed5686434ac6ea415e25"
+      },
+      "comprobante_vino": {
+        "filas": 200002,
+        "sha256": "c35aed2f26a51ff599283305e562be04d6c195ef535a3a783e3384fa8eb3bff3"
+      },
+      "distribuidor": {
+        "filas": 6667,
+        "sha256": "72fb31dafae282a8883098d01eae20f0ab19e180c6500b877b4a2a8416175f8b"
+      },
+      "empleado": {
+        "filas": 18,
+        "sha256": "c0e565d214bfdfcb64bf47307c4d9f328a2f963ff131dce3b1aa88ec7a9aeeaf"
+      },
+      "exportador": {
+        "filas": 6666,
+        "sha256": "863494cdf9d5717123514e4e8e7ccbf381787315ad786dd27d0fe923fb16e599"
+      },
+      "finca": {
+        "filas": 6,
+        "sha256": "1f219a4d683202660c470c612281e93796fafbda6db27769950649b116ab161a"
+      },
+      "ingreso": {
+        "filas": 8,
+        "sha256": "b580f09eccd8d05d0315f747e4cc87f887b84a1a76528f22956a1e516d7d45e8"
+      },
+      "ingreso_vino": {
+        "filas": 80,
+        "sha256": "8568ed005016760c87c5b7a4ddb1f45dd2aa0b360a6363902e40d0d10a7758f6"
+      },
+      "localidad": {
+        "filas": 3,
+        "sha256": "fd5d3000604ba0aaede7a150c4f9663e2434542b31744639d93828be4e8bcee7"
+      },
+      "lote_uva": {
+        "filas": 120,
+        "sha256": "312ba0ac11030a134f351e20957e1b5f3595103bb1c6d73abe830e67706842e6"
+      },
+      "maridaje": {
+        "filas": 8,
+        "sha256": "2f1753c5a3e973db51940aa837f39ea6d3ca9761c97952f8ab033e769c57040a"
+      },
+      "parcela": {
+        "filas": 24,
+        "sha256": "29e0465ce77ad78a6b9b97b9afcf5598f37223a8374cf62b75ad46af53af6a96"
+      },
+      "permiso_exportacion": {
+        "filas": 16665,
+        "sha256": "ffa74b3815df46f74c072ee228e01d5484cc6073144475094a7f319d1047ad76"
+      },
+      "sala_venta": {
+        "filas": 6,
+        "sha256": "7b452495914dd5ea0e6997c61b8043810280996167c977bf9090ca086441e394"
+      },
+      "socio": {
+        "filas": 6667,
+        "sha256": "0def72890ab06ad877bd1a8e9fcfe9f17eaf8a765872ace59ab61feaf9ee4378"
+      },
+      "stock_deposito": {
+        "filas": 40,
+        "sha256": "893c4d4bc8aa379a8bee31a17172f7ca0c7602d26392e2a686f7ca6c9673377e"
+      },
+      "stock_sala": {
+        "filas": 216,
+        "sha256": "c69dbcb0771baac687f95ef3adf5d74f3e52da6d46e6619e307159b642b2f9e3"
+      },
+      "transferencia": {
+        "filas": 18,
+        "sha256": "4b93eb86d8f9868e945d042a47ca905288bf027d9dc48d4b732b9b63a7f5e7dc"
+      },
+      "transferencia_vino": {
+        "filas": 228,
+        "sha256": "4339072eea420b8bf337dadc3bed09a3bc4e4bc18da618d9dc33319d84839bcd"
+      },
+      "transportista": {
+        "filas": 4,
+        "sha256": "8ee14dcf3b469aabfe1a839e4fd5479a999b2fbf6696e9bb6f3f120a823e8724"
+      },
+      "transportista_localidad": {
+        "filas": 11,
+        "sha256": "369ca9bc8b531b53b56a345f80b83f3b3f9d9458393487b2931f80f76b7962ab"
+      },
+      "vino": {
+        "filas": 40,
+        "sha256": "1be75c3e8b56f8ebfaf5b242d701a4583fccc6419878f28133625b27922a05a9"
+      },
+      "vino_maridaje": {
+        "filas": 40,
+        "sha256": "3ead9f5acfa6512d067f7f937383c5630134f91dc175341a7398e4977d741e32"
+      }
+    },
+    "segundos": 85.444,
+    "tablas_mas_10000": 4,
+    "tablas_mas_100000": 2,
+    "hashes_originales_iguales_a_C": 28,
+    "29_tablas_mismos_datos_comparacion_portable": true,
+    "permiso_exportacion_ordenamiento": {
+      "docker": {
+        "sha256_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7",
+        "locale": "en_US.utf8"
+      },
+      "bodegas_c_a": {
+        "sha256_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7",
+        "locale": "C"
+      },
+      "bodegas_c_b": {
+        "sha256_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7",
+        "locale": "C"
+      },
+      "bodegas_c_restaurada": {
+        "sha256_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7",
+        "locale": "C"
+      }
+    },
+    "nota_huellas": "28 SHA nativos coinciden. Permisos difiere por ORDER BY con locale C vs en_US.utf8; COLLATE C produce el mismo SHA en las cuatro bases. Reloj/usuario de auditoría excluidos como en C; ID y precios incluidos"
+  },
+  "integridad": {
+    "integridad": {
+      "anada_antes_venta": 0,
+      "bodega_ingreso": 0,
+      "composicion_100": 0,
+      "conciliacion_deposito": 0,
+      "conciliacion_salas": 0,
+      "constraints_validadas": 0,
+      "descuento_historico_perfil": 0,
+      "descuento_vigente": 0,
+      "escenarios_catalogos_personal": 0,
+      "escenarios_stock_movimientos": 0,
+      "escenarios_ventas_periodos": 0,
+      "fechas_cosecha_analisis": 0,
+      "fechas_movimientos": 0,
+      "fechas_venta": 0,
+      "isa_total_disjunta": 0,
+      "permiso_vigente_al_corte": 0,
+      "precio_historico_perfil": 0,
+      "saldo_historico_deposito": 0,
+      "saldo_historico_sala": 0,
+      "stock_deposito_no_negativo": 0,
+      "stock_sala_no_negativo": 0,
+      "totales": 0,
+      "triggers_activos": 0,
+      "valores_venta": 0,
+      "valores_vino": 0,
+      "vino_todas_las_salas": 0
+    },
+    "estados_ingresos": {
+      "procesado": 8
+    },
+    "estados_transferencias": {
+      "en_confeccion": 3,
+      "terminado": 3,
+      "procesado": 12
+    }
+  },
+  "catalogo_esquema": {
+    "postgresql": "18.6 (Debian 18.6-1.pgdg13+2)",
+    "tablas": 29,
+    "pk": 29,
+    "fk": 35,
+    "unique": 4,
+    "indices": 57,
+    "rutinas": 26,
+    "triggers": 22
+  },
+  "http_activo": {
+    "/": 200,
+    "/api/salud": 200,
+    "/api/vinos": 200,
+    "/api/catalogos": 200,
+    "/docs": 200,
+    "/openapi.json": 200,
+    "/.env": 404,
+    "/api/database.py": 404,
+    "/redoc": 404
+  },
+  "pruebas": {
+    "api": {
+      "tests": "22",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "3.179",
+      "casos": [
+        "test_listado_y_detalle",
+        "test_filtros_paginacion_e_inyeccion",
+        "test_alta_cliente_tres_subtipos[10-socio-extra0]",
+        "test_alta_cliente_tres_subtipos[11-distribuidor-extra1]",
+        "test_alta_cliente_tres_subtipos[12-exportador-extra2]",
+        "test_cliente_invalido_db_sin_parciales",
+        "test_cambiar_subtipo_y_baja",
+        "test_venta_valida_historica",
+        "test_venta_fallida_revierte_todos_los_renglones",
+        "test_precio_y_descuento_externos_rechazados",
+        "test_composicion_diferida_80_rollback_commit",
+        "test_vino_crud_auditoria_y_baja_fk",
+        "test_precio_negativo_y_duplicado_fk",
+        "test_transferencia_completa_y_reprocesamiento",
+        "test_transferencia_sin_stock_atomica",
+        "test_ingreso_procesado_una_vez",
+        "test_salud_openapi_reportes",
+        "test_permisos_reales_rol_api",
+        "test_baja_impide_perder_stock_y_venta",
+        "test_uvicorn_http_real",
+        "test_salud_conexion_interrumpida_503",
+        "test_catalogos_auxiliares_reales"
+      ]
+    },
+    "frontend": {
+      "tests": "14",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "24.084",
+      "casos": [
+        "test_01_catalogo_real",
+        "test_02_filtros_servidor",
+        "test_03_paginacion",
+        "test_04_detalle_y_contenido_seguro",
+        "test_05_alta_edicion_y_baja",
+        "test_06_composicion_80_rechazo_commit",
+        "test_07_venta_valida",
+        "test_08_venta_sin_stock_atomicidad",
+        "test_09_transferencia_valida",
+        "test_10_transferencia_sin_stock",
+        "test_11_reportes_reales_y_vacios",
+        "test_12_movil_y_teclado",
+        "test_13_clientes_paginados",
+        "test_99_desconexion_real_api"
+      ]
+    }
+  },
+  "suites_sql": {
+    "base_descartable": "bodegas_h_pruebas_sql_final",
+    "suites": [
+      {
+        "archivo": "08_pruebas_integridad.sql",
+        "exit_code": 0
+      },
+      {
+        "archivo": "09_pruebas_reglas_negocio.sql",
+        "exit_code": 0
+      }
+    ],
+    "29_tablas_sin_fixtures_tras_rollback": true
+  },
+  "integracion_nginx": {
+    "base_descartable": "bodegas_h_pruebas_integracion3",
+    "cadena": "Edge → Nginx → FastAPI → PostgreSQL Docker",
+    "navegador": "157.0.4341.42",
+    "comprobaciones": [
+      "salud, catálogo, catálogos auxiliares, Swagger y rutas sensibles",
+      "catálogo real de referencia y fixture de concurrencia cargados en navegador",
+      "filtros, paginación y detalle a través de Nginx",
+      "alta y edición con auditoría; composición 80 % rechazada al COMMIT",
+      "venta válida: total histórico calculado por PostgreSQL 1039.50",
+      "venta sin stock rechazada sin cabecera ni débito parcial",
+      "transferencia procesada por procedimiento y transferencia rechazada sin stock",
+      "reportes con diez vinos, seis salas y disponibilidad real",
+      "caída real de API temporal comunicada en navegador"
+    ],
+    "errores_javascript": [],
+    "servicios_activos_del_usuario": "no detenidos; no escritos por estas pruebas",
+    "recursos_temporales": "contenedores y red eliminados; base de pruebas conservada"
+  },
+  "concurrencia": {
+    "base": "bodegas_h_pruebas_integracion3",
+    "usuario": "bodegas_app",
+    "aislamiento": "read committed",
+    "stock_inicial": 1,
+    "sesiones": [
+      {
+        "sesion": "H-CONC-A",
+        "pid": 3847,
+        "resultado": "commit",
+        "segundos": 1.051
+      },
+      {
+        "sesion": "H-CONC-B",
+        "pid": 3846,
+        "resultado": "rollback",
+        "sqlstate": "23514",
+        "mensaje": "Stock insuficiente para el vino H-ULTIMA en la sala 1",
+        "segundos": 1.051
+      }
+    ],
+    "stock_final": 0,
+    "cabeceras": 1,
+    "renglones": 1,
+    "comparacion_academica": {
+      "tabla_aislada": "h_demostracion.saldo_sin_triggers",
+      "sin_bloqueo": [
+        "reserva confirmada",
+        "reserva confirmada"
+      ],
+      "con_SELECT_FOR_UPDATE": [
+        "reserva confirmada",
+        "sin saldo"
+      ]
+    },
+    "modelo_de_negocio": "29 tablas intactas; sin deshabilitar triggers"
+  },
+  "backup": {
+    "formato": "custom pg_dump",
+    "bytes": 2320442,
+    "sha256": "61f1e473ab28d38f9d4cba31131a667463b8e763e542538a032bbddaa796fc45",
+    "restauracion": "pg_restore --single-transaction --exit-on-error en base nueva",
+    "29_huellas_y_26_controles_iguales": true,
+    "archivo_local_ignorado": ".local/backups/fase_h_demo.dump"
+  },
+  "seguridad": {
+    "privilegios": {
+      "superusuario": false,
+      "crear_base": false,
+      "crear_roles": false,
+      "miembro_api": true,
+      "miembro_propietario": false,
+      "crear_schema": false,
+      "actualizar_stock": false,
+      "insertar_stock": false,
+      "borrar_stock": false,
+      "escribir_auditoria": false,
+      "actualizar_total": false,
+      "passwords_scram": true,
+      "propietario_nologin": true
+    },
+    "security_definer": [
+      {
+        "rutina": "fn_eliminar_vino_sin_movimientos",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "fn_recalcular_total_comprobante",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "fn_recalcular_totales_comprobantes",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_actualizar_total_comprobante",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_aplicar_ingreso",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_aplicar_transferencia",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_auditar_cambio_precio",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_comprobar_cliente_isa_diferido",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_inicializar_descuento_cliente",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_movimiento_stock_venta",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_proteger_comprobante",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_validar_composicion_diferida",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      },
+      {
+        "rutina": "tg_vino_crear_stock_deposito",
+        "dueno": "bodegas_propietario",
+        "dueno_super": false,
+        "config": [
+          "search_path=bodegas_atuel, pg_temp"
+        ],
+        "public_execute": false
+      }
+    ],
+    "rotacion": {
+      "credenciales": "rotadas en PostgreSQL y .env; valores no incluidos",
+      "volumen": "conservado"
+    },
+    "credenciales_reales_y_env_no_en_historial_git": true,
+    "postgres_sin_puerto_host": true
+  },
+  "referencias_locales_preservadas": {
+    "bodegas_c_a": "29 huellas iguales a C",
+    "bodegas_c_b": "29 huellas iguales a C",
+    "bodegas_c_restaurada": "29 huellas iguales a C"
+  },
+  "modelo_SQL_consultas_indices_sin_cambios": true,
+  "recursos_temporales_contenedores_red_limpiados": true,
+  "nube": {
+    "estado": "pendiente",
+    "url_publica": null,
+    "https_publico_probado": false,
+    "perfil_TLS_config_exit": 0,
+    "perfil_TLS_ejecutado": false,
+    "falta": "Cuenta/VM gratuita autorizada, dominio, certificados y validación desde otra red; ningún recurso pago creado"
+  },
+  "pendientes_academicos": [
+    "revisión visual final de cardinalidades del DER",
+    "participación/commits reales del grupo y defensa oral",
+    "demo sobre URL pública"
+  ],
+  "fuentes_sha256": {
+    "api/database.py": "9258449cbc4e7ddf31befc1540bd0395f15c819fcbe2404e56c601f308dbe928",
+    "database/seed/Dockerfile": "4757a7b5e32753187d5f7c9cbff435fb8ab7b56bdf78f3586ca8dd387f5efb5e",
+    "deploy/compose.https.yml": "2d2683662f777c6ee96d85cb55209a12ffdd4e0def6293b8a581b38a49a1765e",
+    "deploy/nginx.https.conf": "2a3a264cae31f36808917f0355d6bf6a838cbb6dd9650ff88bf3910f287d9e4a",
+    "docker-compose.yml": "05e433e313fba95e05b93b53fbb0785bac02cb2cd9be2b145b3afd22a31b4f60",
+    "docs/DER.drawio.xml": "3fa9095cdcb06f98527876fdecaf8e84f33fd7237839554bad05b6e850368f34",
+    "docs/diccionario_datos.md": "1b1fd9637b5999bbcb8490c48cbd8c7e9314fd495b86bda08a25c3c993bc86de",
+    "frontend/api.js": "9bd40e4c9b03aff436f9f0aee4fcc134811e7229a5d79a323392e257f8aac27d",
+    "frontend/Dockerfile": "6ff7e499f122f444efda0e180a6ba7f784c6023545baf49b0048bf28f1e4ba5a",
+    "frontend/nginx.conf": "a86863ccaa163f9b4a5f37edf06bd4775aa2fd7e22896960ea3a18d94407f49c",
+    "frontend/nginx.rutas.conf": "863293fcb25a328a4ed43da33b43934cb5f65c598ec0265628cdcf66a556b584",
+    "README.md": "030af72bd6949fa6af1c6fede5e5736d10098f1b0e0b575c209f165795a762c9",
+    "scripts/generar_diccionario.py": "f5d31349630f4124f3f4c2d240c5e95d2cf96c58ce219641e7c624d682e391c0",
+    "scripts/operar_docker.py": "87e202a8e463b7761ca3100d6da10e574684b0c5c596535a8857163812d45a54",
+    "scripts/probar_concurrencia.py": "ded7fd063edadcb0d6b37388949edd01068613ed74fd74399e1790466de3b65c",
+    "scripts/probar_integracion_docker.py": "06900b8bf5f9c5721417b8979292d74bb73909f23dac8ae689830492daba7dad"
+  }
+}

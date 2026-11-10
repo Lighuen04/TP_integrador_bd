@@ -16,6 +16,9 @@ async def lifespan(app):
         raise RuntimeError("Configurar una cuenta de acceso del rol bodegas_api.")
     kwargs.update(row_factory=dict_row, autocommit=True, connect_timeout=3,
                   options="-csearch_path=bodegas_atuel,pg_temp -cstatement_timeout=15000 -clock_timeout=5000")
+    # Para la configuración de nube con TLS o un PostgreSQL remoto.
+    if os.environ.get("DB_SSLMODE"):
+        kwargs["sslmode"] = os.environ["DB_SSLMODE"]
     pool = ConnectionPool(kwargs=kwargs, min_size=1, max_size=5, timeout=5,
                           open=False, name="bodegas-api")
     app.state.pool = pool

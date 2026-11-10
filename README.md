@@ -1,19 +1,196 @@
-# repo_trabajo_final
+# Bodegas del Atuel — TPI Bases de Datos
 
-Proyecto TPI Bodegas del Atuel, PostgreSQL y API REST con SQL directo.
+Sistema académico de gestión vitivinícola: modelo de 29 tablas, integridad en
+PostgreSQL, carga reproducible, API REST con SQL directo y cinco pantallas web.
+La consigna original se conserva en [docs/TPI_Bodegas_del_Atuel.md](docs/TPI_Bodegas_del_Atuel.md).
 
-- [Instalación y reglas de la base](database/README.md).
-- [Carga reproducible](database/seed/README.md).
-- [Índices y mediciones](docs/informe_rendimiento_indices.md).
-- [API REST: instalación, rutas y pruebas](api/README.md).
-- [Frontend: pantallas, integración y ejecución](frontend/README.md).
+**Estado comprobado:** Docker Compose funciona en local, con 357.894 filas y
+pruebas reales de integración, concurrencia y restauración. **La versión pública
+con HTTPS sigue pendiente**: no hay una cuenta/VM/dominio externo configurado.
+El [informe final](docs/informe_integracion_final.md) distingue lo implementado,
+probado, documentado y pendiente, con [evidencias H](docs/evidencias/fase_h_resultados.json).
 
-La API se ejecuta con `python -m uvicorn api.main:app` después de instalar
-`api/requirements.txt` y configurar las variables DB_* indicadas en su README.
-Swagger queda en `/docs`.
+## Arquitectura y tecnologías
 
-Para iniciar también el frontend local: `python frontend/servir.py` en otra
-terminal y abrir `http://127.0.0.1:8080`. Con Docker Desktop disponible,
-configurar `.env` desde `.env.example` y ejecutar `docker compose up --build`.
-Compose incluye PostgreSQL, API y frontend; su arranque todavía no se verificó
-porque el motor Docker no estaba disponible. La integración local sí se probó.
+Navegador → **Nginx :8081** → **FastAPI** → **PostgreSQL 18**.
+
+Frontend HTML/CSS/JavaScript con Fetch nativo; Python, Pydantic, Uvicorn,
+psycopg 3 y pool. Sin ORM ni framework frontend. Totales, descuentos históricos,
+stock, estados, auditoría y composición se resuelven en PostgreSQL.
+PostgreSQL solo se comunica en la red Docker; no publica un puerto al host.
+Las interfaces locales se enlazan a `127.0.0.1`.
+
+## Requisitos y configuración
+
+- Docker Engine y Docker Compose funcionando (Docker Desktop con contenedores Linux en Windows).
+- Para herramientas/pruebas: Python 3.11+ recomendado y entorno virtual; también se probó Python 3.9.13.
+- Edge instalado o Chromium de Playwright para pruebas de navegador.
+
+Desde la raíz, **solo si todavía no existe `.env`**:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Editar `.env` fuera de Git: `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`,
+`DB_PASSWORD` y `POSTGRES_PASSWORD`. Los valores de contraseña del ejemplo son
+marcadores: reemplazarlos por secretos diferentes antes del primer arranque.
+Compose fija el host interno `db` y el puerto `5432`; `DB_HOST/DB_PORT` del ejemplo
+también sirven para la alternativa local. No sobrescribir un `.env` existente.
+El LOGIN API recibe únicamente membresía de `bodegas_api`; nunca usar el dueño
+ni `postgres` para atender HTTP. `.env`, entornos, respaldos y datos locales no
+se versionan ni se incluyen en las imágenes.
+
+## Iniciar con Docker
+
+```powershell
+docker compose config --quiet
+docker compose up -d --build
+docker compose ps
+```
+
+- Frontend: <http://127.0.0.1:8081>.
+- Swagger: <http://127.0.0.1:8081/docs>.
+- OpenAPI: <http://127.0.0.1:8081/openapi.json>.
+- Salud: <http://127.0.0.1:8081/api/salud>.
+- API directa, para diagnóstico local: <http://127.0.0.1:8000/docs>.
+
+El puerto `8081` reemplaza al `8080`, bloqueado en este Windows. En un volumen
+nuevo, Docker ejecuta `database/01`–`07`, `10_api_baja_vino.sql` y el bootstrap
+del LOGIN. En un volumen existente **no reinstala ni migra automáticamente**.
+Los healthchecks ordenan el arranque de base, API y frontend. No ejecutar
+`docker compose down -v` para actualizar código o credenciales.
+
+## Herramientas y carga masiva
+
+```powershell
+python -m venv .venv
+.venv/Scripts/python.exe -m pip install -r api/requirements-test.txt
+.venv/Scripts/python.exe scripts/operar_docker.py conteos
+```
+
+Si las 29 tablas de la base activa están vacías, crear una **base nueva** y
+reutilizar el generador C, con semilla 42 y fecha explícita:
+
+```powershell
+.venv/Scripts/python.exe scripts/operar_docker.py cargar --base bodegas_c_docker_demo --fecha-ref 2026-11-09 --reporte .local/h/carga.json
+.venv/Scripts/python.exe scripts/operar_docker.py activar --base bodegas_c_docker_demo
+.venv/Scripts/python.exe scripts/operar_docker.py validar --fecha-ref 2026-11-09
+```
+
+El nombre debe ser nuevo; CREATE falla si ya existe. El comando de carga
+rechaza bases activas con datos, no las vacía. Construye una imagen temporal de
+herramientas con el generador y sus dependencias, sin agregar dependencias a la
+API. `activar` actualiza únicamente `DB_NAME` en `.env` y reinicia API/frontend;
+conserva la base anterior y el volumen. Si ya hay datos, **conservarlos**, revisar
+sus conteos y no repetir la carga. El validador C verifica su perfil de datos,
+no cualquier dataset modificado por ventas de demostración.
+
+En esta ejecución, `bodegas` quedó vacía y preservada; la aplicación usa
+`bodegas_c_docker_demo`. Tiene los mismos datos que C: 20.000 clientes,
+100.001 comprobantes, 200.002 renglones y 16.665 permisos, entre otras tablas.
+Las escrituras H se hicieron en copias `bodegas_h_pruebas_*`, no en la base activa
+ni en las bases originales de mediciones. [Detalle de carga C](database/seed/README.md).
+De los hashes originales, 28 coinciden directamente; el de permisos depende del
+ordenamiento regional. Al comparar sus códigos con `COLLATE "C"`, también coincide.
+`validar` conserva la huella original y agrega esa verificación portable.
+
+## Cambiar credenciales sin borrar el volumen
+
+Cambiar `POSTGRES_PASSWORD` en `.env` **no cambia** una contraseña de un volumen
+ya inicializado. El procedimiento probado genera dos secretos aleatorios,
+ejecuta ALTER ROLE por stdin con registro de sentencias deshabilitado para esa
+sesión, actualiza `.env` y recrea API/frontend, sin imprimir los valores:
+
+```powershell
+.venv/Scripts/python.exe scripts/operar_docker.py rotar-credenciales
+docker compose up -d
+```
+
+En H se ejecutó y se comprobó la conexión con las nuevas credenciales.
+Restringir el acceso al `.env` al usuario operador; en Linux, `chmod 600 .env`.
+Alternativa manual: `psql` interactivo y `\password` para cada cuenta, seguido
+de actualización privada de `.env` y recreación de API/frontend. No introducir
+contraseñas en argumentos, historial de comandos, capturas ni informes.
+
+## Respaldo y restauración verificados
+
+```powershell
+.venv/Scripts/python.exe scripts/operar_docker.py backup --archivo .local/backups/demo.dump
+.venv/Scripts/python.exe scripts/operar_docker.py restaurar --base bodegas_h_restaurada_demo --archivo .local/backups/demo.dump
+.venv/Scripts/python.exe scripts/operar_docker.py validar --base bodegas_h_restaurada_demo --fecha-ref 2026-11-09
+```
+
+Se usa `pg_dump --format=custom` y `pg_restore --single-transaction
+--exit-on-error`, con transporte binario sin pasar por redirección de PowerShell.
+No se sobrescriben archivos ni bases existentes. Los roles ya existen en el mismo
+clúster; para otro clúster un administrador debe provisionar primero los tres
+roles grupales y el LOGIN API, sin exportar sus contraseñas. Un dump por base
+no respalda roles globales. Guardar una copia del respaldo fuera del equipo;
+los volcados grandes no pertenecen al repositorio.
+
+## Pruebas
+
+```powershell
+.venv/Scripts/python.exe -m pip install -r api/requirements-ui.txt
+$env:TEST_DB_PORT='55441'  # PostgreSQL local de pruebas; 5432 en otra instalación
+$env:UI_BROWSER_CHANNEL='msedge'
+.venv/Scripts/python.exe -m pytest api/tests -q --basetemp=.local/pytest_h_api
+.venv/Scripts/python.exe -m pytest frontend/tests -q --basetemp=.local/pytest_h_ui
+.venv/Scripts/python.exe scripts/operar_docker.py probar-sql --base bodegas_h_pruebas_sql_nueva
+```
+
+Estas suites necesitan PostgreSQL local accesible y una cuenta administrativa
+de preparación (`TEST_DB_HOST/PORT/ADMIN/PASSWORD`); **la API bajo prueba utiliza
+un LOGIN sin privilegios de dueño**. Crean y limpian solo sus propias bases.
+Para Chromium, omitir el canal e instalarlo con `python -m playwright install chromium`.
+
+Para repetir las pruebas **con Nginx y PostgreSQL Docker reales**, restaurar
+una copia con nombre nuevo y ejecutar:
+
+```powershell
+.venv/Scripts/python.exe scripts/operar_docker.py restaurar --base bodegas_h_pruebas_nueva --archivo .local/backups/demo.dump
+.venv/Scripts/python.exe scripts/probar_concurrencia.py --base bodegas_h_pruebas_nueva
+.venv/Scripts/python.exe scripts/probar_integracion_docker.py --base bodegas_h_pruebas_nueva
+```
+
+La integración reutiliza los formularios y crea contenedores/red temporales;
+solo detiene su API temporal para probar la desconexión. Al terminar retira
+esos contenedores/red, sin borrar volúmenes. La copia de prueba queda para
+inspección. Usar otra base nueva para una segunda ejecución, porque sus
+documentos de prueba ya existen. La concurrencia incluye dos sesiones sobre la
+última botella y una comparación sin/con `SELECT FOR UPDATE` en una tabla
+académica aislada del esquema de las 29 tablas.
+
+## Documentación y estructura
+
+| Ruta | Contenido |
+|---|---|
+| `database/` | DDL, permisos, funciones, triggers, índices, vistas y suites SQL |
+| `database/seed/` | Único generador masivo, CSV, validador e imagen de herramientas |
+| `consultas/` | Las 30 consignas U/I/D/S aprobadas |
+| `api/` | API, SQL parametrizado, esquemas, pool y pruebas |
+| `frontend/` | Cinco pantallas, Nginx y pruebas de navegador |
+| `scripts/` | Operación Docker, diccionario, concurrencia e integración |
+| `deploy/` | Configuración HTTPS/TLS para una VM externa; despliegue pendiente |
+| `docs/` | Fuentes, modelo, normalización, diccionario, informes y evidencias |
+
+[DER original editable](docs/DER.drawio.xml) · [Modelo relacional](docs/modelo_relacional.dbml) ·
+[Normalización](docs/normalizacion.md) · [Diccionario derivado de PostgreSQL](docs/diccionario_datos.md) ·
+[Reglas y decisiones](database/README.md) · [Índices medidos](docs/informe_rendimiento_indices.md) ·
+[API](api/README.md) · [Frontend](frontend/README.md).
+
+## Cumplimiento y despliegue
+
+Están implementadas y probadas localmente las etapas de modelo/integridad,
+carga, consultas, índices, API y frontend, más concurrencia y restauración.
+El informe final reúne la trazabilidad y los documentos de cada etapa sin
+duplicar sus desarrollos. Las capturas y planes están en `docs/evidencias/`.
+
+Para nube se preparó `deploy/compose.https.yml`, que reutiliza los tres servicios
+y exige certificados externos: HTTPS público y conexión API–PostgreSQL con TLS.
+La comparación de proveedores, requisitos y pasos pendientes está en el
+[informe final, sección 8](docs/informe_integracion_final.md#8-despliegue-seguridad-y-límites).
+No se creó ningún recurso pago ni se publica una URL ficticia. La revisión visual
+final de cardinalidades del DER, los commits de todos los integrantes y su defensa
+oral deben ser realizados/confirmados por el grupo.

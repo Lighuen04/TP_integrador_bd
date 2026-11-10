@@ -188,9 +188,11 @@ los catálogos/datos se cargan por el proceso separado ya aprobado. El bootstrap
 solo se ejecuta en un volumen nuevo; no migra volúmenes existentes.
 
 La configuración Compose fue validada, pero el motor Docker Desktop no estaba
-disponible en este entorno: **no se verificó el arranque de los contenedores**.
-Sí se ejecutaron PostgreSQL y Uvicorn locales. Queda esa comprobación del
-empaquetado; no se presenta como un despliegue realizado.
+disponible en el corte F/G. **En H sí se verificaron los tres contenedores**, con
+PostgreSQL/API saludables y frontend/Nginx en `127.0.0.1:8081`. La integración
+completa y el respaldo/restauración están en el [informe H](../docs/informe_integracion_final.md).
+`DB_SSLMODE` es opcional para ejecución local y se fija a `require` en el perfil
+de nube preparado; no se confunde esa configuración con HTTPS público probado.
 
 Fase G está implementada en [frontend/](../frontend/README.md), con filtros,
 formularios, estados y errores de negocio probados en navegador. No se implementó
