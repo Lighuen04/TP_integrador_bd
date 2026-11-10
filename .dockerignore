@@ -5,3 +5,10 @@ api/__pycache__/
 api/tests/
 !database/
 !database/*.sql
+!frontend/
+!frontend/index.html
+!frontend/styles.css
+!frontend/app.js
+!frontend/api.js
+!frontend/nginx.conf
+!frontend/Dockerfile

@@ -71,6 +71,14 @@ def clientes(conn, limite, offset):
     return conn.execute(CLIENTE_SELECT + " ORDER BY c.id_cliente LIMIT %s OFFSET %s", (limite, offset)).fetchall()
 
 
+def catalogos(conn):
+    return {
+        "salas": conn.execute("SELECT id_sala,calle,numero,codigo_postal FROM sala_venta ORDER BY id_sala").fetchall(),
+        "cepas": conn.execute("SELECT id_cepa,nombre,tipo FROM cepa ORDER BY nombre,id_cepa").fetchall(),
+        "bodegas": conn.execute("SELECT cuit,razon_social FROM bodega ORDER BY razon_social,cuit").fetchall(),
+    }
+
+
 def cliente(conn, identificador):
     return uno(conn.execute(CLIENTE_SELECT + " WHERE c.id_cliente=%s", (identificador,)))
 

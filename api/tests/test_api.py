@@ -186,7 +186,7 @@ def test_ingreso_procesado_una_vez(client, db):
 def test_salud_openapi_reportes(client):
     assert client.get("/salud").json() == {"api":"ok","postgresql":"ok"}
     spec = client.get("/openapi.json").json()
-    assert len(spec["paths"]) == 20
+    assert len(spec["paths"]) == 21
     assert "409" in spec["paths"]["/comprobantes"]["post"]["responses"]
     for ruta in ("top-vinos","ventas-por-sala","vinos-sin-stock?sala=1","transportista-activo","trazabilidad/V1"):
         assert client.get("/reportes/" + ruta).status_code == 200

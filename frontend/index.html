@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="api-base" content="/api">
+  <meta name="theme-color" content="#512536">
+  <title>Bodegas del Atuel · Gestión</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Ir al contenido</a>
+  <aside class="sidebar">
+    <a class="brand" href="#catalogo"><span class="brand-mark" aria-hidden="true">A</span><span>BODEGAS<span class="brand-name">del Atuel</span></span></a>
+    <p class="nav-label">ESPACIO DE GESTIÓN</p>
+    <nav aria-label="Navegación principal">
+      <a href="#catalogo"><span aria-hidden="true">▤</span> Catálogo de vinos</a>
+      <a href="#gestion"><span aria-hidden="true">◇</span> Gestión de vinos</a>
+      <a href="#venta"><span aria-hidden="true">＋</span> Nueva venta</a>
+      <a href="#transferencias"><span aria-hidden="true">⇄</span> Transferencias</a>
+      <a href="#reportes"><span aria-hidden="true">▥</span> Tablero de reportes</a>
+    </nav>
+    <div class="sidebar-footer"><span class="region">SAN RAFAEL · MENDOZA</span><p>Tradición en cada origen.<br>Precisión en cada operación.</p><a href="/docs" target="_blank" rel="noopener">Documentación API ↗</a></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span>Administración <span class="muted">/ Bodegas del Atuel</span></span><button id="salud" class="status" title="Comprobar conexión"><span class="dot" aria-hidden="true"></span><span id="salud-texto">Comprobando conexión…</span></button></header>
+    <main id="contenido" tabindex="-1">
+      <div id="aviso-global" class="notice" role="status" hidden></div>
+      <section id="catalogo" class="screen" aria-labelledby="titulo-catalogo">
+        <div class="page-heading"><div><p class="eyebrow">COLECCIÓN & ORIGEN</p><h1 id="titulo-catalogo">Catálogo de vinos</h1><p class="subtitle">Explorá las etiquetas, su composición y disponibilidad.</p></div><a id="catalogo-nuevo" class="button primary" href="#gestion">＋ Nuevo vino</a></div>
+        <form id="filtros" class="panel filter-grid">
+          <label>Tipo<input name="tipo" list="tipos" placeholder="Todos los tipos"></label>
+          <label>Cepa<select name="cepa" data-cepas><option value="">Todas las cepas</option></select></label>
+          <label>Bodega<select name="bodega" data-bodegas><option value="">Todas las bodegas</option></select></label>
+          <label>Añada<input name="anada" type="number" placeholder="Todas las añadas"></label>
+          <button class="primary" type="submit">Aplicar filtros</button><button id="limpiar-filtros" type="button" class="text-button">Limpiar</button>
+        </form>
+        <div class="panel catalog-panel"><div class="panel-heading"><h2>Etiquetas disponibles</h2><label class="inline-label">Mostrar<select id="limite"><option>10</option><option selected>20</option><option>50</option><option>100</option></select></label></div>
+          <div id="catalogo-mensaje" class="notice" role="status" hidden></div>
+          <div class="table-scroll"><table><thead><tr><th>Vino / Código</th><th>Tipo</th><th>Añada</th><th>Presentación</th><th>Precio</th><th><span class="sr-only">Acciones</span></th></tr></thead><tbody id="vinos-body"></tbody></table></div>
+          <div class="pagination"><span id="pagina-texto">Cargando catálogo…</span><div><button id="anterior" type="button">← Anterior</button><button id="siguiente" type="button">Siguiente →</button></div></div>
+        </div>
+        <form id="buscar-codigo" class="lookup"><label for="codigo-busqueda">¿Buscás una etiqueta específica?</label><input id="codigo-busqueda" required maxlength="40" placeholder="Código de vino"><button>Ver detalle</button></form>
+      </section>
+
+      <section id="gestion" class="screen" hidden aria-labelledby="titulo-gestion">
+        <div class="page-heading"><div><p class="eyebrow">MAESTRO DE ETIQUETAS</p><h1 id="titulo-gestion">Gestión de vinos</h1><p class="subtitle">Datos del vino y composición, en una sola operación.</p></div><button id="nuevo-vino" type="button">Nuevo formulario</button></div>
+        <form id="vino-form" class="panel form-panel">
+          <div class="panel-heading"><h2 id="modo-vino">Nueva etiqueta</h2><span class="badge">Datos del vino</span></div>
+          <div class="form-grid">
+            <label>Código<input name="codigo_vino" required maxlength="40"></label><label class="wide">Nombre comercial<input name="nombre_comercial" required maxlength="160"></label>
+            <label>Tipo<input name="tipo" required maxlength="24" list="tipos"></label><label>Añada<input name="anada" type="number" required step="1"></label>
+            <label>Presentación (ml)<input name="presentacion_ml" type="number" required step="1"></label><label>Graduación alcohólica (%)<input name="graduacion_alcoholica" type="number" required step="0.01"></label>
+            <label>Precio ($)<input name="precio" type="number" required step="0.01"></label><label>Bodega<select name="cuit_bodega" required data-bodegas><option value="">Seleccionar bodega</option></select></label>
+          </div>
+          <div class="composition-header"><div><h2>Composición de cepas</h2><p class="muted">Ingresá cada cepa y su porcentaje de corte.</p></div><button id="agregar-cepa" type="button">＋ Agregar cepa</button></div>
+          <div id="composicion"></div><p class="composition-total">Porcentaje ingresado: <strong id="suma-corte">0 %</strong></p>
+          <div id="vino-mensaje" class="notice" role="status" hidden></div>
+          <div class="form-actions"><button id="guardar-vino" class="primary">Guardar vino</button><button id="eliminar-vino" type="button" class="danger" hidden>Eliminar vino</button></div>
+        </form>
+      </section>
+
+      <section id="venta" class="screen" hidden aria-labelledby="titulo-venta">
+        <div class="page-heading"><div><p class="eyebrow">OPERACIONES COMERCIALES</p><h1 id="titulo-venta">Nueva venta</h1><p class="subtitle">Seleccioná el destino y los vinos para emitir el comprobante.</p></div></div>
+        <form id="venta-form" class="panel form-panel">
+          <div class="panel-heading"><h2>Datos del comprobante</h2><span class="badge">Nueva operación</span></div>
+          <div class="form-grid"><label>Número de comprobante<input name="numero_comprobante" required maxlength="40"></label><label>Sala de venta<select name="id_sala" required data-salas><option value="">Seleccionar sala</option></select></label><label class="wide">Cliente<select id="venta-cliente" name="id_cliente" required><option value="">Seleccionar cliente</option></select></label></div>
+          <div class="client-pagination"><span id="clientes-pagina">Clientes</span><button id="clientes-anterior" type="button">← Anteriores</button><button id="clientes-siguiente" type="button">Más clientes →</button></div>
+          <div class="composition-header"><h2>Vinos de la venta</h2><a href="#catalogo">Buscar en catálogo ↗</a></div>
+          <p class="muted">Elegí una sugerencia o ingresá el código exacto. También podés agregar vinos desde su detalle.</p>
+          <div id="venta-lineas"></div><button id="agregar-venta" type="button">＋ Agregar renglón</button>
+          <div id="venta-mensaje" class="notice" role="status" hidden></div>
+          <div class="form-actions"><button class="primary" id="confirmar-venta">Confirmar venta</button><span class="muted">El total y el descuento se informan al confirmar.</span></div>
+        </form><div id="venta-resultado" class="panel receipt" hidden></div>
+      </section>
+
+      <section id="transferencias" class="screen" hidden aria-labelledby="titulo-transferencias">
+        <div class="page-heading"><div><p class="eyebrow">DEPÓSITO & SALAS</p><h1 id="titulo-transferencias">Transferencias</h1><p class="subtitle">Gestioná el envío de botellas desde el depósito a una sala.</p></div><button id="nueva-transferencia" type="button">Nueva transferencia</button></div>
+        <form id="transferencia-form" class="panel form-panel"><div class="panel-heading"><h2>Solicitud de transferencia</h2></div><div class="form-grid"><label>Número de solicitud<input name="numero_solicitud" required maxlength="40"></label><label>Sala de destino<select name="id_sala" required data-salas><option value="">Seleccionar sala</option></select></label></div><div class="form-actions"><button class="primary">Crear transferencia</button></div></form>
+        <div id="transferencia-detalle" class="panel form-panel" hidden><div class="panel-heading"><h2 id="transferencia-numero"></h2><span id="transferencia-estado" class="badge"></span></div><p id="transferencia-sala" class="muted"></p><ol class="steps" aria-label="Estados"><li data-estado="en_confeccion">En confección</li><li data-estado="terminado">Terminado</li><li data-estado="procesado">Procesado</li></ol>
+          <form id="transferencia-renglon"><div class="line-row"><label>Código de vino<input name="codigo_vino" list="vinos-sugeridos" required maxlength="40"></label><label>Botellas<input name="cantidad_botellas" type="number" required step="1"></label><button class="primary">Agregar renglón</button></div></form>
+          <div id="transferencia-lineas"></div><div class="form-actions"><button id="terminar-transferencia">Pasar a terminado</button><button id="procesar-transferencia" class="primary">Procesar transferencia</button></div>
+        </div><div id="transferencia-mensaje" class="notice" role="status" hidden></div>
+      </section>
+
+      <section id="reportes" class="screen" hidden aria-labelledby="titulo-reportes">
+        <div class="page-heading"><div><p class="eyebrow">INFORMACIÓN PARA DECIDIR</p><h1 id="titulo-reportes">Tablero de reportes</h1><p class="subtitle">Ventas, disponibilidad y actividad de la red.</p></div><button id="actualizar-reportes">↻ Actualizar reportes</button></div>
+        <div id="reportes-mensaje" class="notice" role="status" hidden></div>
+        <div class="report-grid"><article class="panel report-card"><p class="eyebrow">ÚLTIMO TRIMESTRE MÓVIL</p><h2>Ventas por sala</h2><p class="muted">Importes de los comprobantes emitidos.</p><div id="grafico-ventas" role="img" aria-label="Gráfico de ventas por sala"></div><div id="ventas-tabla"></div></article>
+          <article class="panel report-card"><p class="eyebrow">RANKING POR BOTELLAS</p><h2>Los diez más vendidos</h2><div id="top-vinos"></div></article>
+          <article class="panel report-card"><div class="panel-heading"><h2>Sin stock en sala</h2><label>Sala<select id="reporte-sala" data-salas><option value="">Seleccionar</option></select></label></div><p class="muted">Vinos disponibles en depósito y sin existencias en la sala elegida.</p><div id="sin-stock"></div></article>
+          <article class="panel report-card"><p class="eyebrow">ACTIVIDAD DEL ÚLTIMO MES</p><h2>Transportista destacado</h2><div id="transportista"></div></article></div>
+      </section>
+      <footer class="page-footer">Bodegas del Atuel <span>Sistema de gestión · TPI Bases de Datos</span></footer>
+    </main>
+  </div>
+  <datalist id="tipos"><option value="tinto"><option value="blanco"><option value="rosado"><option value="espumante"></datalist><datalist id="vinos-sugeridos"></datalist>
+  <dialog id="detalle-dialog" aria-labelledby="detalle-titulo"><div class="dialog-top"><p class="eyebrow">FICHA DE LA ETIQUETA</p><button id="cerrar-detalle" aria-label="Cerrar detalle">✕</button></div><div id="detalle-contenido"></div><div class="form-actions"><button id="detalle-editar">Editar vino</button><button id="detalle-vender" class="primary">Agregar a venta</button></div></dialog>
+  <dialog id="baja-dialog" aria-labelledby="baja-titulo"><h2 id="baja-titulo">¿Eliminar este vino?</h2><p>La baja es definitiva. Solo se realizará si las restricciones de la base lo permiten.</p><div class="form-actions"><button id="cancelar-baja">Cancelar</button><button id="confirmar-baja" class="danger">Eliminar definitivamente</button></div></dialog>
+</body>
+</html>

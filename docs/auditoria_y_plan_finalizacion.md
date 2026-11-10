@@ -1,10 +1,10 @@
 # Bodegas del Atuel — Auditoría y plan de finalización
 
 Auditoría original: 9 de noviembre de 2026, fase A. **El estado vigente al cierre
-de F está en [§14](#14-estado-vigente-tras-fase-f)**. El cierre de E y su informe
+de G está en [§15](#15-estado-vigente-tras-fase-g)**. El cierre de E y su informe
 de rendimiento están en §13. Las secciones 1–9 conservan el diagnóstico inicial;
 los cierres 10–12 describen cada fase anterior, no bloqueos actuales. La frase
-«no se modificó SQL» y los pendientes de esos cortes no describen el estado F.
+«no se modificó SQL» y los pendientes de esos cortes no describen el estado G.
 
 **Actualización de fase B:** el inventario, matriz y hallazgos siguientes
 conservan la fotografía inicial de fase A. H2, H3 y los defectos nominales y de
@@ -517,3 +517,26 @@ de API/PostgreSQL sí se ejecutaron. La fase G puede consumir la API; siguen
 pendientes frontend, despliegue, diccionario y demostración académica de
 concurrencia. Los diagnósticos y próximos pasos anteriores a este apartado son
 históricos.
+
+## 15. Estado vigente tras fase G
+
+Se implementaron las cinco pantallas de Etapa 7 con HTML/CSS/JavaScript y Fetch,
+sin framework ni dependencias en el navegador: catálogo, gestión de vinos,
+venta, transferencias y reportes con gráfico. La guía de ejecución y los flujos
+están en [frontend/README.md](../frontend/README.md).
+
+Única extensión funcional de la API: `GET /catalogos`, consulta de salas, cepas
+y bodegas para formularios. No se cambiaron tablas, índices, reglas, funciones,
+triggers ni las consultas aprobadas. Los mensajes de la base llegan a pantalla;
+el frontend no calcula importes, descuentos ni existencias.
+
+Pasaron 22 pruebas de API y 14 de navegador, con Uvicorn, proxy local, rol API
+y PostgreSQL reales. Se comprobaron escritorio/móvil, paginación de vinos y
+clientes, alta/edición/baja, composición 80 % rechazada al COMMIT, stock
+insuficiente con rollback, procesamiento de transferencias, reportes y caída
+real de la API. [Resultados y límites](evidencias/fase_g_resultados.json).
+
+Compose incluye frontend Nginx y dependencias con healthchecks. Su configuración
+es válida, pero el motor Docker Desktop no estaba disponible: el arranque de
+contenedores permanece sin verificar. Etapa 7 funciona localmente; fase H
+(nube), diccionario y demostración académica de concurrencia siguen pendientes.

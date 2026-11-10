@@ -1,5 +1,11 @@
 # API REST — Fase F
 
+Extensión mínima G: `GET /catalogos` devuelve `salas`, `cepas` y `bodegas` de
+solo lectura para los formularios. Se conserva `/clientes` paginado. Ahora hay
+27 operaciones sobre 21 rutas de recursos. No cambia el esquema ni los procedimientos de la base.
+El [frontend](../frontend/README.md) consume `/api/` mediante un proxy del mismo
+origen; no necesita CORS abierto. Swagger también es accesible desde su `/docs`.
+
 FastAPI, Pydantic, Uvicorn, psycopg 3 y psycopg_pool; SQL directo en un único
 `repository.py`, sin ORM. `main.py` contiene rutas y traducción de errores,
 `database.py` administra el pool y las transacciones y `schemas.py` valida la
@@ -57,8 +63,9 @@ No se registra ni se devuelve la contraseña.
 | Ingresos | `POST /ingresos`, `POST /ingresos/{codigo}/renglones`, `/terminar`, `/procesar` |
 | Reportes | `GET /reportes/top-vinos`, `/ventas-por-sala`, `/vinos-sin-stock?sala=1`, `/transportista-activo`, `/trazabilidad/{codigo}` |
 | Salud | `GET /salud` |
+| Catálogos auxiliares G | `GET /catalogos` |
 
-Hay 26 operaciones sobre 20 rutas de recursos, además de la documentación de
+Hay 27 operaciones sobre 21 rutas de recursos, además de la documentación de
 FastAPI. Vinos y clientes aceptan `limite` (1–100, predeterminado 20) y `offset`
 (desde cero). Vinos permite filtros combinados `tipo`, `cepa` (ID), `bodega`
 (CUIT) y `anada`. El orden estable es la PK; no se filtra en memoria.
@@ -185,9 +192,9 @@ disponible en este entorno: **no se verificó el arranque de los contenedores**.
 Sí se ejecutaron PostgreSQL y Uvicorn locales. Queda esa comprobación del
 empaquetado; no se presenta como un despliegue realizado.
 
-Fase G: consumir estos endpoints desde el frontend y mostrar filtros, formularios,
-estados y errores de negocio. No se implementaron frontend, autenticación ni
-despliegue en nube. El diccionario y la demostración académica de concurrencia
+Fase G está implementada en [frontend/](../frontend/README.md), con filtros,
+formularios, estados y errores de negocio probados en navegador. No se implementó
+autenticación ni despliegue en nube. El diccionario y la demostración académica de concurrencia
 siguen siendo entregables independientes pendientes de las fases anteriores.
 
 Referencias de implementación: [dependencias con yield y scope de FastAPI](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/)

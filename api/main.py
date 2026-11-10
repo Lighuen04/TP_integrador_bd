@@ -70,6 +70,12 @@ def salud(db: DB):
     return {"api": "ok", "postgresql": "ok"}
 
 
+@app.get("/catalogos", tags=["Catálogos"])
+def catalogos(db: DB):
+    """Catálogos pequeños de solo lectura necesarios para los formularios."""
+    return repo.catalogos(db)
+
+
 @app.get("/vinos", tags=["Vinos"], response_model=list[s.VinoSalida])
 def vinos(db: DB, limite: Limite = 20, offset: Offset = 0,
           tipo: Optional[str] = None, cepa: Optional[int] = None,

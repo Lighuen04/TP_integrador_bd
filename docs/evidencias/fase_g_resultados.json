@@ -1,0 +1,150 @@
+{
+  "fecha": "2026-11-09",
+  "entorno": {
+    "python": "3.9.13",
+    "postgresql": "18.4",
+    "navegador": "Microsoft Edge headless, channel=msedge",
+    "fastapi": "0.124.4",
+    "psycopg": "3.2.13",
+    "playwright": "1.55.0",
+    "pytest": "8.4.2"
+  },
+  "pruebas": {
+    "api": {
+      "tests": "22",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "2.912",
+      "casos": [
+        "test_listado_y_detalle",
+        "test_filtros_paginacion_e_inyeccion",
+        "test_alta_cliente_tres_subtipos[10-socio-extra0]",
+        "test_alta_cliente_tres_subtipos[11-distribuidor-extra1]",
+        "test_alta_cliente_tres_subtipos[12-exportador-extra2]",
+        "test_cliente_invalido_db_sin_parciales",
+        "test_cambiar_subtipo_y_baja",
+        "test_venta_valida_historica",
+        "test_venta_fallida_revierte_todos_los_renglones",
+        "test_precio_y_descuento_externos_rechazados",
+        "test_composicion_diferida_80_rollback_commit",
+        "test_vino_crud_auditoria_y_baja_fk",
+        "test_precio_negativo_y_duplicado_fk",
+        "test_transferencia_completa_y_reprocesamiento",
+        "test_transferencia_sin_stock_atomica",
+        "test_ingreso_procesado_una_vez",
+        "test_salud_openapi_reportes",
+        "test_permisos_reales_rol_api",
+        "test_baja_impide_perder_stock_y_venta",
+        "test_uvicorn_http_real",
+        "test_salud_conexion_interrumpida_503",
+        "test_catalogos_auxiliares_reales"
+      ]
+    },
+    "navegador": {
+      "tests": "14",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "26.543",
+      "casos": [
+        "test_01_catalogo_real",
+        "test_02_filtros_servidor",
+        "test_03_paginacion",
+        "test_04_detalle_y_contenido_seguro",
+        "test_05_alta_edicion_y_baja",
+        "test_06_composicion_80_rechazo_commit",
+        "test_07_venta_valida",
+        "test_08_venta_sin_stock_atomicidad",
+        "test_09_transferencia_valida",
+        "test_10_transferencia_sin_stock",
+        "test_11_reportes_reales_y_vacios",
+        "test_12_movil_y_teclado",
+        "test_13_clientes_paginados",
+        "test_99_desconexion_real_api"
+      ]
+    }
+  },
+  "cadena_verificada": "Edge → frontend HTML/JS → proxy Python de mismo origen → Uvicorn → LOGIN API → PostgreSQL real",
+  "respuestas_api_simuladas": false,
+  "fixtures": "Base descartable: vino V1/V2, 23 vinos UI y 26 clientes; no datos incorporados en JavaScript",
+  "validaciones": [
+    "filtros por API y paginación",
+    "detalle, composición y XSS como texto",
+    "alta, edición con auditoría y baja protegida",
+    "composición 80 % rechazada al COMMIT sin filas parciales",
+    "venta válida con total 180 de PostgreSQL",
+    "venta con renglón sin stock revierte toda la venta e inventario",
+    "transferencia válida por procedimiento",
+    "transferencia sin stock conserva estado terminado e inventario",
+    "reportes reales y vacíos legítimos",
+    "móvil 390 px sin desbordar la página y modal con Escape",
+    "paginación de clientes",
+    "API terminada realmente: mensaje visible de indisponibilidad"
+  ],
+  "endpoint_auxiliar": "GET /catalogos: salas, cepas, bodegas; solo SELECT",
+  "correcciones_frontend": [
+    "hidratación de la primera cepa tras cargar catálogos",
+    "etiqueta accesible contenida en tabla móvil",
+    "respuesta null válida para transportista sin actividad",
+    "estado de botones al paginar clientes"
+  ],
+  "docker": {
+    "config_exit": 0,
+    "up_intentado": true,
+    "arranque_verificado": false,
+    "limite": "Docker Desktop Linux Engine no disponible: named pipe inexistente; Nginx del contenedor sin probar"
+  },
+  "referencias_preservadas": {
+    "bodegas_c_a": {
+      "tablas": 29,
+      "filas": 357894,
+      "huellas_iguales_fase_c": true
+    },
+    "bodegas_c_b": {
+      "tablas": 29,
+      "filas": 357894,
+      "huellas_iguales_fase_c": true
+    },
+    "bodegas_c_restaurada": {
+      "tablas": 29,
+      "filas": 357894,
+      "huellas_iguales_fase_c": true
+    }
+  },
+  "esquema_consultas_indices_sin_cambios": true,
+  "bases_y_logins_descartables_limpiados": true,
+  "capturas": [
+    "fase_g_catalogo.png",
+    "fase_g_reportes.png",
+    "fase_g_movil.png"
+  ],
+  "fuentes_sha256": {
+    ".dockerignore": "3341da3b3a761227a01e6fe98ec258232c678755d3fe0a066cf13fc9eb8cc670",
+    "api/__init__.py": "08208cc7eea0cf1c47a92148cd99205c85dbabd5428a5441b56681e057f273fd",
+    "api/database.py": "66c627d17a371a9643924f2ebe0a28d06abfeacbf40c0119a2f94eb1637612a3",
+    "api/Dockerfile": "29153c14ed368aa66fad11f51df3871a8273ce7a1c1d512d7e1c3b1a0a085fc5",
+    "api/init_login.sh": "18c00d513fe268fa0b2a3f8d86d065b5baeba485322ac32ccf69b3c71a4f24ea",
+    "api/main.py": "64f70d58cb30aab718f3d9203bf4e520272501cf05c7836f56efe87f463e29b1",
+    "api/README.md": "d2703a56fcb4d3c6aef247f3035728cbfdb801d7cb073ef41cb16335bc06cd1d",
+    "api/repository.py": "112da5432c0e0caae903c0db84445ae7c116088c4786ed3d06ee601cf5a370b2",
+    "api/requirements-test.txt": "cd704ee23ea4171c534e5aa4fb6722d8ab4c78c1033cf4bf34a90b033627a6d7",
+    "api/requirements-ui.txt": "f4e4e65b132eedc9c9f28a33e2a4045d57cc00e470023247f37aede73c996892",
+    "api/requirements.txt": "bdd8b99a6bf2cf1c7a6dd02a6a2d0fe41210eae2d238f952d907f53f077cfedd",
+    "api/schemas.py": "453c85879f24fb73d9de4345a1a88416954d74a525326a7d141f2c7d889af919",
+    "api/tests/conftest.py": "a580c1cab49012eefc791c8e80548306a84046d7d1ba5559f6fcc5106746ac9f",
+    "api/tests/test_api.py": "f30e7d1b700ec206086c24f761af067b4a4ecdc6fc87b88b83c56bfd4294f058",
+    "api/tests/test_catalogos.py": "b11fd0c015a54f61cabfa1b612962d4513cab8223ae63ce5c3b7bb71f72384a6",
+    "docker-compose.yml": "435547c18fda335a2aecfc2084be4958d4acbe0ffc344037367f7d06d1ca0551",
+    "frontend/api.js": "f635ec17be330dd92d1a732446431a4cf1f83dab85393a1864a2ce939c9a4acd",
+    "frontend/app.js": "b04a7075840ac23ced2039b3b2b1164d5a33bbaa395f498100cf3a49c3048b08",
+    "frontend/Dockerfile": "8438d44660e8d7bb8482d8d8a3bc417285f7da9a985e48f2fea32dd8564317a7",
+    "frontend/index.html": "38a6d5289325c11595c1a6ca7c4a96ab6e65592d5f887c0a086f30800c20bd33",
+    "frontend/nginx.conf": "c447ebf9711b2849061d85692b846c0befce67d731d14bd78745c1c699fa5143",
+    "frontend/README.md": "62a6f6db7416449bb0b3f0b36d5b0cf65b85f876d3804bae227d5bfeb409f9fd",
+    "frontend/servir.py": "19fdb972b9263b978fcb6cdcbb51fc2c71b178d3d7b9fd7dfd1a1d40f72b15f9",
+    "frontend/styles.css": "6f399b0d2590ad01b4f163b82f658b3dc939e48a9060e2dfade8be127498b336",
+    "frontend/tests/conftest.py": "ff159c58f4fceba75f0ea457ca31a7a2bf24e242ec3f4295a1d8ffbe8c239948",
+    "frontend/tests/test_frontend.py": "041a49aa141dd6e8895fbbb03be352c8ddd13ac376846dcea246aae206f02b88"
+  }
+}
