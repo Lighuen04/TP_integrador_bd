@@ -70,6 +70,48 @@ del LOGIN. En un volumen existente **no reinstala ni migra automáticamente**.
 Los healthchecks ordenan el arranque de base, API y frontend. No ejecutar
 `docker compose down -v` para actualizar código o credenciales.
 
+## Inicio rápido en Windows
+
+1. Instala **Docker Desktop para Windows** con soporte para contenedores Linux y
+   espera a que Docker indique que está en funcionamiento. No hace falta abrir
+   PowerShell ni instalar Python para iniciar la aplicación.
+2. Desde el Explorador de archivos, haz doble clic en `Iniciar_Bodegas.bat`,
+   ubicado en la raíz del proyecto. El iniciador comprueba Docker y Compose,
+   valida la configuración y espera a que PostgreSQL, la API y la web estén
+   disponibles; luego abre <http://127.0.0.1:8081>.
+3. En una primera ejecución, el iniciador solicita dos contraseñas distintas
+   (ocultas mientras se escriben) y crea `.env` a partir de `.env.example`.
+   Usa al menos 20 caracteres con letras, números o `. _ ! @ % + -`. `.env`
+   contiene credenciales locales y no debe compartirse ni versionarse. Si `.env`
+   ya existe, el iniciador nunca lo reemplaza: configura sus credenciales
+   manualmente y vuelve a iniciarlo. No arranca si detecta los marcadores de
+   ejemplo.
+
+Al comenzar aparece el menú en español para iniciar, detener, reiniciar,
+consultar el estado, abrir la interfaz o la documentación de FastAPI, ver
+registros y consultar conteos. La primera opción se ejecuta automáticamente al
+abrir el `.bat`; el menú queda disponible al finalizar.
+
+Para detener el proyecto, selecciona **2. Detener el sistema**. Se usa
+`docker compose down` sin `-v`: se quitan contenedores y red, pero se conserva el
+volumen `postgres_data` con la base. Al iniciar de nuevo se reutilizan los datos;
+el generador masivo no se ejecuta y PostgreSQL no vuelve a aplicar los SQL de
+inicialización sobre un volumen ya creado. No borres el volumen desde Docker
+Desktop si quieres conservar la información.
+
+Si Docker no responde, abre Docker Desktop, espera a que termine de iniciar y
+elige reintentar. Si Docker CLI no está instalado, instala Docker Desktop por
+los canales oficiales; el iniciador no descarga ni instala programas. Ante un
+fallo de salud, revisa el estado y los últimos registros desde el menú; también
+comprueba que los puertos locales `8000` y `8081` estén libres.
+
+Para validar en forma segura, usa una copia de trabajo sin `.env` para probar
+su creación y `docker compose config --quiet`. Con Docker Desktop cerrado,
+comprueba que el iniciador permita reintentar o salir. Después de iniciar,
+anota los conteos de la opción 8 y vuelve a iniciar: los servicios saludables
+no deben recrearse ni cambiar los conteos. Al detener, `docker compose down`
+debe conservar `postgres_data`. No es necesario borrar ni reinicializar bases.
+
 ## Herramientas y carga masiva
 
 ```powershell
