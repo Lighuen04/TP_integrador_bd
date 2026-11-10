@@ -1,11 +1,40 @@
 # Bodegas del Atuel — informe de integración final
 
-Cierre técnico local del 9 de noviembre de 2026. Este documento reúne los
+**Universidad Tecnológica Nacional — Facultad Regional San Rafael**
+**Ingeniería en Sistemas · Bases de Datos · 3.º año · ciclo 2026**
+**Trabajo Práctico Integrador: Bodegas del Atuel**
+Integrantes confirmados por el usuario: **Amigo L. — Perez M.**
+Comisión y docente: no confirmados en las fuentes; no se inventan.
+Actualización de auditoría y preparación de defensa: **10 de noviembre de 2026**.
+
+Cierre técnico local H del 9 de noviembre y revalidación I del 10. Este documento reúne los
 entregables existentes y completa los faltantes, siguiendo §10.2 de la
 [consigna original](TPI_Bodegas_del_Atuel.md). La
-[evidencia H](evidencias/fase_h_resultados.json) contiene resultados ejecutados,
-no estimaciones. La entrega global no se declara terminada: queda la publicación
-con HTTPS y la revisión/defensa del grupo.
+[evidencia H](evidencias/fase_h_resultados.json) conserva su corte histórico;
+la [evidencia I](evidencias/fase_i_resultados.json) registra las comprobaciones
+actuales. La entrega global no se declara terminada: quedan publicación pública,
+revisión conceptual final y defensa. §2.1 exige 3–4 integrantes; solo se
+confirmaron dos, por lo que el grupo debe completar la nómina real o presentar
+una excepción autorizada. Los alias Git no se convierten en nombres académicos.
+
+### Índice académico de cobertura
+
+| Tema solicitado | Desarrollo y fuente verificable |
+|---|---|
+| 1. Portada | Encabezado anterior, únicamente datos confirmados |
+| 2. Introducción y objetivos | §1 |
+| 3. Requisitos | [Matriz definitiva](matriz_cumplimiento_tpi.md), con referencias al TPI |
+| 4–7. Modelo conceptual, relacional, normalización y diccionario | §2 y documentos enlazados |
+| 8–11. Integridad, funciones/procedimientos, triggers y vistas | §3, inventario y matriz RN |
+| 12. Carga masiva | §4 y README del generador único |
+| 13–14. Consultas e índices/rendimiento | §6 y §5, con fuentes y planes |
+| 15–16. API y frontend | §7 y contratos/documentación existentes |
+| 17–18. Concurrencia, Docker y arquitectura | §3 y §1/§7 |
+| 19–21. Recuperación, seguridad y despliegue | §8; local comprobado y nube pendiente diferenciados |
+| 22–23. Resultados y conclusiones | §9, evidencias I y matriz |
+
+La [defensa de 14 minutos y sus 20 preguntas](guion_defensa.md) es material de
+preparación; no acredita que los integrantes ya rindieron la defensa.
 
 ## 1. Introducción y alcance
 
@@ -22,7 +51,8 @@ la base inicial vacía `bodegas` y las bases originales de mediciones.
 
 ## 2. Modelo, fuentes y diccionario
 
-- [DER original editable](DER.drawio.xml), copia exacta del archivo fuente existente.
+- [DER editable](DER.drawio.xml), fuente original con correcciones puntuales de conectores en I; versión original conservada en Git `9afb118`.
+- [Vista SVG auxiliar](DER_revision.svg): geometría del XML revisada por áreas, no exportación nativa draw.io.
 - [Modelo relacional DBML](modelo_relacional.dbml), 29 tablas.
 - [Normalización y dependencias](normalizacion.md).
 - [Trazabilidad DER–relacional](trazabilidad_der_relacional.md) y [decisiones](validacion_tpi.md).
@@ -35,11 +65,31 @@ original no están unidos estructuralmente a sus conectores: la revisión visual
 final del grupo sigue siendo necesaria. Localidad–Finca conserva la decisión
 1:N aprobada en el proyecto.
 
+En I se conectaron los óvalos existentes zona_cobertura→Distribuidor,
+descuento_10%→Socio e ID_auditoria/precio_nuevo→Auditoría. Dos mitades que
+compartían el mismo punto se unieron en el conector Ingreso–contiene–Vino.
+Se verificó que los 193 vértices, sus valores, estilos, posiciones y los 48
+rótulos 1/N/M permanecen iguales; hay 151 conectores completos en vez de 152
+segmentos con seis extremos ausentes. No se cambió SQL ni ninguna cardinalidad.
+
+No hay ejecutable draw.io disponible: la inspección visual se realizó sobre una
+representación local de las coordenadas, cuyo enrutamiento ortogonal automático
+es aproximado. Queda abrir/exportar el XML en el editor nativo y cerrar mínimos
+de participación no inequívocos. No se declara una validación visual nativa total.
+
 ## 3. Integridad, trazabilidad y concurrencia
 
 La definición ejecutable está en `database/01`–`07`; F añadió únicamente la baja
 acotada de vino sin movimientos en `10_api_baja_vino.sql`. H no cambia esas
 funciones, restricciones, tablas, triggers, índices ni consultas aprobadas.
+
+Inventario para la defensa: funciones de negocio `fn_descuento_tipo`,
+`fn_descuento_cliente`, `fn_total_comprobante`, `fn_stock_sala` y
+`fn_antiguedad_anios`; procedimientos `sp_procesar_ingreso` y
+`sp_procesar_transferencia`. Los 22 triggers incluyen BEFORE/AFTER y restricciones
+diferidas; el total de 26 rutinas también cuenta funciones de trigger y la baja F,
+por lo que no equivale a 26 funciones de negocio. Las tres vistas son
+`vw_stock_total_vino`, `vw_ventas_mensuales_sala` y `vw_documentos_pendientes`.
 
 | Regla | Mecanismo | Prueba/archivo existente |
 |---|---|---|
@@ -191,13 +241,24 @@ Fundamento: [pg_dump y restauración](https://www.postgresql.org/docs/18/backup-
 | Oracle Cloud Always Free, VM | Permite conservar Compose y administración PostgreSQL completa; requiere cuenta y validación con tarjeta. La disponibilidad regional no está garantizada y las instancias inactivas pueden recuperarse por el proveedor. No asumir capacidad gratuita disponible. |
 | Render Free, servicios gestionados | Soporta servicios Docker y URL pública; el PostgreSQL gratuito vence a los 30 días y los servicios web gratuitos tienen suspensión por inactividad. Implica adaptar la distribución de los tres componentes y revisar permisos del PostgreSQL gestionado. |
 
+Actualización de opciones reconsultadas el 10/11/2026:
+
+| Aspecto | Oracle Always Free, VM | Render Free |
+|---|---|---|
+| Registro/tarjeta | Cuenta y verificación con tarjeta; no se realizó el alta | Cuenta de servicio; puede operar sin medio de pago con suspensión al exceder límites; no se introdujo tarjeta |
+| Recursos | A1: 1.500 OCPU-h/9.000 GB-h mensuales, equivalentes a 2 OCPU/12 GB; 200 GB de bloque, sujetos a región/cupo | 750 horas web/mes por workspace; PostgreSQL 1 GB |
+| Persistencia | Volumen PostgreSQL administrado por el grupo, con backup externo; riesgo de recuperación de instancias inactivas | PostgreSQL Free vence a 30 días; no usar filesystem efímero del servicio web como disco de PostgreSQL |
+| Docker/HTTPS | Reutiliza este Compose; el grupo provisiona dominio y certificado válido | Acepta imágenes Docker por servicio y TLS gestionado; no ejecuta nuestro Compose completo como una VM |
+| Costos/límites | No activar plan pago ni superar recursos elegibles; disponibilidad gratuita no garantizada | No introducir pago; servicios se suspenden o DB expira. Requiere adaptar distribución y validar roles |
+
 Fuentes oficiales consultadas: [Oracle Free Tier](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm),
 [validación de cuenta Oracle](https://www.oracle.com/cloud/free/faq/),
 [límites Render Free](https://render.com/docs/free). Los límites se revisan antes
 de crear recursos; no se garantiza gratuidad por una captura histórica.
 
-**Decisión técnica preparada:** reutilizar Compose en una VM gratuita/educativa
-ya autorizada; Oracle Always Free es el candidato si el grupo obtiene capacidad
+**Decisión técnica preparada:** priorizar una VM académica sin facturación
+otorgada y autorizada; reutiliza Compose sin adaptar la aplicación. El usuario
+confirmó en I que no existe infraestructura. Oracle Always Free es candidato si el grupo obtiene capacidad
 sin contratar recursos pagos. Si no la obtiene, debe escoger y validar otra
 cuenta/proveedor. No se creó ninguna instancia, DNS, certificado público ni URL.
 La limitación es acceso a cuenta/servidor/dominio, no una prueba local pendiente.
@@ -205,26 +266,53 @@ La limitación es acceso a cuenta/servidor/dominio, no una prueba local pendient
 ### Configuración HTTPS/TLS preparada
 
 `deploy/compose.https.yml` reutiliza los tres servicios: Nginx escucha 443,
-PostgreSQL activa SSL y la API conecta con `DB_SSLMODE=require`. Las rutas se
+PostgreSQL activa SSL y la API conecta con `DB_SSLMODE=verify-full` y
+`DB_SSLROOTCERT=/run/tls/ca.crt`. Cada contenedor monta solo su certificado/clave
+o CA correspondiente; la API no recibe claves privadas. Las tres políticas de
+reinicio son `unless-stopped`. Las rutas se
 comparten con la configuración local, sin añadir gateway ni CORS amplio.
 
 En una VM Linux autorizada, después de verificar que sus recursos no son pagos:
 
 1. Clonar el repositorio, instalar Docker/Compose y configurar `.env` con secretos nuevos.
 2. Asignar un dominio a la IP real de la VM y obtener un certificado público válido por el mecanismo del proveedor/ACME. No usar autofirmado para afirmar HTTPS público válido.
-3. Crear un directorio privado `TLS_DIR` fuera de Git con `web.crt` (cadena completa), `web.key`, `postgres.crt` y `postgres.key`. El certificado interno puede ser de una CA propia; `require` cifra pero no acredita por sí mismo la identidad del servidor.
+3. Crear un directorio privado `TLS_DIR` fuera de Git con `web.crt` (cadena pública completa), `web.key`, `postgres.crt`, `postgres.key` y `ca.crt` (CA emisora del certificado PostgreSQL). El certificado PostgreSQL debe incluir SAN DNS `db` para el nombre usado por la API. Conservar la clave de la CA fuera del directorio montado y no instalar la CA de laboratorio como confianza pública.
 4. Proteger las claves. `postgres.key` debe ser propiedad del usuario postgres del contenedor con modo 0600, o root/grupo postgres con 0640. Determinar UID/GID con `docker compose run --rm --no-deps --entrypoint id db postgres`; no suponer un UID fijo. Mantener permisos de lectura de Nginx para su clave.
 5. Exportar `TLS_DIR` absoluto y ejecutar `docker compose -f docker-compose.yml -f deploy/compose.https.yml config --quiet`, luego `up -d --build` con los mismos dos archivos. Compose >=2.24.4 soporta el reemplazo de puertos usado.
 6. Abrir solo HTTPS 443 y SSH restringido a operadores en firewall/reglas del proveedor. No publicar 5432; la API directa continúa limitada a loopback. Provisionar roles y cargar/restaurar una base nueva por los procedimientos del README.
 7. Verificar desde otra red la URL real, certificado, `/api/salud`, una operación con trigger, rechazo de acceso al puerto de la base y cifrado de la sesión API mediante `pg_stat_ssl`. Registrar la evidencia y la política de renovación antes de declarar el despliegue completo.
 8. Guardar el respaldo también fuera de la VM y repetir una restauración; un volumen no sustituye un respaldo.
 
-La combinación Compose se valida sintácticamente; **el perfil TLS no se arrancó
-con certificados públicos ni en una VM externa**. La instalación local utiliza
-HTTP y red Docker privada: no se presenta como conexión pública HTTPS/TLS probada.
+En I se ejecutó el perfil con una CA privada de laboratorio y puertos/volúmenes
+aislados para no tocar el proyecto activo. HTTPS devolvió 200 y PostgreSQL
+negoció TLS 1.3 con verify-full; una CA o nombre incorrectos se rechazaron. La
+clave PostgreSQL tenía modo 0600/propietario postgres y Nginx pasó su validación.
+En Windows se usaron volúmenes POSIX propios para las claves, en lugar de asumir
+que un bind mount conserva chmod. Los volúmenes del laboratorio se conservan;
+sus contenedores/red se retiraron. El proyecto activo continúa en HTTP 8081.
+
+**No se arrancó el perfil con certificados públicos ni en una VM externa**.
+La CA privada fue aceptada solo al suministrarla explícitamente al cliente y
+rechazada por la confianza pública predeterminada. Esto no acredita Etapa 8.
+Reproducción local: `python scripts/probar_tls_local.py` (OpenSSL local requerido).
+Referencia de [verify-full e identidad de servidor](https://www.postgresql.org/docs/18/libpq-ssl.html).
 Referencia de [permisos de claves PostgreSQL](https://www.postgresql.org/docs/18/ssl-tcp.html).
 
 ## 9. Conclusiones y pendientes de entrega
+
+### Revalidación I del 10/11/2026
+
+Pasaron **36 pruebas API/navegador en 30,29 s**, las suites SQL 08/09 y los
+cuatro archivos de las 30 consultas aprobadas sobre una copia con rollback.
+La integración con Nginx real completó nueve comprobaciones sin errores
+JavaScript. Concurrencia confirmó una sola venta de la última botella; el
+respaldo custom de 2.320.442 bytes se restauró y verificó antes de esas escrituras.
+La base activa conserva las 357.894 filas y sus 29 huellas nativas de H, con
+26 controles sin incidencias. El catálogo actual tiene 124 columnas, 29 PK,
+35 FK, cuatro UNIQUE adicionales, 24 CHECK y cinco defaults; el diccionario
+regenerado coincide byte a byte. Los tiempos del experimento E se conservan
+como mediciones históricas, sin atribuirles una nueva ejecución en I.
+Los detalles y las huellas están en la [evidencia I](evidencias/fase_i_resultados.json).
 
 El mismo generador produjo los mismos datos en Windows/local y Linux/Docker;
 la comparación de hashes de texto debe fijar una colación portable.
@@ -239,9 +327,25 @@ aparecía con el proxy Python; se corrigió y verificó con Nginx real.
 | API y cinco pantallas | Implementadas, probadas localmente y con Nginx/PostgreSQL Docker |
 | Concurrencia y restauración | Ejecutadas realmente, scripts y resultados conservados |
 | DER editable y diccionario | Fuente original conservada; diccionario físico completo derivado |
-| HTTPS y PostgreSQL cifrado en nube | Configuración preparada; publicación/validación externas pendientes |
+| HTTPS privado y PostgreSQL verify-full | Probados en laboratorio I; no equivalen a nube |
+| HTTPS y PostgreSQL cifrado en nube | Publicación/validación externas pendientes por infraestructura inexistente |
 | Revisión conceptual y defensa individual | El grupo debe revisar cardinalidades visuales y preparar la demo oral |
-| Commits de todos los integrantes | No se atribuyen contribuciones inexistentes; verificar participación real del grupo |
+| Commits de todos los integrantes | Historial real detallado debajo; correspondencia con personas/aportes pendiente |
+
+### Historial real hasta el inicio de I
+
+| Commit | Autor registrado | Fecha de autor | Descripción |
+|---|---|---|---|
+| `06a8118` | Lighuen | 15/05/2026 | Initial commit |
+| `0542743` | Lighuen04 | 09/11/2026 | Base PostgreSQL y API REST |
+| `d4464a8` | Lighuen04 | 09/11/2026 | Frontend e integración G |
+| `9afb118` | Lighuen04 | 09/11/2026 | Integración local y documentación H |
+
+Son dos alias, no prueba de dos personas distintas ni atribución a Amigo L. o
+Perez M. No se modificaron autores/fechas ni se fabricaron commits. Cada
+integrante debe realizar aportes reales revisables y acreditar su autoría;
+verificar además la nómina de 3–4 o la excepción de la cátedra. Comisión,
+docente, defensa realizada y demo pública no se completan por inferencia.
 
 Guion mínimo de defensa (10–15 minutos): mostrar DER/decisión 3FN, catálogo y
 composición inválida, venta válida/sin stock, transferencia, plan S2 o S3 del

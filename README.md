@@ -8,7 +8,15 @@ La consigna original se conserva en [docs/TPI_Bodegas_del_Atuel.md](docs/TPI_Bod
 pruebas reales de integración, concurrencia y restauración. **La versión pública
 con HTTPS sigue pendiente**: no hay una cuenta/VM/dominio externo configurado.
 El [informe final](docs/informe_integracion_final.md) distingue lo implementado,
-probado, documentado y pendiente, con [evidencias H](docs/evidencias/fase_h_resultados.json).
+probado, documentado y pendiente, con [evidencias H](docs/evidencias/fase_h_resultados.json)
+y [auditoría I](docs/evidencias/fase_i_resultados.json), del 10/11/2026.
+
+La [matriz de las nueve etapas](docs/matriz_cumplimiento_tpi.md) y el
+[guion de defensa de 14 minutos con 20 preguntas](docs/guion_defensa.md)
+completan la preparación de entrega. Integrantes confirmados: **Amigo L. — Perez M.**
+Comisión, docente y nómina exigida por la cátedra requieren confirmación.
+El laboratorio I comprobó HTTPS con CA privada y PostgreSQL `verify-full`,
+incluidos rechazos por CA y nombre incorrectos; no acredita una URL pública.
 
 ## Arquitectura y tecnologías
 

@@ -1,0 +1,463 @@
+{
+  "fecha": "2026-11-10",
+  "alcance": "Auditoría final local; sin despliegue público",
+  "integrantes_confirmados": [
+    "Amigo L.",
+    "Perez M."
+  ],
+  "git": {
+    "HEAD": "9afb118c6874a25703d51e5fefd4095ee0e13ac7",
+    "origin_main": "9afb118c6874a25703d51e5fefd4095ee0e13ac7",
+    "historial": [
+      "9afb118 | Lighuen04 | 2026-11-09T23:22:53-03:00 | Completar integración local, datos y documentación de fase H",
+      "d4464a8 | Lighuen04 | 2026-11-09T22:22:13-03:00 | Implementar frontend e integración completa de fase G",
+      "0542743 | Lighuen04 | 2026-11-09T21:50:16-03:00 | Implementar base PostgreSQL y API REST del TPI Bodegas del Atuel",
+      "06a8118 | Lighuen | 2026-05-15T20:46:35-03:00 | Initial commit"
+    ],
+    "atribucion_academica_de_alias": "no confirmada",
+    "commits_creados_en_I": false
+  },
+  "catalogo": {
+    "postgresql": "18.6 (Debian 18.6-1.pgdg13+2)",
+    "restricciones": {
+      "n": 122,
+      "f": 35,
+      "t": 6,
+      "c": 24,
+      "u": 4,
+      "p": 29
+    },
+    "indices": 57,
+    "triggers": 22,
+    "rutinas": 26,
+    "vistas": 3,
+    "columnas": 124,
+    "defaults": 5,
+    "login_api": {
+      "rol": "bodegas_app",
+      "superuser": false,
+      "createdb": false,
+      "createrole": false
+    }
+  },
+  "compose_activo": {
+    "api": {
+      "State": "running",
+      "Health": "healthy",
+      "Image": "sha256:bbc21046fbbe5c8c81b28f566d8c8cd81b74bac5637b2285622adfd32975e60b",
+      "Ports": "127.0.0.1:8000->8000/tcp"
+    },
+    "db": {
+      "State": "running",
+      "Health": "healthy",
+      "Image": "postgres:18",
+      "Ports": "5432/tcp"
+    },
+    "frontend": {
+      "State": "running",
+      "Health": "",
+      "Image": "base_de_datos-frontend",
+      "Ports": "127.0.0.1:8081->80/tcp"
+    }
+  },
+  "base_activa": "bodegas_c_docker_demo",
+  "datos": {
+    "filas": 357894,
+    "tablas": {
+      "analisis_calidad": {
+        "filas": 240,
+        "sha256": "f1daa8e952b459dcd9e5f0ed5794c070b4bd8284e66f7b24fb728737f7a86b7e"
+      },
+      "auditoria_precios": {
+        "filas": 40,
+        "sha256": "9817903bd12b1f2c1d41e2a0f2343a32f44832bf7e21a2f645b385715ce66ef4"
+      },
+      "bodega": {
+        "filas": 4,
+        "sha256": "beda162c40c4b61e07f01acc14986ce723fdea692b8a6c481922703823387cc2"
+      },
+      "cepa": {
+        "filas": 12,
+        "sha256": "e40ef825bd27950b08060954e836aa140f76fa9657b7c73efb1c313f934286ff"
+      },
+      "cliente": {
+        "filas": 20000,
+        "sha256": "b772ef2124b4c47fbe617a7e245d94f0cf93d52608d4e253d03e583fb7668512"
+      },
+      "composicion_vino_cepa": {
+        "filas": 60,
+        "sha256": "b02ccfda2b3844088a7b3264d1bc9410518895eb53e5d48152b54108c05af2c2"
+      },
+      "comprobante": {
+        "filas": 100001,
+        "sha256": "e5da613f5868be12a14eddfaccaa45401a7a290a85b5ed5686434ac6ea415e25"
+      },
+      "comprobante_vino": {
+        "filas": 200002,
+        "sha256": "c35aed2f26a51ff599283305e562be04d6c195ef535a3a783e3384fa8eb3bff3"
+      },
+      "distribuidor": {
+        "filas": 6667,
+        "sha256": "72fb31dafae282a8883098d01eae20f0ab19e180c6500b877b4a2a8416175f8b"
+      },
+      "empleado": {
+        "filas": 18,
+        "sha256": "c0e565d214bfdfcb64bf47307c4d9f328a2f963ff131dce3b1aa88ec7a9aeeaf"
+      },
+      "exportador": {
+        "filas": 6666,
+        "sha256": "863494cdf9d5717123514e4e8e7ccbf381787315ad786dd27d0fe923fb16e599"
+      },
+      "finca": {
+        "filas": 6,
+        "sha256": "1f219a4d683202660c470c612281e93796fafbda6db27769950649b116ab161a"
+      },
+      "ingreso": {
+        "filas": 8,
+        "sha256": "b580f09eccd8d05d0315f747e4cc87f887b84a1a76528f22956a1e516d7d45e8"
+      },
+      "ingreso_vino": {
+        "filas": 80,
+        "sha256": "8568ed005016760c87c5b7a4ddb1f45dd2aa0b360a6363902e40d0d10a7758f6"
+      },
+      "localidad": {
+        "filas": 3,
+        "sha256": "fd5d3000604ba0aaede7a150c4f9663e2434542b31744639d93828be4e8bcee7"
+      },
+      "lote_uva": {
+        "filas": 120,
+        "sha256": "312ba0ac11030a134f351e20957e1b5f3595103bb1c6d73abe830e67706842e6"
+      },
+      "maridaje": {
+        "filas": 8,
+        "sha256": "2f1753c5a3e973db51940aa837f39ea6d3ca9761c97952f8ab033e769c57040a"
+      },
+      "parcela": {
+        "filas": 24,
+        "sha256": "29e0465ce77ad78a6b9b97b9afcf5598f37223a8374cf62b75ad46af53af6a96"
+      },
+      "permiso_exportacion": {
+        "filas": 16665,
+        "sha256": "ffa74b3815df46f74c072ee228e01d5484cc6073144475094a7f319d1047ad76"
+      },
+      "sala_venta": {
+        "filas": 6,
+        "sha256": "7b452495914dd5ea0e6997c61b8043810280996167c977bf9090ca086441e394"
+      },
+      "socio": {
+        "filas": 6667,
+        "sha256": "0def72890ab06ad877bd1a8e9fcfe9f17eaf8a765872ace59ab61feaf9ee4378"
+      },
+      "stock_deposito": {
+        "filas": 40,
+        "sha256": "893c4d4bc8aa379a8bee31a17172f7ca0c7602d26392e2a686f7ca6c9673377e"
+      },
+      "stock_sala": {
+        "filas": 216,
+        "sha256": "c69dbcb0771baac687f95ef3adf5d74f3e52da6d46e6619e307159b642b2f9e3"
+      },
+      "transferencia": {
+        "filas": 18,
+        "sha256": "4b93eb86d8f9868e945d042a47ca905288bf027d9dc48d4b732b9b63a7f5e7dc"
+      },
+      "transferencia_vino": {
+        "filas": 228,
+        "sha256": "4339072eea420b8bf337dadc3bed09a3bc4e4bc18da618d9dc33319d84839bcd"
+      },
+      "transportista": {
+        "filas": 4,
+        "sha256": "8ee14dcf3b469aabfe1a839e4fd5479a999b2fbf6696e9bb6f3f120a823e8724"
+      },
+      "transportista_localidad": {
+        "filas": 11,
+        "sha256": "369ca9bc8b531b53b56a345f80b83f3b3f9d9458393487b2931f80f76b7962ab"
+      },
+      "vino": {
+        "filas": 40,
+        "sha256": "1be75c3e8b56f8ebfaf5b242d701a4583fccc6419878f28133625b27922a05a9"
+      },
+      "vino_maridaje": {
+        "filas": 40,
+        "sha256": "3ead9f5acfa6512d067f7f937383c5630134f91dc175341a7398e4977d741e32"
+      }
+    },
+    "validacion": {
+      "controles": {
+        "integridad": {
+          "anada_antes_venta": 0,
+          "bodega_ingreso": 0,
+          "composicion_100": 0,
+          "conciliacion_deposito": 0,
+          "conciliacion_salas": 0,
+          "constraints_validadas": 0,
+          "descuento_historico_perfil": 0,
+          "descuento_vigente": 0,
+          "escenarios_catalogos_personal": 0,
+          "escenarios_stock_movimientos": 0,
+          "escenarios_ventas_periodos": 0,
+          "fechas_cosecha_analisis": 0,
+          "fechas_movimientos": 0,
+          "fechas_venta": 0,
+          "isa_total_disjunta": 0,
+          "permiso_vigente_al_corte": 0,
+          "precio_historico_perfil": 0,
+          "saldo_historico_deposito": 0,
+          "saldo_historico_sala": 0,
+          "stock_deposito_no_negativo": 0,
+          "stock_sala_no_negativo": 0,
+          "totales": 0,
+          "triggers_activos": 0,
+          "valores_venta": 0,
+          "valores_vino": 0,
+          "vino_todas_las_salas": 0
+        },
+        "estados_ingresos": {
+          "procesado": 8
+        },
+        "estados_transferencias": {
+          "en_confeccion": 3,
+          "terminado": 3,
+          "procesado": 12
+        }
+      },
+      "permiso_exportacion_sha256_collate_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7"
+    },
+    "29_hashes_nativos_iguales_antes_y_despues_y_restauracion": true,
+    "permiso_exportacion_sha256_collate_C": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7",
+    "nota_colacion": "28 SHA nativos coinciden con C; permiso_exportacion se compara con COLLATE C. No afirmar 29 SHA nativos iguales entre locales distintos."
+  },
+  "pruebas": {
+    "pytest": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "36",
+      "time": "30.289",
+      "timestamp": "2026-11-10T00:42:44.093495-03:00",
+      "hostname": "Eluney_Amigo"
+    },
+    "suites_sql": {
+      "base_descartable": "bodegas_h_pruebas_sql_fase_i",
+      "suites": [
+        {
+          "archivo": "08_pruebas_integridad.sql",
+          "exit_code": 0
+        },
+        {
+          "archivo": "09_pruebas_reglas_negocio.sql",
+          "exit_code": 0
+        }
+      ],
+      "29_tablas_sin_fixtures_tras_rollback": true
+    },
+    "consultas": {
+      "base": "bodegas_h_pruebas_consultas_i",
+      "archivos": [
+        {
+          "archivo": "consultas/update.sql",
+          "exit_code": 0,
+          "sha256": "4deabc227b424d122edce47f542cfdcc75035dab4c95a1ce3c0a1b974d05eca4"
+        },
+        {
+          "archivo": "consultas/insert.sql",
+          "exit_code": 0,
+          "sha256": "139a35c6188d51f7765c596b27ce27af97733ecc2cd6d567628e16aee2f629bb"
+        },
+        {
+          "archivo": "consultas/delete.sql",
+          "exit_code": 0,
+          "sha256": "ec03f18498da159598dd6e178e061e61641b2ed096f43c465b0befa3f03d50ae"
+        },
+        {
+          "archivo": "consultas/select.sql",
+          "exit_code": 0,
+          "sha256": "507420913d54b2218e6720554ed39ccc64910f09b68095ef14648f66d79c1c3d"
+        }
+      ],
+      "29_huellas_sin_cambios": true,
+      "consignas": 30,
+      "fecha_ejecucion": "2026-11-10",
+      "nota": "Conteos temporales no se equiparan a D/E del día anterior; escrituras revertidas"
+    },
+    "integracion_nginx": {
+      "base_descartable": "bodegas_h_pruebas_fase_i",
+      "cadena": "Edge → Nginx → FastAPI → PostgreSQL Docker",
+      "navegador": "157.0.4341.42",
+      "comprobaciones": [
+        "salud, catálogo, catálogos auxiliares, Swagger y rutas sensibles",
+        "catálogo real de referencia y fixture de concurrencia cargados en navegador",
+        "filtros, paginación y detalle a través de Nginx",
+        "alta y edición con auditoría; composición 80 % rechazada al COMMIT",
+        "venta válida: total histórico calculado por PostgreSQL 1039.50",
+        "venta sin stock rechazada sin cabecera ni débito parcial",
+        "transferencia procesada por procedimiento y transferencia rechazada sin stock",
+        "reportes con diez vinos, seis salas y disponibilidad real",
+        "caída real de API temporal comunicada en navegador"
+      ],
+      "errores_javascript": [],
+      "servicios_activos_del_usuario": "no detenidos; no escritos por estas pruebas",
+      "recursos_temporales": "contenedores y red eliminados; base de pruebas conservada"
+    },
+    "concurrencia": {
+      "base": "bodegas_h_pruebas_fase_i",
+      "usuario": "bodegas_app",
+      "aislamiento": "read committed",
+      "stock_inicial": 1,
+      "sesiones": [
+        {
+          "sesion": "H-CONC-A",
+          "pid": 7809,
+          "resultado": "commit",
+          "segundos": 1.05
+        },
+        {
+          "sesion": "H-CONC-B",
+          "pid": 7808,
+          "resultado": "rollback",
+          "sqlstate": "23514",
+          "mensaje": "Stock insuficiente para el vino H-ULTIMA en la sala 1",
+          "segundos": 1.051
+        }
+      ],
+      "stock_final": 0,
+      "cabeceras": 1,
+      "renglones": 1,
+      "comparacion_academica": {
+        "tabla_aislada": "h_demostracion.saldo_sin_triggers",
+        "sin_bloqueo": [
+          "reserva confirmada",
+          "reserva confirmada"
+        ],
+        "con_SELECT_FOR_UPDATE": [
+          "reserva confirmada",
+          "sin saldo"
+        ]
+      },
+      "modelo_de_negocio": "29 tablas intactas; sin deshabilitar triggers"
+    }
+  },
+  "backup_restauracion": {
+    "archivo_local": ".local/backups/fase_i_demo.dump",
+    "bytes": 2320442,
+    "sha256": "d73cccc6761769745e11a86d3680c73bf475624d53332e04beb0205f76d616c5",
+    "base_restaurada": "bodegas_h_pruebas_fase_i",
+    "29_hashes_nativos_coinciden_antes_de_pruebas_mutantes": true
+  },
+  "tls_privado": {
+    "perfil": "deploy/compose.https.yml",
+    "ambito": "laboratorio local aislado",
+    "proyecto": "bodegas_i_tls_2dd4960930",
+    "https_privado_verificado": {
+      "/": 200,
+      "/api/salud": 200,
+      "/api/vinos": 200,
+      "/docs": 200,
+      "/openapi.json": 200
+    },
+    "CA_publicamente_confiable": false,
+    "postgres": {
+      "ssl": true,
+      "version": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "usuario": "bodegas_app",
+      "nombre_incorrecto": "rechazada",
+      "CA_incorrecta": "rechazada"
+    },
+    "permiso_clave_postgres": "600:postgres",
+    "politicas_reinicio_verificadas": {
+      "db": "unless-stopped",
+      "api": "unless-stopped",
+      "frontend": "unless-stopped"
+    },
+    "adaptacion_windows": "puertos efímeros loopback y volúmenes TLS propios con permisos POSIX",
+    "volumen_datos_conservado": "bodegas_i_tls_2dd4960930_postgres_data",
+    "volumenes_certificados_conservados": [
+      "bodegas_i_tls_2dd4960930_tls_db",
+      "bodegas_i_tls_2dd4960930_tls_api",
+      "bodegas_i_tls_2dd4960930_tls_web"
+    ],
+    "produccion_publica_verificada": false,
+    "proyecto_activo_modificado": false
+  },
+  "modelado": {
+    "diccionario_tablas": 29,
+    "diccionario_columnas": 124,
+    "diccionario_igual_al_catalogo_actual": true,
+    "sql_dbml_normalizacion_sin_cambios": true,
+    "normalizacion": "Revisión documental por dependencias; comprobante.total conserva redundancia agregada autorizada, no se declara 3FN estricta sin excepciones.",
+    "DER": {
+      "vertices": 193,
+      "conectores": 151,
+      "aristas_sin_extremo": [],
+      "limites": [
+        -725.0,
+        -760.0,
+        3130.0,
+        1730.0
+      ],
+      "nota": "Visualización auxiliar de coordenadas del XML; rutas ortogonales automáticas aproximadas, no exportación nativa draw.io",
+      "correcciones": {
+        "cambios_destino": [
+          {
+            "arista": "ZHNuzzg35tKb-ktABShS-91",
+            "destino": "1xMoEBDMSWa3BmqS_LZH-5"
+          },
+          {
+            "arista": "ZHNuzzg35tKb-ktABShS-94",
+            "destino": "1xMoEBDMSWa3BmqS_LZH-4"
+          },
+          {
+            "arista": "qj_yz6Aj9DjTyKJukIky-11",
+            "destino": "1xMoEBDMSWa3BmqS_LZH-46"
+          },
+          {
+            "arista": "qj_yz6Aj9DjTyKJukIky-12",
+            "destino": "1xMoEBDMSWa3BmqS_LZH-46"
+          }
+        ],
+        "mitades_unificadas": [
+          "qj_yz6Aj9DjTyKJukIky-71",
+          "ZHNuzzg35tKb-ktABShS-40"
+        ],
+        "vertices_antes_despues": 193,
+        "aristas_antes": 152,
+        "aristas_despues": 151,
+        "atributos_rotulos_geometrias_vertices_sin_cambios": true,
+        "sha_antes": "3fa9095cdcb06f98527876fdecaf8e84f33fd7237839554bad05b6e850368f34",
+        "sha_despues": "13383ec579cc8395cef6239d5adb5b45e7f1c03d365eedd08abfc212c9eeb935"
+      }
+    }
+  },
+  "rendimiento_E": {
+    "mediciones_repetidas_en_I": false,
+    "evidencia_historica": "docs/evidencias/fase_e_indices.json",
+    "consultas_aprobadas_sin_cambios": true
+  },
+  "despliegue_publico": {
+    "realizado": false,
+    "URL": null,
+    "infraestructura": "Usuario confirmó que no existe; preparar pasos pendientes",
+    "recursos_externos_creados": false,
+    "costos_contratados": false
+  },
+  "pendientes": [
+    "Cuenta/VM autorizada, dominio, CA pública y renovación, firewall y reglas cloud, carga/restauración y pruebas desde otra red",
+    "Abrir/exportar DER en editor nativo y revisar participaciones mínimas",
+    "Comisión/docente y nómina 3–4 o excepción autorizada; solo dos nombres confirmados",
+    "Contribuciones reales identificables de cada integrante, defensa y demo pública",
+    "Validación académica de interpretación histórica U1 y política D1/D5"
+  ],
+  "fuentes_sha256": {
+    "api/database.py": "da38e85e57f382469fc1d3a79db132fee2484b93993f59080f740e5f1577a726",
+    "deploy/compose.https.yml": "e8a024b7b48028c49d02e06fee7f370daf88f73c320e5aa32bfea8927a3dcf83",
+    "scripts/probar_tls_local.py": "6c71a9fe24c773a6cf498edece9e7c1497319130263c99a4f6c6033da677fe00",
+    "scripts/probar_integracion_docker.py": "fcb00ef7d1949e4c81d621367171d08f0916c5bfc012e83696edd55193750bb0",
+    "docs/DER.drawio.xml": "13383ec579cc8395cef6239d5adb5b45e7f1c03d365eedd08abfc212c9eeb935",
+    "docs/DER_revision.svg": "21658da2f6364d63591b961fb8890b090f05893b03ef9caced086d27a22370cb",
+    "docs/diccionario_datos.md": "1b1fd9637b5999bbcb8490c48cbd8c7e9314fd495b86bda08a25c3c993bc86de",
+    "docs/matriz_cumplimiento_tpi.md": "4715d35060e6a5aa51bcb2f97b039944f15dc2d97bf607bf38efeadcb43908bf",
+    "docs/guion_defensa.md": "14f43d2c3b42f3aa9e6ed15eadb752489aa049f47f790e8483f558bba18daf22",
+    "docs/informe_integracion_final.md": "77003a21834aee40414045db2f30aea5cece4844f67d689adda2046d380982ad"
+  }
+}

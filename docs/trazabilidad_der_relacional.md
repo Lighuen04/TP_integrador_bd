@@ -12,7 +12,8 @@ El inventario previo registra dos páginas en el XML: la página 1 contiene el d
 
 | Página | Celdas XML | Vértices | Entidades | Relaciones | Óvalos de atributos | Rótulos 1/N/M | Conectores |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Página 1 | 347 | 193 | 22 | 25 | 97 | 48 | 152 |
+| Página 1 (original hasta H) | 347 | 193 | 22 | 25 | 97 | 48 | 152 |
+| Página 1 (corrección I) | 346 | 193 | 22 | 25 | 97 | 48 | 151 |
 | Página 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 Hay un nodo ISA etiquetado “Total disjunta”. Los 48 rótulos `1`, `N` y `M` son vértices de texto sin conectores XML; su asociación a los extremos debe leerse visualmente y no se conserva como dato estructurado. Para Localidad–Finca se aplica la decisión aprobada de 1:N; en las demás relaciones se usa el TPI cuando especifica cardinalidad y se explicitan las interpretaciones.
@@ -40,11 +41,11 @@ La columna “atributos del DER” enumera todos los óvalos ligados a cada enti
 | Exportador | `pais_destino`, `descuento_30%` | `exportador`; RN-06 establece tasa base del 30 % y U6 permite actualizar el valor vigente al 35 %. |
 | Permiso de Exportación | `codigo_permiso`, `fecha_emision`, `fecha_vencimiento` | `permiso_exportacion`; FK a exportador. |
 | Comprobante | `numero_comprobante`, `fecha`, `subtotal`, `descuento`, `total` | `comprobante`; conserva `descuento_aplicado` histórico y `total` como resumen agregado mantenido automáticamente. Los subtotales se calculan. |
-| Transportista | `codigo_transporte`, `razon_social`, `CUIT`, `email`, `telefono`, `domicilio` | `transportista`; código PK. CUIT se conserva como atributo, sin agregar UNIQUE no declarado. |
+| Transportista | `codigo_transporte`, `razon_social`, `CUIT`, `email`, `telefono`, `domicilio` | `transportista`; código PK y CUIT UNIQUE en la implementación B vigente. |
 | Ingreso | `codigo_ingreso`, `fecha`, `estado` | `ingreso`; estado usa el enum compartido con Transferencia, más FKs a transportista y bodega. |
 | Transferencia | `numero_solicitud`, `fecha_confeccion`, `estado` | `transferencia`; FK a sala; el atributo sala proviene de la relación `solicita`. |
 | Stock depósito | `cantidad_botellas_disponibles` | `stock_deposito`; `codigo_vino` como PK/FK, una fila por vino según el TPI. |
-| Auditoría de precios | `precio_anterior`, `fecha_del_cambio`, `hora_del_cambio`, `usuario_modificacion` | `auditoria_precios`; se añaden los dos óvalos huérfanos `ID_auditoria` y `precio_nuevo`, necesarios para identificar y completar la auditoría solicitada en RN-13. |
+| Auditoría de precios | `precio_anterior`, `fecha_del_cambio`, `hora_del_cambio`, `usuario_modificacion` | `auditoria_precios`; `ID_auditoria` y `precio_nuevo` estaban huérfanos hasta H y se conectaron a la entidad en I, sin agregar atributos al modelo. |
 
 **Nota:** Bodega aparece una sola vez en el esquema, aunque se liste junto a cada entidad/ruta en el DER; no se duplica como concepto.
 
@@ -80,7 +81,7 @@ Los nombres son las etiquetas de los rombos del XML. El TPI define varias cardin
 | registra cambios | Vino — Auditoría de precios | Vino 1:N Auditoría | `auditoria_precios.codigo_vino` | El TPI/RN-13 exige auditar cada cambio. |
 | recomienda | Vino — Maridaje | N:M | `vino_maridaje` | El TPI describe varios maridajes por vino y reutilizables entre vinos. |
 | se compone de | Cepa — Vino | N:M | `composicion_vino_cepa` | El TPI confirma N:M y porcentaje por par. |
-| tiene registro | Vino — Stock depósito | Una fila por vino (participación mínima pendiente) | `stock_deposito.codigo_vino` | El TPI pide stock central por vino; no especifica si debe existir una fila para cada vino antes de movimientos. |
+| tiene registro | Vino — Stock depósito | Como máximo una fila por vino; participación conceptual mínima por revisar | `stock_deposito.codigo_vino` PK/FK | La PK impide duplicados; el trigger de alta crea saldo cero. La FK por sí sola no garantiza existencia de saldo para todo vino ante DML directo del propietario. |
 | recibe | Lote — Análisis de calidad | Lote 1:N Análisis | `analisis_calidad.numero_lote` | El TPI pide uno o más análisis por lote. |
 | origina | Bodega — Ingreso | Bodega 1:N Ingreso | `ingreso.cuit_bodega` | Cada ingreso identifica bodega de origen. |
 | cubre | Localidad — Transportista | N:M interpretada | `transportista_localidad` | El TPI describe cobertura de transportistas por localidades; cardinalidad mínima y dirección exacta de cada rótulo gráfico requieren confirmación. |
@@ -97,7 +98,7 @@ El XML conecta Cliente con Socio, Distribuidor y Exportador mediante un nodo ISA
 - `cliente` mantiene los atributos comunes y el discriminador `tipo_cliente`.
 - `socio`, `distribuidor` y `exportador` usan `id_cliente` como PK/FK.
 - La restricción de que cada Cliente aparezca en exactamente un subtipo es total y disjunta; DBML representa las tablas y relaciones, pero la regla necesita validación entre filas en el DDL.
-- `zona_cobertura` es un óvalo huérfano en el XML y se asigna a Distribuidor porque el apartado 3.4 del TPI lo exige allí.
+- `zona_cobertura` era un óvalo huérfano hasta H; en I se conectó a Distribuidor, conforme al apartado 3.4 del TPI.
 
 ## Elementos incompletos o de interpretación
 
@@ -127,3 +128,22 @@ El XML conecta Cliente con Socio, Distribuidor y Exportador mediante un nodo ISA
 ## Conclusión de correspondencia
 
 Las 22 entidades, 25 relaciones y 97 óvalos de atributo se inventariaron. Los campos huérfanos, atributos calculados, claves preservadas, transformaciones y cardinalidades interpretadas se registran expresamente. No se identifican entidades conceptuales eliminadas. Se aplican las decisiones aprobadas: Localidad 1:N Finca, provincia de Finca derivada por JOIN, Parcela débil y descuento histórico copiado a la cabecera al crear cada comprobante. La normalización formal de las 29 relaciones está en `normalizacion.md`; `comprobante.total` conserva redundancia agregada autorizada y requiere consistencia transaccional. U1 se interpreta para el proyecto como recálculo con la tasa histórica; la posible discrepancia con el enunciado literal está documentada en `validacion_tpi.md`.
+
+
+## Cierre de revisión I — 10/11/2026
+
+El original se conserva en Git (`9afb118:docs/DER.drawio.xml`). Se conectaron
+cuatro atributos ya existentes a sus entidades: zona_cobertura a Distribuidor,
+descuento_10% a Socio, ID_auditoria y precio_nuevo a Auditoría. Las dos mitades
+del conector Ingreso–contiene–Vino se unificaron. Quedan 151 conectores con ambos
+extremos identificados, sin aristas huérfanas. Se preservaron los 193 vértices,
+sus rótulos, estilos y coordenadas, incluidos los 48 rótulos de cardinalidad.
+No se modificó SQL ni DBML.
+
+Se revisaron cuatro cuadrantes de una [vista auxiliar SVG](DER_revision.svg)
+generada desde las coordenadas XML. Sus rutas ortogonales automáticas son
+aproximadas: no es una exportación nativa de draw.io. No había editor nativo
+instalado; queda pendiente la revisión final en él y expresar inequívocamente
+las participaciones mínimas. Los rótulos 1/N/M no bastan para acreditarlas.
+Las observaciones de atributos huérfanos anteriores describen el estado hasta H;
+los cuatro conectores indicados ya están corregidos en el archivo editable.

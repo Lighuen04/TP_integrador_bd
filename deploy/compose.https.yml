@@ -2,15 +2,23 @@
 # Requiere certificados reales externos al repositorio y Compose >= 2.24.4.
 services:
   db:
+    restart: unless-stopped
     command: ["postgres", "-c", "ssl=on", "-c", "ssl_cert_file=/run/tls/postgres.crt", "-c", "ssl_key_file=/run/tls/postgres.key"]
     volumes:
-      - ${TLS_DIR:?Definir TLS_DIR absoluto}:/run/tls:ro
+      - ${TLS_DIR:?Definir TLS_DIR absoluto}/postgres.crt:/run/tls/postgres.crt:ro
+      - ${TLS_DIR:?Definir TLS_DIR absoluto}/postgres.key:/run/tls/postgres.key:ro
   api:
+    restart: unless-stopped
     environment:
-      DB_SSLMODE: require
+      DB_SSLMODE: verify-full
+      DB_SSLROOTCERT: /run/tls/ca.crt
+    volumes:
+      - ${TLS_DIR:?Definir TLS_DIR absoluto}/ca.crt:/run/tls/ca.crt:ro
   frontend:
+    restart: unless-stopped
     ports: !override
       - "0.0.0.0:443:443"
     volumes:
       - ./deploy/nginx.https.conf:/etc/nginx/conf.d/default.conf:ro
-      - ${TLS_DIR:?Definir TLS_DIR absoluto}:/run/tls:ro
+      - ${TLS_DIR:?Definir TLS_DIR absoluto}/web.crt:/run/tls/web.crt:ro
+      - ${TLS_DIR:?Definir TLS_DIR absoluto}/web.key:/run/tls/web.key:ro

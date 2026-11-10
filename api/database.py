@@ -19,6 +19,8 @@ async def lifespan(app):
     # Para la configuración de nube con TLS o un PostgreSQL remoto.
     if os.environ.get("DB_SSLMODE"):
         kwargs["sslmode"] = os.environ["DB_SSLMODE"]
+    if os.environ.get("DB_SSLROOTCERT"):
+        kwargs["sslrootcert"] = os.environ["DB_SSLROOTCERT"]
     pool = ConnectionPool(kwargs=kwargs, min_size=1, max_size=5, timeout=5,
                           open=False, name="bodegas-api")
     app.state.pool = pool

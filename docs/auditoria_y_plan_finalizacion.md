@@ -565,3 +565,24 @@ público comprobado. El grupo debe revisar visualmente las cardinalidades del
 DER, verificar sus contribuciones reales al repositorio y preparar su defensa.
 Los pendientes anteriores de Docker, diccionario, concurrencia y datos ya no
 describen el estado vigente.
+
+
+## 17. Estado vigente tras fase I — 10/11/2026
+
+La [matriz de nueve etapas](matriz_cumplimiento_tpi.md) sustituye los pendientes
+históricos como lista vigente. Se repitieron las 36 pruebas API/navegador, SQL
+08/09, las 30 consultas aprobadas sobre copia, concurrencia, respaldo/restauración
+y la integración con Nginx real. La [evidencia I](evidencias/fase_i_resultados.json)
+se conserva separada de H. El diccionario sigue coincidiendo con el catálogo.
+
+El perfil HTTPS se comprobó en un laboratorio propio con CA privada: PostgreSQL
+verify-full, rechazo por CA/nombre incorrectos y reinicio unless-stopped de los
+tres servicios. No acredita certificado público ni despliegue en nube. El usuario
+confirmó que no hay infraestructura; el informe deja los pasos externos pendientes.
+Se corrigieron cuatro enlaces de atributos y un conector fragmentado en el DER,
+sin cambiar vértices ni modelo; revisión nativa/participaciones mínimas pendiente.
+
+Portada: Amigo L. — Perez M., según confirmación del usuario; comisión/docente
+sin confirmar. La exigencia de 3–4 integrantes requiere nómina real o excepción.
+El [guion de defensa](guion_defensa.md) incluye 14 minutos y 20 preguntas; no se
+atribuyeron aportes ni commits a personas a partir de alias Git.

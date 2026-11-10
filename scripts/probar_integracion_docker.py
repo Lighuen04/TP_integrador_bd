@@ -40,7 +40,7 @@ def main():
                        DB_USER=docker.env['DB_USER'],DB_PASSWORD=docker.env['DB_PASSWORD'])
     checks = []
     errors = []
-    artifact = ROOT/'.local/h'; artifact.mkdir(parents=True,exist_ok=True)
+    artifact = args.reporte.resolve().parent; artifact.mkdir(parents=True,exist_ok=True)
     connected = False
     try:
         docker.run(['docker','network','create',net])

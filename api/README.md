@@ -191,13 +191,16 @@ La configuración Compose fue validada, pero el motor Docker Desktop no estaba
 disponible en el corte F/G. **En H sí se verificaron los tres contenedores**, con
 PostgreSQL/API saludables y frontend/Nginx en `127.0.0.1:8081`. La integración
 completa y el respaldo/restauración están en el [informe H](../docs/informe_integracion_final.md).
-`DB_SSLMODE` es opcional para ejecución local y se fija a `require` en el perfil
-de nube preparado; no se confunde esa configuración con HTTPS público probado.
+`DB_SSLMODE` es opcional para ejecución local. El perfil HTTPS usa `verify-full`
+y `DB_SSLROOTCERT` para verificar la CA y el nombre del servidor PostgreSQL.
+La fase I comprobó ese perfil con una CA privada en un laboratorio aislado;
+la publicación con un certificado de confianza pública sigue pendiente.
 
 Fase G está implementada en [frontend/](../frontend/README.md), con filtros,
 formularios, estados y errores de negocio probados en navegador. No se implementó
-autenticación ni despliegue en nube. El diccionario y la demostración académica de concurrencia
-siguen siendo entregables independientes pendientes de las fases anteriores.
+autenticación ni despliegue en nube. El diccionario y la demostración de
+concurrencia se completaron en H y se verificaron nuevamente en I; ver la
+[matriz vigente](../docs/matriz_cumplimiento_tpi.md).
 
 Referencias de implementación: [dependencias con yield y scope de FastAPI](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/)
 y [transacciones de psycopg](https://www.psycopg.org/psycopg3/docs/basic/transactions.html).
