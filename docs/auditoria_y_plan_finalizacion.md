@@ -583,6 +583,29 @@ Se corrigieron cuatro enlaces de atributos y un conector fragmentado en el DER,
 sin cambiar vértices ni modelo; revisión nativa/participaciones mínimas pendiente.
 
 Portada: Amigo L. — Perez M., según confirmación del usuario; comisión/docente
-sin confirmar. La exigencia de 3–4 integrantes requiere nómina real o excepción.
+sin confirmar. La cátedra autorizó el grupo de dos, según confirmación del usuario;
+la cantidad no es un incumplimiento ni requiere agregar integrantes. No se
+atribuye una constancia documental al docente.
 El [guion de defensa](guion_defensa.md) incluye 14 minutos y 20 preguntas; no se
 atribuyeron aportes ni commits a personas a partir de alias Git.
+
+## 18. Limpieza final y estado de entrega — 10/11/2026
+
+Se verificó que el ejercicio Turtle, el log DBML vacío y el ZIP redundante de
+consultas no fueran utilizados por scripts, pruebas, Docker ni enlaces de la
+documentación. Solo había menciones históricas a los dos primeros en esta
+auditoría; describen archivos retirados durante esta limpieza. Se eliminaron
+únicamente `basico.py`, `dbml-error.log` y `consultas.zip`. Se conservan los cuatro
+SQL individuales de `consultas/` y todos los archivos funcionales del proyecto.
+
+El **principal requisito técnico pendiente es el despliegue público en la nube
+con HTTPS**. No existe todavía una URL pública verificada. TLS fue probado en
+laboratorio local; no es producción ni acredita la Etapa 8. Se mantienen como
+tareas de revisión final la comprobación nativa del DER y la defensa oral.
+El grupo de Amigo L. y Perez M. está autorizado, según confirmación del usuario;
+no se exige ampliar la nómina ni se inventan personas, aportes o constancias.
+
+Las pruebas funcionales registradas en fases anteriores conservan su fecha y
+alcance. Esta limpieza se valida mediante revisión del diff, referencias,
+entregables, exclusión de secretos y comparación del contenido funcional con
+la versión previa; no requiere modificar ni volver a desarrollar la aplicación.

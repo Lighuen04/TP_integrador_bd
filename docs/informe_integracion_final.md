@@ -13,9 +13,12 @@ entregables existentes y completa los faltantes, siguiendo §10.2 de la
 [evidencia H](evidencias/fase_h_resultados.json) conserva su corte histórico;
 la [evidencia I](evidencias/fase_i_resultados.json) registra las comprobaciones
 actuales. La entrega global no se declara terminada: quedan publicación pública,
-revisión conceptual final y defensa. §2.1 exige 3–4 integrantes; solo se
-confirmaron dos, por lo que el grupo debe completar la nómina real o presentar
-una excepción autorizada. Los alias Git no se convierten en nombres académicos.
+revisión nativa del DER y defensa oral. El principal requisito técnico pendiente
+es el despliegue público en la nube con HTTPS: no existe una URL pública verificada
+y el laboratorio TLS local no constituye producción. La cátedra autorizó el grupo
+de dos integrantes, según confirmación del usuario; la cantidad no es un
+incumplimiento ni requiere agregar personas. No se atribuye una constancia
+documental al docente. Los alias Git no se convierten en nombres académicos.
 
 ### Índice académico de cobertura
 
@@ -344,8 +347,9 @@ aparecía con el proxy Python; se corrigió y verificó con Nginx real.
 Son dos alias, no prueba de dos personas distintas ni atribución a Amigo L. o
 Perez M. No se modificaron autores/fechas ni se fabricaron commits. Cada
 integrante debe realizar aportes reales revisables y acreditar su autoría;
-verificar además la nómina de 3–4 o la excepción de la cátedra. Comisión,
-docente, defensa realizada y demo pública no se completan por inferencia.
+la cantidad de dos integrantes ya está autorizada por la cátedra, según
+confirmación del usuario. Comisión, docente, defensa realizada y demo pública
+no se completan por inferencia.
 
 Guion mínimo de defensa (10–15 minutos): mostrar DER/decisión 3FN, catálogo y
 composición inválida, venta válida/sin stock, transferencia, plan S2 o S3 del

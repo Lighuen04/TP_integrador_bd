@@ -3,8 +3,13 @@
 Integrantes confirmados: **Amigo L.** y **Perez M.**. Comisión y docente no
 confirmados; no asignar aportes por alias Git. El guion prepara una exposición
 de **14 minutos**. Cada integrante debe poder ejecutar cualquier bloque.
+La cátedra autorizó el grupo de dos, según confirmación del usuario. La cantidad
+no es un requisito pendiente; no se inventa una constancia documental del docente.
 
 **Estado:** ensayo técnico local disponible. No hay URL pública verificada;
+el principal requisito técnico pendiente es el despliegue público en la nube
+con HTTPS. Se mantienen la revisión nativa del DER y la defensa oral pendientes.
+El laboratorio TLS local no constituye producción:
 no presentar localhost, la CA privada del laboratorio ni una captura como nube.
 Usar una copia nueva `bodegas_h_pruebas_*` para escribir; conservar la base activa.
 
@@ -12,7 +17,7 @@ Usar una copia nueva `bodegas_h_pruebas_*` para escribir; conservar la base acti
 
 1. `docker compose ps`: base/API saludables y frontend activo en 8081.
 2. Abrir [matriz de cumplimiento](matriz_cumplimiento_tpi.md), DER, normalización,
-   informe E y Swagger. La nómina debe cumplir §2.1 o contar con excepción real.
+   informe E y Swagger. La cantidad de dos integrantes ya está autorizada.
 3. Crear un respaldo y restaurarlo con un nombre **nuevo**. No usar un archivo
    ni una base ya existentes para volver a ejecutar el comando.
 
@@ -154,5 +159,5 @@ No ejecutar EXPLAIN ANALYZE de DELETE sin transacción y rollback: ejecuta la se
 Mostrar el estado de las nueve etapas en la matriz, no una afirmación «100 %».
 La URL pública, la demo en esa URL, los aportes de todos los integrantes y el
 examen individual no pueden sustituirse por documentación. Los nombres
-confirmados son dos; §2.1 pide 3–4: validar nómina/excepción con la cátedra,
-sin fabricar identidades, autores, fechas ni commits.
+confirmados son Amigo L. y Perez M.; la cátedra autorizó esta cantidad, según
+confirmación del usuario. No fabricar identidades, autores, fechas ni commits.

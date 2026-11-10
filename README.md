@@ -14,7 +14,8 @@ y [auditoría I](docs/evidencias/fase_i_resultados.json), del 10/11/2026.
 La [matriz de las nueve etapas](docs/matriz_cumplimiento_tpi.md) y el
 [guion de defensa de 14 minutos con 20 preguntas](docs/guion_defensa.md)
 completan la preparación de entrega. Integrantes confirmados: **Amigo L. — Perez M.**
-Comisión, docente y nómina exigida por la cátedra requieren confirmación.
+La cátedra autorizó el grupo de dos integrantes, según confirmación del usuario;
+la cantidad no es un requisito pendiente. Comisión y docente requieren confirmación.
 El laboratorio I comprobó HTTPS con CA privada y PostgreSQL `verify-full`,
 incluidos rechazos por CA y nombre incorrectos; no acredita una URL pública.
 
@@ -199,6 +200,11 @@ Para nube se preparó `deploy/compose.https.yml`, que reutiliza los tres servici
 y exige certificados externos: HTTPS público y conexión API–PostgreSQL con TLS.
 La comparación de proveedores, requisitos y pasos pendientes está en el
 [informe final, sección 8](docs/informe_integracion_final.md#8-despliegue-seguridad-y-límites).
-No se creó ningún recurso pago ni se publica una URL ficticia. La revisión visual
-final de cardinalidades del DER, los commits de todos los integrantes y su defensa
-oral deben ser realizados/confirmados por el grupo.
+No se creó ningún recurso pago ni se publica una URL ficticia.
+El **principal requisito técnico pendiente es el despliegue público en la nube
+con HTTPS**; todavía no existe una URL pública verificada. El laboratorio TLS
+local no constituye producción.
+
+La revisión nativa final de cardinalidades del DER, la acreditación de aportes
+reales de ambos integrantes y su defensa oral deben ser realizados/confirmados
+por el grupo.

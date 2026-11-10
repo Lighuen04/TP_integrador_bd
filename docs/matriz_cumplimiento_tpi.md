@@ -21,7 +21,7 @@ I/D con ejecución pendiente no se cuenta como criterio de aceptación cumplido.
 | 6. API | I/P/D local y Docker | Operaciones en URL pública pendientes |
 | 7. Frontend | I/P/D local y Docker/Nginx | Navegación contra la URL pública pendiente |
 | 8. Nube | Configuración I/D; TLS privado P local | Sin cuenta/VM/dominio autorizados; todos los criterios de nube pendientes |
-| 9. Documentación/defensa | Informe y guion D; pruebas locales P | Defensa real, demo en nube, nómina y contribuciones de todo el grupo pendientes |
+| 9. Documentación/defensa | Informe y guion D; pruebas locales P; grupo de dos autorizado | Defensa real, demo en nube y acreditación de contribuciones reales pendientes |
 
 ## Requisitos verificables por etapa
 
@@ -118,9 +118,16 @@ I/D con ejecución pendiente no se cuenta como criterio de aceptación cumplido.
 | Trazabilidad RN→mecanismo→prueba; paso 3 | Informe §3 y esta matriz | RN-01–15 y suites SQL/API | I/P/D | Contrastar observaciones históricas con texto literal |
 | Demo de 10–15 minutos sobre nube; paso 4 | [Guion](guion_defensa.md) | Ensayos técnicos locales; comandos reproducibles | D; realización pendiente | Debe repetirse en URL pública cuando exista |
 | Defensa individual; paso 5 | Guion con 20 preguntas y respuestas de código | Material preparado, no examen realizado | D; realización pendiente | Cada integrante debe explicar y operar, no solo leer |
-| Grupos de 3–4 y commits de todos; §2.1 y §10.3 | Historial Git real, informe §9 | Dos alias y cuatro commits; nombres confirmados Amigo L. y Perez M. | Pendiente | Solo dos integrantes confirmados; completar nómina o validar excepción y aportes reales, sin commits ficticios |
+| Cantidad de integrantes; §2.1 | Amigo L. y Perez M. | El usuario confirmó que la cátedra autorizó el grupo de dos | Cumplido por autorización | No se exige agregar integrantes ni se atribuye una constancia documental al docente |
+| Commits y aportes de todos; §10.3 | Historial Git real, informe §9 | Los alias Git no identifican por sí solos a personas o aportes académicos | Acreditación pendiente | Conservar autores e historial; acreditar contribuciones reales, sin commits ni atribuciones ficticios |
 
 No se consideran obligatorios un framework frontend, JWT, microservicios, una
 rama por fase ni el volumen recomendado de 500.000 renglones. Sí son obligatorios
 los mínimos de volumen, las cinco pantallas, el pool, las pruebas, la URL pública
 HTTPS y la participación/defensa que fija el enunciado.
+
+El **principal requisito técnico pendiente es el despliegue público en la nube
+con HTTPS**. No existe una URL pública verificada; el laboratorio TLS local no
+es producción. Se mantienen la revisión nativa del DER y la defensa oral como
+tareas de revisión final. La cantidad de dos integrantes ya está autorizada,
+según confirmación del usuario; no se inventa una constancia docente.
