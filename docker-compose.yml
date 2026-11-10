@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configurar POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:?Configurar DB_NAME}
+      DB_USER: ${DB_USER:?Configurar DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD:?Configurar DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./database/01_tipos_dominios.sql:/docker-entrypoint-initdb.d/01.sql:ro
+      - ./database/02_tablas.sql:/docker-entrypoint-initdb.d/02.sql:ro
+      - ./database/03_restricciones.sql:/docker-entrypoint-initdb.d/03.sql:ro
+      - ./database/04_funciones.sql:/docker-entrypoint-initdb.d/04.sql:ro
+      - ./database/05_triggers.sql:/docker-entrypoint-initdb.d/05.sql:ro
+      - ./database/06_indices.sql:/docker-entrypoint-initdb.d/06.sql:ro
+      - ./database/07_vistas.sql:/docker-entrypoint-initdb.d/07.sql:ro
+      - ./database/10_api_baja_vino.sql:/docker-entrypoint-initdb.d/10.sql:ro
+      - ./api/init_login.sh:/docker-entrypoint-initdb.d/11_login.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:?Configurar DB_NAME}
+      DB_USER: ${DB_USER:?Configurar DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD:?Configurar DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+volumes:
+  postgres_data:

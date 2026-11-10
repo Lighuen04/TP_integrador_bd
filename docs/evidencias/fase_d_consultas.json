@@ -1,0 +1,253 @@
+{
+  "U1": {
+    "recalculados": 100001,
+    "verificado": true
+  },
+  "U2": {
+    "afectados": 9,
+    "verificado": true
+  },
+  "U3": {
+    "afectados": 10,
+    "auditorias": 10,
+    "verificado": true
+  },
+  "U4": {
+    "dml": [
+      "UPDATE 4"
+    ],
+    "verificado": true
+  },
+  "U5": {
+    "dml": [
+      "UPDATE 10"
+    ],
+    "verificado": true
+  },
+  "U6": {
+    "dml": [
+      "UPDATE 1667"
+    ],
+    "verificado": true
+  },
+  "I1": {
+    "dml": [
+      "INSERT 0 1"
+    ],
+    "verificado": true
+  },
+  "I2": {
+    "dml": [
+      "INSERT 0 1",
+      "INSERT 0 10"
+    ],
+    "verificado": true
+  },
+  "I3": {
+    "dml": [
+      "INSERT 0 1",
+      "INSERT 0 3"
+    ],
+    "verificado": true
+  },
+  "I4": {
+    "dml": [
+      "INSERT 0 1"
+    ],
+    "verificado": true
+  },
+  "I5": {
+    "dml": [
+      "INSERT 0 1"
+    ],
+    "verificado": true
+  },
+  "I6": {
+    "dml": [
+      "INSERT 0 1",
+      "INSERT 0 1"
+    ],
+    "verificado": true
+  },
+  "D1": {
+    "dml": [
+      "DELETE 1667"
+    ],
+    "verificado": true
+  },
+  "D2": {
+    "dml": [
+      "DELETE 2"
+    ],
+    "verificado": true
+  },
+  "D3": {
+    "dml": [
+      "DELETE 3"
+    ],
+    "verificado": true
+  },
+  "D4": {
+    "dml": [
+      "DELETE 333"
+    ],
+    "verificado": true
+  },
+  "D5": {
+    "dml": [
+      "DELETE 4"
+    ],
+    "verificado": true
+  },
+  "D6": {
+    "dml": [
+      "DELETE 333"
+    ],
+    "verificado": true
+  },
+  "S1": {
+    "filas": [
+      10
+    ],
+    "verificado": true
+  },
+  "S2": {
+    "filas": [
+      36
+    ],
+    "verificado": true
+  },
+  "S3": {
+    "filas": [
+      3
+    ],
+    "verificado": true
+  },
+  "S4": {
+    "filas": [
+      1
+    ],
+    "verificado": true
+  },
+  "S5": {
+    "filas": [
+      6
+    ],
+    "verificado": true
+  },
+  "S6": {
+    "filas": [
+      5
+    ],
+    "verificado": true
+  },
+  "S7": {
+    "filas": [
+      1
+    ],
+    "verificado": true
+  },
+  "S8": {
+    "filas": [
+      6
+    ],
+    "verificado": true
+  },
+  "S9": {
+    "filas": [
+      1
+    ],
+    "verificado": true
+  },
+  "S10": {
+    "filas": [
+      120
+    ],
+    "verificado": true
+  },
+  "S11": {
+    "filas": [
+      216,
+      48
+    ],
+    "verificado": true
+  },
+  "S12": {
+    "filas": [
+      0,
+      1906
+    ],
+    "verificado": true
+  },
+  "casos_limite": [
+    "U2_limite_cinco_anios_y_un_dia",
+    "I2_sin_tintos_elegibles_no_inserta",
+    "I3_falla_segundo_renglon_revierte_cabecera_y_stock",
+    "S9_dos_cepas_dos_maridajes_sin_multiplicar_stock",
+    "S5_cero_pendientes_y_empates",
+    "S2_sala_sin_ventas_impide_division",
+    "S3_tipos_sin_compradores_devuelven_cero",
+    "S11_RANK_conserva_empate",
+    "S12_universo_vinos_vacio_todos_clientes",
+    "S3_siete_fechas_y_clientes_distintos"
+  ],
+  "huellas_29_tablas_conservadas": true,
+  "referencia_c_a_intacta": true,
+  "revalidacion_fase_e": {
+    "base": "bodegas_d_pruebas",
+    "version": "PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+    "archivos": {
+      "update": {
+        "exit": 0,
+        "sha256": "4deabc227b424d122edce47f542cfdcc75035dab4c95a1ce3c0a1b974d05eca4"
+      },
+      "insert": {
+        "exit": 0,
+        "sha256": "139a35c6188d51f7765c596b27ce27af97733ecc2cd6d567628e16aee2f629bb"
+      },
+      "delete": {
+        "exit": 0,
+        "sha256": "ec03f18498da159598dd6e178e061e61641b2ed096f43c465b0befa3f03d50ae"
+      },
+      "select": {
+        "exit": 0,
+        "sha256": "507420913d54b2218e6720554ed39ccc64910f09b68095ef14648f66d79c1c3d"
+      }
+    },
+    "I1": {
+      "interpretacion": "Minimo global, empate determinista; cobertura existente es idempotencia, no reemplazo por mayor actividad",
+      "actividad_regresion": [
+        [
+          "T4",
+          1
+        ],
+        [
+          "T3",
+          2
+        ],
+        [
+          "T2",
+          2
+        ],
+        [
+          "T1",
+          2
+        ]
+      ],
+      "insertadas_con_candidato_ya_cubierto": 0,
+      "sql_conservado": true
+    },
+    "I3": {
+      "renglones_validos": 3,
+      "tasa": 10,
+      "total": "3267.00",
+      "defecto_previo_vino_ausente_insertaba": 2,
+      "sqlstate_regresiones": [
+        "23514",
+        "23514"
+      ],
+      "stock_y_cabecera_revertidos": true
+    },
+    "huellas_29_tablas_iguales": true
+  }
+}

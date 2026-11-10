@@ -1,0 +1,209 @@
+{
+  "entorno": {
+    "python": "3.9.13",
+    "sistema": "Windows",
+    "postgresql": "18.4",
+    "psycopg": "3.2.13",
+    "Faker": "37.12.0"
+  },
+  "seed": 42,
+  "fecha_ref": "2026-11-09",
+  "carga_a_segundos": 146.193,
+  "carga_b_segundos": 113.259,
+  "nota_tiempos": "Cargas concurrentes en el mismo cluster; A tuvo intentos previos revertidos. No comparar A/B como rendimiento de estrategias.",
+  "tablas": {
+    "analisis_calidad": {
+      "filas": 240,
+      "sha256": "f1daa8e952b459dcd9e5f0ed5794c070b4bd8284e66f7b24fb728737f7a86b7e"
+    },
+    "auditoria_precios": {
+      "filas": 40,
+      "sha256": "9817903bd12b1f2c1d41e2a0f2343a32f44832bf7e21a2f645b385715ce66ef4"
+    },
+    "bodega": {
+      "filas": 4,
+      "sha256": "beda162c40c4b61e07f01acc14986ce723fdea692b8a6c481922703823387cc2"
+    },
+    "cepa": {
+      "filas": 12,
+      "sha256": "e40ef825bd27950b08060954e836aa140f76fa9657b7c73efb1c313f934286ff"
+    },
+    "cliente": {
+      "filas": 20000,
+      "sha256": "b772ef2124b4c47fbe617a7e245d94f0cf93d52608d4e253d03e583fb7668512"
+    },
+    "composicion_vino_cepa": {
+      "filas": 60,
+      "sha256": "b02ccfda2b3844088a7b3264d1bc9410518895eb53e5d48152b54108c05af2c2"
+    },
+    "comprobante": {
+      "filas": 100001,
+      "sha256": "e5da613f5868be12a14eddfaccaa45401a7a290a85b5ed5686434ac6ea415e25"
+    },
+    "comprobante_vino": {
+      "filas": 200002,
+      "sha256": "c35aed2f26a51ff599283305e562be04d6c195ef535a3a783e3384fa8eb3bff3"
+    },
+    "distribuidor": {
+      "filas": 6667,
+      "sha256": "72fb31dafae282a8883098d01eae20f0ab19e180c6500b877b4a2a8416175f8b"
+    },
+    "empleado": {
+      "filas": 18,
+      "sha256": "c0e565d214bfdfcb64bf47307c4d9f328a2f963ff131dce3b1aa88ec7a9aeeaf"
+    },
+    "exportador": {
+      "filas": 6666,
+      "sha256": "863494cdf9d5717123514e4e8e7ccbf381787315ad786dd27d0fe923fb16e599"
+    },
+    "finca": {
+      "filas": 6,
+      "sha256": "1f219a4d683202660c470c612281e93796fafbda6db27769950649b116ab161a"
+    },
+    "ingreso": {
+      "filas": 8,
+      "sha256": "b580f09eccd8d05d0315f747e4cc87f887b84a1a76528f22956a1e516d7d45e8"
+    },
+    "ingreso_vino": {
+      "filas": 80,
+      "sha256": "8568ed005016760c87c5b7a4ddb1f45dd2aa0b360a6363902e40d0d10a7758f6"
+    },
+    "localidad": {
+      "filas": 3,
+      "sha256": "fd5d3000604ba0aaede7a150c4f9663e2434542b31744639d93828be4e8bcee7"
+    },
+    "lote_uva": {
+      "filas": 120,
+      "sha256": "312ba0ac11030a134f351e20957e1b5f3595103bb1c6d73abe830e67706842e6"
+    },
+    "maridaje": {
+      "filas": 8,
+      "sha256": "2f1753c5a3e973db51940aa837f39ea6d3ca9761c97952f8ab033e769c57040a"
+    },
+    "parcela": {
+      "filas": 24,
+      "sha256": "29e0465ce77ad78a6b9b97b9afcf5598f37223a8374cf62b75ad46af53af6a96"
+    },
+    "permiso_exportacion": {
+      "filas": 16665,
+      "sha256": "9f074ca938bf03b634856b932a065d90b13f8c738a97357102cca620e136d0f7"
+    },
+    "sala_venta": {
+      "filas": 6,
+      "sha256": "7b452495914dd5ea0e6997c61b8043810280996167c977bf9090ca086441e394"
+    },
+    "socio": {
+      "filas": 6667,
+      "sha256": "0def72890ab06ad877bd1a8e9fcfe9f17eaf8a765872ace59ab61feaf9ee4378"
+    },
+    "stock_deposito": {
+      "filas": 40,
+      "sha256": "893c4d4bc8aa379a8bee31a17172f7ca0c7602d26392e2a686f7ca6c9673377e"
+    },
+    "stock_sala": {
+      "filas": 216,
+      "sha256": "c69dbcb0771baac687f95ef3adf5d74f3e52da6d46e6619e307159b642b2f9e3"
+    },
+    "transferencia": {
+      "filas": 18,
+      "sha256": "4b93eb86d8f9868e945d042a47ca905288bf027d9dc48d4b732b9b63a7f5e7dc"
+    },
+    "transferencia_vino": {
+      "filas": 228,
+      "sha256": "4339072eea420b8bf337dadc3bed09a3bc4e4bc18da618d9dc33319d84839bcd"
+    },
+    "transportista": {
+      "filas": 4,
+      "sha256": "8ee14dcf3b469aabfe1a839e4fd5479a999b2fbf6696e9bb6f3f120a823e8724"
+    },
+    "transportista_localidad": {
+      "filas": 11,
+      "sha256": "369ca9bc8b531b53b56a345f80b83f3b3f9d9458393487b2931f80f76b7962ab"
+    },
+    "vino": {
+      "filas": 40,
+      "sha256": "1be75c3e8b56f8ebfaf5b242d701a4583fccc6419878f28133625b27922a05a9"
+    },
+    "vino_maridaje": {
+      "filas": 40,
+      "sha256": "3ead9f5acfa6512d067f7f937383c5630134f91dc175341a7398e4977d741e32"
+    }
+  },
+  "huella_logica": "867f36e936c7e84bb9349f3603bf48a5fbb6b10c382a2aa07b37bf49b84e4a71",
+  "reproducibilidad_29_tablas": true,
+  "controles": {
+    "integridad": {
+      "anada_antes_venta": 0,
+      "bodega_ingreso": 0,
+      "composicion_100": 0,
+      "conciliacion_deposito": 0,
+      "conciliacion_salas": 0,
+      "constraints_validadas": 0,
+      "descuento_historico_perfil": 0,
+      "descuento_vigente": 0,
+      "escenarios_catalogos_personal": 0,
+      "escenarios_stock_movimientos": 0,
+      "escenarios_ventas_periodos": 0,
+      "fechas_cosecha_analisis": 0,
+      "fechas_movimientos": 0,
+      "fechas_venta": 0,
+      "isa_total_disjunta": 0,
+      "permiso_vigente_al_corte": 0,
+      "precio_historico_perfil": 0,
+      "saldo_historico_deposito": 0,
+      "saldo_historico_sala": 0,
+      "stock_deposito_no_negativo": 0,
+      "stock_sala_no_negativo": 0,
+      "totales": 0,
+      "triggers_activos": 0,
+      "valores_venta": 0,
+      "valores_vino": 0,
+      "vino_todas_las_salas": 0
+    },
+    "estados_ingresos": {
+      "procesado": 8
+    },
+    "estados_transferencias": {
+      "en_confeccion": 3,
+      "terminado": 3,
+      "procesado": 12
+    }
+  },
+  "fallo_importacion_revierte_datos_y_trigger": true,
+  "rn11_operativa_no_alterada": true,
+  "rechazos_seguridad": {
+    "bodegas_c_incorrecta": "ValueError: Conexión rechazada: no coincide la base de prueba identificada",
+    "bodegas_c_a": "ValueError: La base debe estar vacía; no se elimina ningún dato existente"
+  },
+  "benchmark": {
+    "base": "bodegas_c_b",
+    "seed": 42,
+    "fecha_ref": "2026-11-09",
+    "psycopg": "3.2.13",
+    "Faker": "37.12.0",
+    "benchmark_2000_renglones_segundos": {
+      "fila": 1.303,
+      "copy": 0.488
+    },
+    "total_segundos": 3.622
+  },
+  "dump": {
+    "ruta": ".local\\dump_completo.sql.gz",
+    "bytes": 2130104,
+    "base_restaurada": "bodegas_c_restaurada",
+    "validacion_sin_errores": true,
+    "huellas_29_tablas_iguales": true
+  },
+  "verificacion_y_dump_segundos": 33.573,
+  "validacion_psql_exit": 0,
+  "archivos_sha256": {
+    "database\\seed\\catalogos\\cepas.csv": "8da6ce25e0cfaf2b6aec90576346a910cf902f860f747168df0b19371922b71d",
+    "database\\seed\\catalogos\\departamentos.csv": "dad513652a7c96a044721ac81d63713c18b623f65a5386abb574e88663cd0eb4",
+    "database\\seed\\catalogos\\localidades.csv": "c042500ee41a561d87100b9d23f09d5c92b14bb346e134d9b8e7f0ba3304cee3",
+    "database\\seed\\catalogos\\maridajes.csv": "25570d871cca7c8fcae637061d9e3f1d64b40d5fb4b4ec4988a0607cc78acd38",
+    "database\\seed\\catalogos\\tipos_vino.csv": "da2ebeef002975efee04a3344b423c9b8f0bfbb9ab18aa04211922127bcedb8a",
+    "database\\seed\\generar_datos.py": "9d84d494b2d094e0b5449efdc131ad8abcf60be8a90bb67b8f0c613700b3c657",
+    "database\\seed\\requirements.txt": "e36bd251049170b6c44b6e8c6fe812ba7a6764432a870ee6722f1b9c4c82dd27",
+    "database\\seed\\validar_carga.sql": "899d66fe0281bb6a0c4efbb8fedba58c44d51cd0d102a70596ccfbc88e906847"
+  }
+}

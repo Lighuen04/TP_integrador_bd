@@ -1,0 +1,7 @@
+*
+!api/
+!api/**
+api/__pycache__/
+api/tests/
+!database/
+!database/*.sql

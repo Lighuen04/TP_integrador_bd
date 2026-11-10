@@ -1,0 +1,596 @@
+FASE B - 2026-11-09 - pruebas reales en cluster descartable
+Host 127.0.0.1, puerto 55439, base fase_b_verificada.
+psql -X -v ON_ERROR_STOP=1. No se conectaron bases existentes.
+
+=== Version y entorno ===
+EXIT 0
+                                 version                                 | current_database  | current_user | current_setting 
+-------------------------------------------------------------------------+-------------------+--------------+-----------------
+ PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit | fase_b_verificada | postgres     | read committed
+(1 row)
+
+
+
+=== database\01_tipos_dominios.sql ===
+EXIT 0
+CREATE SCHEMA
+DO
+
+
+=== database\02_tablas.sql ===
+EXIT 0
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+
+
+=== database\03_restricciones.sql ===
+EXIT 0
+DO
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+REVOKE
+GRANT
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+=== database\04_funciones.sql ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE PROCEDURE
+
+
+=== database\05_triggers.sql ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+DROP FUNCTION
+DROP TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+psql:database/05_triggers.sql:520: NOTICE:  trigger "trg_cliente_descuento_base" for relation "cliente" does not exist, skipping
+psql:database/05_triggers.sql:525: NOTICE:  trigger "trg_comprobante_protegido" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:530: NOTICE:  trigger "trg_vino_stock_deposito" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:535: NOTICE:  trigger "trg_composicion_bloqueo" for relation "composicion_vino_cepa" does not exist, skipping
+psql:database/05_triggers.sql:540: NOTICE:  trigger "trg_composicion_validacion" for relation "composicion_vino_cepa" does not exist, skipping
+psql:database/05_triggers.sql:546: NOTICE:  trigger "trg_vino_composicion_obligatoria" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:552: NOTICE:  trigger "trg_cliente_isa_lock" for relation "socio" does not exist, skipping
+psql:database/05_triggers.sql:556: NOTICE:  trigger "trg_distribuidor_isa_lock" for relation "distribuidor" does not exist, skipping
+psql:database/05_triggers.sql:560: NOTICE:  trigger "trg_exportador_isa_lock" for relation "exportador" does not exist, skipping
+psql:database/05_triggers.sql:565: NOTICE:  trigger "trg_cliente_isa_diferido" for relation "cliente" does not exist, skipping
+psql:database/05_triggers.sql:570: NOTICE:  trigger "trg_socio_isa_diferido" for relation "socio" does not exist, skipping
+psql:database/05_triggers.sql:575: NOTICE:  trigger "trg_distribuidor_isa_diferido" for relation "distribuidor" does not exist, skipping
+psql:database/05_triggers.sql:580: NOTICE:  trigger "trg_exportador_isa_diferido" for relation "exportador" does not exist, skipping
+psql:database/05_triggers.sql:586: NOTICE:  trigger "trg_ingreso_estado" for relation "ingreso" does not exist, skipping
+psql:database/05_triggers.sql:590: NOTICE:  trigger "trg_transferencia_estado" for relation "transferencia" does not exist, skipping
+psql:database/05_triggers.sql:595: NOTICE:  trigger "trg_ingreso_lineas_estado" for relation "ingreso_vino" does not exist, skipping
+psql:database/05_triggers.sql:599: NOTICE:  trigger "trg_transferencia_lineas_estado" for relation "transferencia_vino" does not exist, skipping
+psql:database/05_triggers.sql:604: NOTICE:  trigger "trg_comprobante_vino_stock" for relation "comprobante_vino" does not exist, skipping
+psql:database/05_triggers.sql:608: NOTICE:  trigger "trg_comprobante_vino_total" for relation "comprobante_vino" does not exist, skipping
+psql:database/05_triggers.sql:613: NOTICE:  trigger "trg_comprobante_devolver_stock" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:614: NOTICE:  function tg_reintegrar_stock_al_borrar_comprobante() does not exist, skipping
+psql:database/05_triggers.sql:615: NOTICE:  trigger "trg_comprobante_eliminar_detalles" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:617: NOTICE:  trigger "trg_vino_auditar_precio" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:622: NOTICE:  trigger "trg_ingreso_aplicar_stock" for relation "ingreso" does not exist, skipping
+psql:database/05_triggers.sql:626: NOTICE:  trigger "trg_transferencia_aplicar_stock" for relation "transferencia" does not exist, skipping
+
+
+=== database\06_indices.sql ===
+EXIT 0
+SET
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+
+
+=== database\07_vistas.sql ===
+EXIT 0
+SET
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+GRANT
+DO
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+Comando reaplicacion:
+SET ROLE bodegas_propietario;
+SET search_path=bodegas_atuel,public;
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/03_restricciones.sql
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/04_funciones.sql
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql
+\ir C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/07_vistas.sql
+
+=== Reaplicacion 02-07 como propietario ===
+EXIT 0
+SET
+SET
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+DO
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+REVOKE
+GRANT
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE PROCEDURE
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+DROP FUNCTION
+DROP TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+SET
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+SET
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+GRANT
+DO
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:8: NOTICE:  relation "localidad" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:18: NOTICE:  relation "sala_venta" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:28: NOTICE:  relation "empleado" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:38: NOTICE:  relation "finca" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:44: NOTICE:  relation "cepa" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:57: NOTICE:  relation "parcela" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:63: NOTICE:  relation "bodega" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:79: NOTICE:  relation "lote_uva" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:90: NOTICE:  relation "analisis_calidad" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:106: NOTICE:  relation "vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:118: NOTICE:  relation "composicion_vino_cepa" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:124: NOTICE:  relation "maridaje" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:134: NOTICE:  relation "vino_maridaje" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:152: NOTICE:  relation "cliente" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:158: NOTICE:  relation "socio" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:166: NOTICE:  relation "distribuidor" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:173: NOTICE:  relation "exportador" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:183: NOTICE:  relation "permiso_exportacion" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:196: NOTICE:  relation "comprobante" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:208: NOTICE:  relation "comprobante_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:218: NOTICE:  relation "transportista" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:228: NOTICE:  relation "transportista_localidad" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:240: NOTICE:  relation "ingreso" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:251: NOTICE:  relation "ingreso_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:260: NOTICE:  relation "transferencia" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:271: NOTICE:  relation "transferencia_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:282: NOTICE:  relation "stock_sala" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:289: NOTICE:  relation "stock_deposito" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/02_tablas.sql:302: NOTICE:  relation "auditoria_precios" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:613: NOTICE:  trigger "trg_comprobante_devolver_stock" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:614: NOTICE:  function tg_reintegrar_stock_al_borrar_comprobante() does not exist, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:615: NOTICE:  trigger "trg_comprobante_eliminar_detalles" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:5: NOTICE:  relation "ix_sala_venta_codigo_postal" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:7: NOTICE:  relation "ix_empleado_id_sala" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:9: NOTICE:  relation "ix_finca_codigo_postal" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:11: NOTICE:  relation "ix_parcela_id_cepa" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:13: NOTICE:  relation "ix_lote_bodega_destino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:15: NOTICE:  relation "ix_analisis_numero_lote_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:17: NOTICE:  relation "ix_vino_cuit_bodega" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:19: NOTICE:  relation "ix_composicion_id_cepa" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:21: NOTICE:  relation "ix_vino_maridaje_id_maridaje" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:23: NOTICE:  relation "ix_cliente_codigo_postal" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:25: NOTICE:  relation "ix_permiso_id_exportador" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:27: NOTICE:  relation "ix_comprobante_cliente_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:29: NOTICE:  relation "ix_comprobante_sala_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:31: NOTICE:  relation "ix_comprobante_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:33: NOTICE:  relation "ix_comprobante_vino_codigo_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:35: NOTICE:  relation "ix_transportista_localidad_codigo_postal" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:37: NOTICE:  relation "ix_ingreso_transportista_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:39: NOTICE:  relation "ix_ingreso_bodega" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:41: NOTICE:  relation "ix_ingreso_vino_codigo_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:43: NOTICE:  relation "ix_transferencia_sala_fecha" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:45: NOTICE:  relation "ix_transferencia_vino_codigo_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:47: NOTICE:  relation "ix_stock_sala_codigo_vino" already exists, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/06_indices.sql:49: NOTICE:  relation "ix_auditoria_vino_fecha" already exists, skipping
+
+
+=== database\08_pruebas_integridad.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+DO
+DO
+ROLLBACK
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK: estructura física con 29 tablas, 35 FK y 4 UNIQUE adicionales
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK H7: propiedad de esquema/relaciones/tipos/rutinas y SECURITY DEFINER
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: FK inexistente rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: dominio CUIT inválido rechazado
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de stock no negativo
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK compuesta duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de precio positivo
+
+
+=== database\09_pruebas_reglas_negocio.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 4
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+SET CONSTRAINTS
+DO
+DO
+SET
+SET
+DO
+RESET
+SET
+CREATE FUNCTION
+DO
+RESET
+SET
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+UPDATE 1
+DO
+RESET
+SET
+DO
+RESET
+SET CONSTRAINTS
+ROLLBACK
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-01/RN-15: límites de precio/graduación protegidos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-02/RN-03: referencia de sala/localidad validada
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-04: UNIQUE parcela/campaña
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de nombre/añada/presentación de vino
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de tipo y número de documento de cliente
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de CUIT de transportista
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-05: composición diferida rechaza suma distinta de 100
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-06/U6: descuentos base y tasa elegible
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-07: fecha de vencimiento posterior
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-08/RN-09: INSERT/UPDATE/DELETE de venta
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: GUC de sesión no puede omitir actualización de stock
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: comprobante con renglones no se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: el detalle devuelve stock y el comprobante vacío se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: U1 recalcula con tasa histórica y no cambia descuentos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-10: ingreso aplicado una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual (D5 pendiente): ingreso procesado conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-11: transferencia aplicada una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: transferencia procesada conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-12: renglón procesado inmutable
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-13: auditoría de cambio efectivo
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-14: borrado de vino referenciado restringido
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-15: stock negativo rechazado
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H6: nombre obligatorio y empresa sin apellido
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK RN-06: ISA total/disjunta y descuento no elegible rechazados
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H2: cabeceras procesadas inmutables y stock intacto
+psql:database/09_pruebas_reglas_negocio.sql:520: NOTICE:  OK API: funciones, permisos, U1/U6 histórico/nuevo y venta sin stock
+psql:database/09_pruebas_reglas_negocio.sql:551: NOTICE:  OK H3: dueño rechaza total falso y mantiene UPDATE/DELETE de detalles
+psql:database/09_pruebas_reglas_negocio.sql:594: NOTICE:  OK API: atomicidad multirrenglón y CALL válidos de ambos procedimientos
+psql:database/09_pruebas_reglas_negocio.sql:615: NOTICE:  OK reportes: tres vistas accesibles, escritura y CALL denegados
+
+
+SQL comprobacion final:
+SELECT count(*) AS tablas FROM pg_tables WHERE schemaname='bodegas_atuel';
+SELECT count(*) AS fk FROM pg_constraint c JOIN pg_namespace n ON n.oid=c.connamespace WHERE n.nspname='bodegas_atuel' AND contype='f';
+SELECT count(*) AS rutinas FROM pg_proc p JOIN pg_namespace n ON n.oid=p.pronamespace WHERE n.nspname='bodegas_atuel';
+SELECT count(*) AS triggers FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='bodegas_atuel' AND NOT t.tgisinternal;
+DO $$ DECLARE t record; n bigint; BEGIN FOR t IN SELECT tablename FROM pg_tables WHERE schemaname='bodegas_atuel' LOOP EXECUTE format('SELECT count(*) FROM bodegas_atuel.%I',t.tablename) INTO n; IF n<>0 THEN RAISE EXCEPTION 'Fixture persistente en %',t.tablename; END IF; END LOOP; RAISE NOTICE 'OK: las 29 tablas sin fixtures persistentes'; END $$;
+
+
+=== Estado final sin fixtures y objetos estables ===
+EXIT 0
+ tablas 
+--------
+     29
+(1 row)
+
+ fk 
+----
+ 35
+(1 row)
+
+ rutinas 
+---------
+      25
+(1 row)
+
+ triggers 
+----------
+       22
+(1 row)
+
+DO
+NOTICE:  OK: las 29 tablas sin fixtures persistentes
+
+
+SHA256 scripts probados:
+01_tipos_dominios.sql 377fc6407942c060459af5b211bca3f77fa6405d4e367e92c46128502cbe64de
+02_tablas.sql 4f0b12ae03067da33dd96878b9d38d572dd030001693066254e3a00049fe3d9d
+03_restricciones.sql 9a20696255b06288ccd5b15a022dff331592bd0a48030ccb388c1fbc77ac00c9
+04_funciones.sql 022316ad153cb121135dd01d260976ce90519b483b8d84b49c9f382ddc79af03
+05_triggers.sql 53eab78ea38d6fd55d07726093f265dcb51505d9d130d50181e156bd652ed78a
+06_indices.sql 5e28488fe014fd8ee049e06269f22c956608ad89a201a34114b7edc025513a2f
+07_vistas.sql 9168910a292e662081365239be401d3106d952a734719aa18a2f6764e1bde360
+08_pruebas_integridad.sql 52116c8c324c457d091ffc53d98a37ea4de470dfb3d5ab036f94e957340be93c
+09_pruebas_reglas_negocio.sql ffd2026fab92dd3a892ee025f505daa3edb73e60e105491d9cecc5f1e64ef160
+=== Cierre del cluster descartable ===
+pg_ctl -m fast -w stop
+EXIT 0
+server stopped

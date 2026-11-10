@@ -1,0 +1,718 @@
+{
+  "version": "3.0.0",
+  "darkMode": true,
+  "gridEnabling": true,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "relationshipMode": "All",
+    "tablePositions": [
+      {
+        "name": "localidad",
+        "schemaName": "public",
+        "x": 12,
+        "y": 360
+      },
+      {
+        "name": "sala_venta",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 712
+      },
+      {
+        "name": "empleado",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 283
+      },
+      {
+        "name": "finca",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 12
+      },
+      {
+        "name": "cepa",
+        "schemaName": "public",
+        "x": 12,
+        "y": 12
+      },
+      {
+        "name": "parcela",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 12
+      },
+      {
+        "name": "lote_uva",
+        "schemaName": "public",
+        "x": 1961.88525390625,
+        "y": 12
+      },
+      {
+        "name": "analisis_calidad",
+        "schemaName": "public",
+        "x": 2550.8388671875,
+        "y": 12
+      },
+      {
+        "name": "bodega",
+        "schemaName": "public",
+        "x": 12,
+        "y": 566
+      },
+      {
+        "name": "vino",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 950
+      },
+      {
+        "name": "composicion_vino_cepa",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 521
+      },
+      {
+        "name": "maridaje",
+        "schemaName": "public",
+        "x": 12,
+        "y": 186
+      },
+      {
+        "name": "vino_maridaje",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 695
+      },
+      {
+        "name": "cliente",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 314
+      },
+      {
+        "name": "socio",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 837
+      },
+      {
+        "name": "distribuidor",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 947
+      },
+      {
+        "name": "exportador",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 1121
+      },
+      {
+        "name": "permiso_exportacion",
+        "schemaName": "public",
+        "x": 1961.88525390625,
+        "y": 346
+      },
+      {
+        "name": "comprobante",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 1263
+      },
+      {
+        "name": "comprobante_vino",
+        "schemaName": "public",
+        "x": 1961.88525390625,
+        "y": 552
+      },
+      {
+        "name": "transportista",
+        "schemaName": "public",
+        "x": 12,
+        "y": 740
+      },
+      {
+        "name": "transportista_localidad",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 1284
+      },
+      {
+        "name": "ingreso",
+        "schemaName": "public",
+        "x": 633.14697265625,
+        "y": 1426
+      },
+      {
+        "name": "ingreso_vino",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 2359
+      },
+      {
+        "name": "transferencia",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 1534
+      },
+      {
+        "name": "transferencia_vino",
+        "schemaName": "public",
+        "x": 1961.88525390625,
+        "y": 758
+      },
+      {
+        "name": "stock_sala",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 1740
+      },
+      {
+        "name": "stock_deposito",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 1914
+      },
+      {
+        "name": "auditoria_precios",
+        "schemaName": "public",
+        "x": 1299.07373046875,
+        "y": 2056
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "codigo_postal"
+        ],
+        "firstTableName": "localidad",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_postal"
+        ],
+        "secondTableName": "sala_venta",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_postal"
+        ],
+        "firstTableName": "localidad",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_postal"
+        ],
+        "secondTableName": "cliente",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_sala"
+        ],
+        "firstTableName": "sala_venta",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_sala"
+        ],
+        "secondTableName": "empleado",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_finca"
+        ],
+        "firstTableName": "finca",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_finca"
+        ],
+        "secondTableName": "parcela",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_postal"
+        ],
+        "firstTableName": "localidad",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_postal"
+        ],
+        "secondTableName": "finca",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cepa"
+        ],
+        "firstTableName": "cepa",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cepa"
+        ],
+        "secondTableName": "parcela",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_finca",
+          "numero_parcela"
+        ],
+        "firstTableName": "parcela",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_finca",
+          "numero_parcela"
+        ],
+        "secondTableName": "lote_uva",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "numero_lote"
+        ],
+        "firstTableName": "lote_uva",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "numero_lote"
+        ],
+        "secondTableName": "analisis_calidad",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "cuit"
+        ],
+        "firstTableName": "bodega",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "cuit_bodega_destino"
+        ],
+        "secondTableName": "lote_uva",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "cuit"
+        ],
+        "firstTableName": "bodega",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "cuit_bodega"
+        ],
+        "secondTableName": "vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "composicion_vino_cepa",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cepa"
+        ],
+        "firstTableName": "cepa",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cepa"
+        ],
+        "secondTableName": "composicion_vino_cepa",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "vino_maridaje",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_maridaje"
+        ],
+        "firstTableName": "maridaje",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_maridaje"
+        ],
+        "secondTableName": "vino_maridaje",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cliente"
+        ],
+        "firstTableName": "cliente",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cliente"
+        ],
+        "secondTableName": "socio",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cliente"
+        ],
+        "firstTableName": "cliente",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cliente"
+        ],
+        "secondTableName": "distribuidor",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cliente"
+        ],
+        "firstTableName": "cliente",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cliente"
+        ],
+        "secondTableName": "exportador",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cliente"
+        ],
+        "firstTableName": "exportador",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_exportador"
+        ],
+        "secondTableName": "permiso_exportacion",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_cliente"
+        ],
+        "firstTableName": "cliente",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_cliente"
+        ],
+        "secondTableName": "comprobante",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_sala"
+        ],
+        "firstTableName": "sala_venta",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_sala"
+        ],
+        "secondTableName": "comprobante",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "numero_comprobante"
+        ],
+        "firstTableName": "comprobante",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "numero_comprobante"
+        ],
+        "secondTableName": "comprobante_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "comprobante_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_transporte"
+        ],
+        "firstTableName": "transportista",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_transporte"
+        ],
+        "secondTableName": "transportista_localidad",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_postal"
+        ],
+        "firstTableName": "localidad",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_postal"
+        ],
+        "secondTableName": "transportista_localidad",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_transporte"
+        ],
+        "firstTableName": "transportista",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_transporte"
+        ],
+        "secondTableName": "ingreso",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "cuit"
+        ],
+        "firstTableName": "bodega",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "cuit_bodega"
+        ],
+        "secondTableName": "ingreso",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_ingreso"
+        ],
+        "firstTableName": "ingreso",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_ingreso"
+        ],
+        "secondTableName": "ingreso_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "ingreso_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_sala"
+        ],
+        "firstTableName": "sala_venta",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_sala"
+        ],
+        "secondTableName": "transferencia",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "numero_solicitud"
+        ],
+        "firstTableName": "transferencia",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "numero_solicitud"
+        ],
+        "secondTableName": "transferencia_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "transferencia_vino",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id_sala"
+        ],
+        "firstTableName": "sala_venta",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id_sala"
+        ],
+        "secondTableName": "stock_sala",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "stock_sala",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "stock_deposito",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "codigo_vino"
+        ],
+        "firstTableName": "vino",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "codigo_vino"
+        ],
+        "secondTableName": "auditoria_precios",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}

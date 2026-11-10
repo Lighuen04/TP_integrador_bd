@@ -1,0 +1,1103 @@
+FASE B.2 - 2026-11-09
+Cluster descartable, 127.0.0.1:55440. SQLSTATE/errores esperados se capturan dentro de las suites.
+
+=== Crear base limpia final / postgres ===
+EXIT 0
+CREATE DATABASE
+
+
+=== database\01_tipos_dominios.sql / b2_limpia ===
+EXIT 0
+CREATE SCHEMA
+DO
+
+
+=== database\02_tablas.sql / b2_limpia ===
+EXIT 0
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+
+
+=== database\03_restricciones.sql / b2_limpia ===
+EXIT 0
+DO
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+REVOKE
+GRANT
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+=== database\04_funciones.sql / b2_limpia ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE PROCEDURE
+
+
+=== database\05_triggers.sql / b2_limpia ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+DROP FUNCTION
+DROP TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+psql:database/05_triggers.sql:545: NOTICE:  trigger "trg_cliente_descuento_base" for relation "cliente" does not exist, skipping
+psql:database/05_triggers.sql:550: NOTICE:  trigger "trg_comprobante_protegido" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:555: NOTICE:  trigger "trg_vino_stock_deposito" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:560: NOTICE:  trigger "trg_composicion_bloqueo" for relation "composicion_vino_cepa" does not exist, skipping
+psql:database/05_triggers.sql:565: NOTICE:  trigger "trg_composicion_validacion" for relation "composicion_vino_cepa" does not exist, skipping
+psql:database/05_triggers.sql:571: NOTICE:  trigger "trg_vino_composicion_obligatoria" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:577: NOTICE:  trigger "trg_cliente_isa_lock" for relation "socio" does not exist, skipping
+psql:database/05_triggers.sql:581: NOTICE:  trigger "trg_distribuidor_isa_lock" for relation "distribuidor" does not exist, skipping
+psql:database/05_triggers.sql:585: NOTICE:  trigger "trg_exportador_isa_lock" for relation "exportador" does not exist, skipping
+psql:database/05_triggers.sql:590: NOTICE:  trigger "trg_cliente_isa_diferido" for relation "cliente" does not exist, skipping
+psql:database/05_triggers.sql:595: NOTICE:  trigger "trg_socio_isa_diferido" for relation "socio" does not exist, skipping
+psql:database/05_triggers.sql:600: NOTICE:  trigger "trg_distribuidor_isa_diferido" for relation "distribuidor" does not exist, skipping
+psql:database/05_triggers.sql:605: NOTICE:  trigger "trg_exportador_isa_diferido" for relation "exportador" does not exist, skipping
+psql:database/05_triggers.sql:611: NOTICE:  trigger "trg_ingreso_estado" for relation "ingreso" does not exist, skipping
+psql:database/05_triggers.sql:615: NOTICE:  trigger "trg_transferencia_estado" for relation "transferencia" does not exist, skipping
+psql:database/05_triggers.sql:620: NOTICE:  trigger "trg_ingreso_lineas_estado" for relation "ingreso_vino" does not exist, skipping
+psql:database/05_triggers.sql:624: NOTICE:  trigger "trg_transferencia_lineas_estado" for relation "transferencia_vino" does not exist, skipping
+psql:database/05_triggers.sql:629: NOTICE:  trigger "trg_comprobante_vino_stock" for relation "comprobante_vino" does not exist, skipping
+psql:database/05_triggers.sql:633: NOTICE:  trigger "trg_comprobante_vino_total" for relation "comprobante_vino" does not exist, skipping
+psql:database/05_triggers.sql:638: NOTICE:  trigger "trg_comprobante_devolver_stock" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:639: NOTICE:  function tg_reintegrar_stock_al_borrar_comprobante() does not exist, skipping
+psql:database/05_triggers.sql:640: NOTICE:  trigger "trg_comprobante_eliminar_detalles" for relation "comprobante" does not exist, skipping
+psql:database/05_triggers.sql:642: NOTICE:  trigger "trg_vino_auditar_precio" for relation "vino" does not exist, skipping
+psql:database/05_triggers.sql:647: NOTICE:  trigger "trg_ingreso_aplicar_stock" for relation "ingreso" does not exist, skipping
+psql:database/05_triggers.sql:651: NOTICE:  trigger "trg_transferencia_aplicar_stock" for relation "transferencia" does not exist, skipping
+
+
+=== database\06_indices.sql / b2_limpia ===
+EXIT 0
+SET
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+
+
+=== database\07_vistas.sql / b2_limpia ===
+EXIT 0
+SET
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+GRANT
+DO
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+=== database\08_pruebas_integridad.sql / b2_limpia ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+DO
+DO
+ROLLBACK
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK: estructura física con 29 tablas, 35 FK y 4 UNIQUE adicionales
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK H7: propiedad de esquema/relaciones/tipos/rutinas y SECURITY DEFINER
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: FK inexistente rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: dominio CUIT inválido rechazado
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de stock no negativo
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK compuesta duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de precio positivo
+
+
+=== database\09_pruebas_reglas_negocio.sql / b2_limpia ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 4
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+SET CONSTRAINTS
+DO
+DO
+SET
+SET
+DO
+RESET
+SET
+CREATE FUNCTION
+DO
+RESET
+SET
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+UPDATE 1
+DO
+RESET
+SET
+DO
+RESET
+SET
+INSERT 0 4
+INSERT 0 4
+INSERT 0 5
+INSERT 0 5
+UPDATE 4
+CALL
+CALL
+CALL
+DO
+RESET
+SET CONSTRAINTS
+ROLLBACK
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-01/RN-15: límites de precio/graduación protegidos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-02/RN-03: referencia de sala/localidad validada
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-04: UNIQUE parcela/campaña
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de nombre/añada/presentación de vino
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de tipo y número de documento de cliente
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de CUIT de transportista
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-05: composición diferida rechaza suma distinta de 100
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-06/U6: descuentos base y tasa elegible
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-07: fecha de vencimiento posterior
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-08/RN-09: INSERT/UPDATE/DELETE de venta
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: GUC de sesión no puede omitir actualización de stock
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: comprobante con renglones no se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: el detalle devuelve stock y el comprobante vacío se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: U1 recalcula con tasa histórica y no cambia descuentos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-10: ingreso aplicado una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: ingreso procesado reciente conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-11: transferencia aplicada una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: transferencia procesada conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-12: renglón procesado inmutable
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-13: auditoría de cambio efectivo
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-14: borrado de vino referenciado restringido
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-15: stock negativo rechazado
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H6: nombre obligatorio y empresa sin apellido
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK RN-06: ISA total/disjunta y descuento no elegible rechazados
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H2: cabeceras procesadas inmutables y stock intacto
+psql:database/09_pruebas_reglas_negocio.sql:520: NOTICE:  OK API: funciones, permisos, U1/U6 histórico/nuevo y venta sin stock
+psql:database/09_pruebas_reglas_negocio.sql:551: NOTICE:  OK H3: dueño rechaza total falso y mantiene UPDATE/DELETE de detalles
+psql:database/09_pruebas_reglas_negocio.sql:594: NOTICE:  OK API: atomicidad multirrenglón y CALL válidos de ambos procedimientos
+psql:database/09_pruebas_reglas_negocio.sql:615: NOTICE:  OK reportes: tres vistas accesibles, escritura y CALL denegados
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: D1=1, D5=1; límites/exclusiones y rollback; stocks completos idénticos
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: reversión ordinaria, confección y RN-14 conservadas; GUC no evade controles
+
+
+SQL catalogo y rollback:
+SELECT version();
+SELECT count(*) AS tablas FROM pg_tables WHERE schemaname='bodegas_atuel';
+SELECT count(*) AS fk FROM pg_constraint c JOIN pg_namespace n ON n.oid=c.connamespace WHERE n.nspname='bodegas_atuel' AND contype='f';
+SELECT count(*) AS rutinas FROM pg_proc p JOIN pg_namespace n ON n.oid=p.pronamespace WHERE n.nspname='bodegas_atuel';
+SELECT count(*) AS triggers FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='bodegas_atuel' AND NOT t.tgisinternal;
+DO $$ DECLARE t record; n bigint; BEGIN FOR t IN SELECT tablename FROM pg_tables WHERE schemaname='bodegas_atuel' LOOP EXECUTE format('SELECT count(*) FROM bodegas_atuel.%I',t.tablename) INTO n; IF n<>0 THEN RAISE EXCEPTION 'Fixture persistente en %',t.tablename; END IF; END LOOP; RAISE NOTICE 'OK: las 29 tablas vacias despues de las suites'; END $$;
+
+=== Catalogo y rollback / b2_limpia ===
+EXIT 0
+                                 version                                 
+-------------------------------------------------------------------------
+ PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit
+(1 row)
+
+ tablas 
+--------
+     29
+(1 row)
+
+ fk 
+----
+ 35
+(1 row)
+
+ rutinas 
+---------
+      25
+(1 row)
+
+ triggers 
+----------
+       22
+(1 row)
+
+DO
+NOTICE:  OK: las 29 tablas vacias despues de las suites
+
+
+=== Instalacion previa B + migracion B.2 + suites ===
+
+=== b2_nueva / 08_pruebas_integridad.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+DO
+DO
+ROLLBACK
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK: estructura física con 29 tablas, 35 FK y 4 UNIQUE adicionales
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK H7: propiedad de esquema/relaciones/tipos/rutinas y SECURITY DEFINER
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: FK inexistente rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: dominio CUIT inválido rechazado
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de stock no negativo
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK compuesta duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de precio positivo
+
+
+=== b2_nueva / 09_pruebas_reglas_negocio.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 4
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+SET CONSTRAINTS
+DO
+DO
+SET
+SET
+DO
+RESET
+SET
+CREATE FUNCTION
+DO
+RESET
+SET
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+UPDATE 1
+DO
+RESET
+SET
+DO
+RESET
+SET
+INSERT 0 4
+INSERT 0 4
+INSERT 0 5
+INSERT 0 5
+UPDATE 4
+CALL
+CALL
+CALL
+DO
+RESET
+SET CONSTRAINTS
+ROLLBACK
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-01/RN-15: límites de precio/graduación protegidos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-02/RN-03: referencia de sala/localidad validada
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-04: UNIQUE parcela/campaña
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de nombre/añada/presentación de vino
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de tipo y número de documento de cliente
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de CUIT de transportista
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-05: composición diferida rechaza suma distinta de 100
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-06/U6: descuentos base y tasa elegible
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-07: fecha de vencimiento posterior
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-08/RN-09: INSERT/UPDATE/DELETE de venta
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: GUC de sesión no puede omitir actualización de stock
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: comprobante con renglones no se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: el detalle devuelve stock y el comprobante vacío se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: U1 recalcula con tasa histórica y no cambia descuentos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-10: ingreso aplicado una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: ingreso procesado reciente conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-11: transferencia aplicada una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: transferencia procesada conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-12: renglón procesado inmutable
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-13: auditoría de cambio efectivo
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-14: borrado de vino referenciado restringido
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-15: stock negativo rechazado
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H6: nombre obligatorio y empresa sin apellido
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK RN-06: ISA total/disjunta y descuento no elegible rechazados
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H2: cabeceras procesadas inmutables y stock intacto
+psql:database/09_pruebas_reglas_negocio.sql:520: NOTICE:  OK API: funciones, permisos, U1/U6 histórico/nuevo y venta sin stock
+psql:database/09_pruebas_reglas_negocio.sql:551: NOTICE:  OK H3: dueño rechaza total falso y mantiene UPDATE/DELETE de detalles
+psql:database/09_pruebas_reglas_negocio.sql:594: NOTICE:  OK API: atomicidad multirrenglón y CALL válidos de ambos procedimientos
+psql:database/09_pruebas_reglas_negocio.sql:615: NOTICE:  OK reportes: tres vistas accesibles, escritura y CALL denegados
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: D1=1, D5=1; límites/exclusiones y rollback; stocks completos idénticos
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: reversión ordinaria, confección y RN-14 conservadas; GUC no evade controles
+
+
+=== b2_migrada / 01_tipos_dominios.sql ===
+EXIT 0
+CREATE SCHEMA
+DO
+
+
+=== b2_migrada / 02_tablas.sql ===
+EXIT 0
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+
+
+=== b2_migrada / 03_restricciones.sql ===
+EXIT 0
+DO
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+GRANT
+REVOKE
+GRANT
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+=== b2_migrada / 04_funciones.sql ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE PROCEDURE
+
+
+=== b2_migrada / 05_triggers.sql ===
+EXIT 0
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+DROP FUNCTION
+DROP TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:520: NOTICE:  trigger "trg_cliente_descuento_base" for relation "cliente" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:525: NOTICE:  trigger "trg_comprobante_protegido" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:530: NOTICE:  trigger "trg_vino_stock_deposito" for relation "vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:535: NOTICE:  trigger "trg_composicion_bloqueo" for relation "composicion_vino_cepa" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:540: NOTICE:  trigger "trg_composicion_validacion" for relation "composicion_vino_cepa" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:546: NOTICE:  trigger "trg_vino_composicion_obligatoria" for relation "vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:552: NOTICE:  trigger "trg_cliente_isa_lock" for relation "socio" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:556: NOTICE:  trigger "trg_distribuidor_isa_lock" for relation "distribuidor" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:560: NOTICE:  trigger "trg_exportador_isa_lock" for relation "exportador" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:565: NOTICE:  trigger "trg_cliente_isa_diferido" for relation "cliente" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:570: NOTICE:  trigger "trg_socio_isa_diferido" for relation "socio" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:575: NOTICE:  trigger "trg_distribuidor_isa_diferido" for relation "distribuidor" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:580: NOTICE:  trigger "trg_exportador_isa_diferido" for relation "exportador" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:586: NOTICE:  trigger "trg_ingreso_estado" for relation "ingreso" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:590: NOTICE:  trigger "trg_transferencia_estado" for relation "transferencia" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:595: NOTICE:  trigger "trg_ingreso_lineas_estado" for relation "ingreso_vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:599: NOTICE:  trigger "trg_transferencia_lineas_estado" for relation "transferencia_vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:604: NOTICE:  trigger "trg_comprobante_vino_stock" for relation "comprobante_vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:608: NOTICE:  trigger "trg_comprobante_vino_total" for relation "comprobante_vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:613: NOTICE:  trigger "trg_comprobante_devolver_stock" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:614: NOTICE:  function tg_reintegrar_stock_al_borrar_comprobante() does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:615: NOTICE:  trigger "trg_comprobante_eliminar_detalles" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:617: NOTICE:  trigger "trg_vino_auditar_precio" for relation "vino" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:622: NOTICE:  trigger "trg_ingreso_aplicar_stock" for relation "ingreso" does not exist, skipping
+psql:C:/Users/eluam/AppData/Local/Temp/bodegas_b2_qq_npz7x/originales/database/05_triggers.sql:626: NOTICE:  trigger "trg_transferencia_aplicar_stock" for relation "transferencia" does not exist, skipping
+
+
+=== b2_migrada / 06_indices.sql ===
+EXIT 0
+SET
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+
+
+=== b2_migrada / 07_vistas.sql ===
+EXIT 0
+SET
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+GRANT
+DO
+ALTER DEFAULT PRIVILEGES
+ALTER DEFAULT PRIVILEGES
+
+
+=== b2_migrada / migracion atomica como propietario ===
+EXIT 0
+SET
+BEGIN
+LOCK TABLE
+ALTER TABLE
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+DROP FUNCTION
+DROP TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+DROP TRIGGER
+CREATE TRIGGER
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+COMMIT
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:638: NOTICE:  trigger "trg_comprobante_devolver_stock" for relation "comprobante" does not exist, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:639: NOTICE:  function tg_reintegrar_stock_al_borrar_comprobante() does not exist, skipping
+psql:C:/Users/eluam/OneDrive/Escritorio/base_de_datos/database/05_triggers.sql:640: NOTICE:  trigger "trg_comprobante_eliminar_detalles" for relation "comprobante" does not exist, skipping
+
+
+=== b2_migrada / 08_pruebas_integridad.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+DO
+DO
+ROLLBACK
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK: estructura física con 29 tablas, 35 FK y 4 UNIQUE adicionales
+psql:database/08_pruebas_integridad.sql:98: NOTICE:  OK H7: propiedad de esquema/relaciones/tipos/rutinas y SECURITY DEFINER
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: FK inexistente rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: dominio CUIT inválido rechazado
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de stock no negativo
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: PK compuesta duplicada rechazada
+psql:database/08_pruebas_integridad.sql:151: NOTICE:  OK: CHECK de precio positivo
+
+
+=== b2_migrada / 09_pruebas_reglas_negocio.sql ===
+EXIT 0
+BEGIN
+SET CONSTRAINTS
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 4
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+SET CONSTRAINTS
+SET CONSTRAINTS
+DO
+DO
+SET
+SET
+DO
+RESET
+SET
+CREATE FUNCTION
+DO
+RESET
+SET
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 2
+UPDATE 1
+DO
+RESET
+SET
+DO
+RESET
+SET
+INSERT 0 4
+INSERT 0 4
+INSERT 0 5
+INSERT 0 5
+UPDATE 4
+CALL
+CALL
+CALL
+DO
+RESET
+SET CONSTRAINTS
+ROLLBACK
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-01/RN-15: límites de precio/graduación protegidos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-02/RN-03: referencia de sala/localidad validada
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-04: UNIQUE parcela/campaña
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de nombre/añada/presentación de vino
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de tipo y número de documento de cliente
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: UNIQUE de CUIT de transportista
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-05: composición diferida rechaza suma distinta de 100
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-06/U6: descuentos base y tasa elegible
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-07: fecha de vencimiento posterior
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-08/RN-09: INSERT/UPDATE/DELETE de venta
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: GUC de sesión no puede omitir actualización de stock
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: comprobante con renglones no se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: el detalle devuelve stock y el comprobante vacío se puede borrar
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK: U1 recalcula con tasa histórica y no cambia descuentos
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-10: ingreso aplicado una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: ingreso procesado reciente conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-11: transferencia aplicada una sola vez
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK política actual: transferencia procesada conserva su historial
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-12: renglón procesado inmutable
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-13: auditoría de cambio efectivo
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-14: borrado de vino referenciado restringido
+psql:database/09_pruebas_reglas_negocio.sql:376: NOTICE:  OK RN-15: stock negativo rechazado
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H6: nombre obligatorio y empresa sin apellido
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK RN-06: ISA total/disjunta y descuento no elegible rechazados
+psql:database/09_pruebas_reglas_negocio.sql:449: NOTICE:  OK H2: cabeceras procesadas inmutables y stock intacto
+psql:database/09_pruebas_reglas_negocio.sql:520: NOTICE:  OK API: funciones, permisos, U1/U6 histórico/nuevo y venta sin stock
+psql:database/09_pruebas_reglas_negocio.sql:551: NOTICE:  OK H3: dueño rechaza total falso y mantiene UPDATE/DELETE de detalles
+psql:database/09_pruebas_reglas_negocio.sql:594: NOTICE:  OK API: atomicidad multirrenglón y CALL válidos de ambos procedimientos
+psql:database/09_pruebas_reglas_negocio.sql:615: NOTICE:  OK reportes: tres vistas accesibles, escritura y CALL denegados
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: D1=1, D5=1; límites/exclusiones y rollback; stocks completos idénticos
+psql:database/09_pruebas_reglas_negocio.sql:755: NOTICE:  OK B.2: reversión ordinaria, confección y RN-14 conservadas; GUC no evade controles
+
+
+=== b2_nueva / version y catalogo ===
+EXIT 0
+                                 version                                 
+-------------------------------------------------------------------------
+ PostgreSQL 18.4 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit
+(1 row)
+
+ count 
+-------
+    29
+(1 row)
+
+ confdeltype 
+-------------
+ c
+(1 row)
+
+
+
+=== Archivo consultas/delete.sql y concurrencia ===
+SQL:
+BEGIN;
+SET ROLE bodegas_api;
+INSERT INTO bodegas_atuel.localidad VALUES ('CONC-B2','Concurrencia','Mendoza','Responsable');
+INSERT INTO bodegas_atuel.sala_venta VALUES (2000000999,'Calle','1','lunes','CONC-B2');
+INSERT INTO bodegas_atuel.bodega VALUES ('20999999991','Bodega concurrente','Direccion');
+INSERT INTO bodegas_atuel.cepa VALUES (2000000999,'Malbec','tinta');
+INSERT INTO bodegas_atuel.vino VALUES ('CONC-B2','Vino concurrente','tinto',2020,750,13,100,'20999999991');
+INSERT INTO bodegas_atuel.composicion_vino_cepa VALUES ('CONC-B2',2000000999,100);
+INSERT INTO bodegas_atuel.cliente (id_cliente,nombre,tipo_cliente,tipo_documento,numero_documento,direccion,codigo_postal) VALUES (2000000999,'Socio concurrente','socio','DNI','CONC-B2','Direccion','CONC-B2');
+INSERT INTO bodegas_atuel.socio VALUES (2000000999);
+INSERT INTO bodegas_atuel.transportista VALUES ('CONC-B2','Transportista','20999999992','test@example.invalid','1','Direccion');
+INSERT INTO bodegas_atuel.ingreso (codigo_ingreso,fecha,codigo_transporte,cuit_bodega) VALUES ('CONC-B2',CURRENT_DATE-400,'CONC-B2','20999999991');
+INSERT INTO bodegas_atuel.ingreso_vino VALUES ('CONC-B2','CONC-B2',100);
+UPDATE bodegas_atuel.ingreso SET estado='terminado' WHERE codigo_ingreso='CONC-B2';
+CALL bodegas_atuel.sp_procesar_ingreso('CONC-B2');
+INSERT INTO bodegas_atuel.transferencia (numero_solicitud,id_sala) VALUES ('CONC-B2',2000000999);
+INSERT INTO bodegas_atuel.transferencia_vino VALUES ('CONC-B2','CONC-B2',20);
+UPDATE bodegas_atuel.transferencia SET estado='terminado' WHERE numero_solicitud='CONC-B2';
+CALL bodegas_atuel.sp_procesar_transferencia('CONC-B2');
+INSERT INTO bodegas_atuel.comprobante (numero_comprobante,fecha,id_cliente,id_sala) VALUES ('CONC-B2',(CURRENT_DATE-INTERVAL '6 years')::date,2000000999,2000000999);
+INSERT INTO bodegas_atuel.comprobante_vino VALUES ('CONC-B2','CONC-B2',5,100);
+COMMIT;
+
+EXIT 0
+BEGIN
+SET
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+UPDATE 1
+CALL
+INSERT 0 1
+INSERT 0 1
+UPDATE 1
+CALL
+INSERT 0 1
+INSERT 0 1
+COMMIT
+
+ARCHIVO consultas/delete.sql
+EXIT 0
+BEGIN
+ comprobantes_d1_antes 
+-----------------------
+                     1
+(1 row)
+
+ numero_comprobante 
+--------------------
+ CONC-B2
+(1 row)
+
+DELETE 1
+ comprobantes_d1_despues 
+-------------------------
+                       0
+(1 row)
+
+ROLLBACK
+BEGIN
+ ingresos_d5_antes 
+-------------------
+                 1
+(1 row)
+
+ codigo_ingreso 
+----------------
+ CONC-B2
+(1 row)
+
+DELETE 1
+ ingresos_d5_despues 
+---------------------
+                   0
+(1 row)
+
+ROLLBACK
+
+SQL:
+DO $$ BEGIN IF NOT EXISTS(SELECT 1 FROM bodegas_atuel.comprobante WHERE numero_comprobante='CONC-B2') OR NOT EXISTS(SELECT 1 FROM bodegas_atuel.ingreso WHERE codigo_ingreso='CONC-B2') THEN RAISE EXCEPTION 'ROLLBACK de archivo no conservo datos'; END IF; END $$;
+EXIT 0
+DO
+
+
+CONCURRENCIA D1 READ COMMITTED
+A SQL: SET application_name='b2_A'; SET ROLE bodegas_api; BEGIN; DELETE FROM bodegas_atuel.comprobante WHERE numero_comprobante='CONC-B2' RETURNING numero_comprobante; SELECT pg_sleep(2); COMMIT;
+A EXIT 0
+SET
+SET
+BEGIN
+ numero_comprobante 
+--------------------
+ CONC-B2
+(1 row)
+
+DELETE 1
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT
+
+B SQL: SET application_name='b2_B'; SET ROLE bodegas_api; BEGIN; SET LOCAL lock_timeout='5s'; DELETE FROM bodegas_atuel.comprobante WHERE numero_comprobante='CONC-B2' RETURNING numero_comprobante; COMMIT;
+B EXIT 0
+SET
+SET
+BEGIN
+SET
+ numero_comprobante 
+--------------------
+(0 rows)
+
+DELETE 0
+COMMIT
+
+
+CONCURRENCIA D5 READ COMMITTED
+A SQL: SET application_name='b2_A'; SET ROLE bodegas_api; BEGIN; DELETE FROM bodegas_atuel.ingreso WHERE codigo_ingreso='CONC-B2' RETURNING codigo_ingreso; SELECT pg_sleep(2); COMMIT;
+A EXIT 0
+SET
+SET
+BEGIN
+ codigo_ingreso 
+----------------
+ CONC-B2
+(1 row)
+
+DELETE 1
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT
+
+B SQL: SET application_name='b2_B'; SET ROLE bodegas_api; BEGIN; SET LOCAL lock_timeout='5s'; DELETE FROM bodegas_atuel.ingreso WHERE codigo_ingreso='CONC-B2' RETURNING codigo_ingreso; COMMIT;
+B EXIT 0
+SET
+SET
+BEGIN
+SET
+ codigo_ingreso 
+----------------
+(0 rows)
+
+DELETE 0
+COMMIT
+
+SQL:
+SELECT * FROM bodegas_atuel.stock_sala; SELECT * FROM bodegas_atuel.stock_deposito;
+DO $$ BEGIN
+IF bodegas_atuel.fn_stock_sala(2000000999,'CONC-B2')<>15 OR (SELECT cantidad_botellas_disponibles FROM bodegas_atuel.stock_deposito WHERE codigo_vino='CONC-B2')<>80 THEN RAISE EXCEPTION 'Concurrencia altero stocks'; END IF;
+IF EXISTS(SELECT 1 FROM bodegas_atuel.comprobante_vino WHERE numero_comprobante='CONC-B2') OR EXISTS(SELECT 1 FROM bodegas_atuel.ingreso_vino WHERE codigo_ingreso='CONC-B2') THEN RAISE EXCEPTION 'Quedaron detalles'; END IF;
+RAISE NOTICE 'OK concurrencia D1/D5: A borra 1, B borra 0; sala 15 y deposito 80 intactos'; END $$;
+EXIT 0
+  id_sala   | codigo_vino | cantidad_stock 
+------------+-------------+----------------
+ 2000000999 | CONC-B2     |             15
+(1 row)
+
+ codigo_vino | cantidad_botellas_disponibles 
+-------------+-------------------------------
+ CONC-B2     |                            80
+(1 row)
+
+DO
+NOTICE:  OK concurrencia D1/D5: A borra 1, B borra 0; sala 15 y deposito 80 intactos
+
+
+SHA256 de archivos ejecutados:
+database\01_tipos_dominios.sql 377fc6407942c060459af5b211bca3f77fa6405d4e367e92c46128502cbe64de
+database\02_tablas.sql ba2ebcbb6edf719fb12f0d126e018bd50644cca983984ff6d5f6aea12c2391d3
+database\03_restricciones.sql 9a20696255b06288ccd5b15a022dff331592bd0a48030ccb388c1fbc77ac00c9
+database\04_funciones.sql 022316ad153cb121135dd01d260976ce90519b483b8d84b49c9f382ddc79af03
+database\05_triggers.sql 4eb598229db83cc868e43855cbb0e027dee92272168e61bb24c67e03f5e052af
+database\06_indices.sql 5e28488fe014fd8ee049e06269f22c956608ad89a201a34114b7edc025513a2f
+database\07_vistas.sql 9168910a292e662081365239be401d3106d952a734719aa18a2f6764e1bde360
+database\08_pruebas_integridad.sql 52116c8c324c457d091ffc53d98a37ea4de470dfb3d5ab036f94e957340be93c
+database\09_pruebas_reglas_negocio.sql b9ece3200b76fe38fcd20a12d28f60754c650a84707d996c8c7ab3de976edaa4
+database\migracion_b2.sql 3b4647ba8efd5dcc8d21b45a0ab3a0ea647d68e966f20d353e772666d628db16
+consultas\delete.sql 2dae9317f09d5de0b6953d007f0acf68c166d62391c5b0cb908997a0c318b42d
+=== Cierre del cluster descartable ===
+pg_ctl -m fast -w stop
+EXIT 0
+server stopped
