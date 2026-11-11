@@ -4,12 +4,7 @@ Sistema académico de gestión vitivinícola: modelo de 29 tablas, integridad en
 PostgreSQL, carga reproducible, API REST con SQL directo y cinco pantallas web.
 La consigna original se conserva en [docs/TPI_Bodegas_del_Atuel.md](docs/TPI_Bodegas_del_Atuel.md).
 
-**Estado comprobado:** Docker Compose funciona en local, con 357.894 filas y
-pruebas reales de integración, concurrencia y restauración. **La versión pública
-con HTTPS sigue pendiente**: no hay una cuenta/VM/dominio externo configurado.
-El [informe final](docs/informe_integracion_final.md) distingue lo implementado,
-probado, documentado y pendiente, con [evidencias H](docs/evidencias/fase_h_resultados.json)
-y [auditoría I](docs/evidencias/fase_i_resultados.json), del 10/11/2026.
+**Estado:** la aplicación está publicada en [Render](https://bodegas-atuel-web.onrender.com) con PostgreSQL en Neon. Se hicieron pruebas manuales de consulta, venta y respaldo/restauración; quedan verificaciones de seguridad y permisos. Las pruebas locales y su corte histórico permanecen en [el informe](docs/informe_integracion_final.md), [evidencias H](docs/evidencias/fase_h_resultados.json) y [auditoría I](docs/evidencias/fase_i_resultados.json).
 
 La [matriz de las nueve etapas](docs/matriz_cumplimiento_tpi.md) y el
 [guion de defensa de 14 minutos con 20 preguntas](docs/guion_defensa.md)
@@ -17,11 +12,11 @@ completan la preparación de entrega. Integrantes confirmados: **Amigo L. — Pe
 La cátedra autorizó el grupo de dos integrantes, según confirmación del usuario;
 la cantidad no es un requisito pendiente. Comisión y docente requieren confirmación.
 El laboratorio I comprobó HTTPS con CA privada y PostgreSQL `verify-full`,
-incluidos rechazos por CA y nombre incorrectos; no acredita una URL pública.
+incluidos rechazos por CA y nombre incorrectos; son pruebas locales independientes del despliegue público.
 
 ## Arquitectura y tecnologías
 
-Navegador → **Nginx :8081** → **FastAPI** → **PostgreSQL 18**.
+Local: navegador → **Nginx :8081** → **FastAPI** → **PostgreSQL 18**. En nube: navegador → frontend estático Render → API Render → PostgreSQL Neon.
 
 Frontend HTML/CSS/JavaScript con Fetch nativo; Python, Pydantic, Uvicorn,
 psycopg 3 y pool. Sin ORM ni framework frontend. Totales, descuentos históricos,
@@ -223,7 +218,7 @@ académica aislada del esquema de las 29 tablas.
 | `api/` | API, SQL parametrizado, esquemas, pool y pruebas |
 | `frontend/` | Cinco pantallas, Nginx y pruebas de navegador |
 | `scripts/` | Operación Docker, diccionario, concurrencia e integración |
-| `deploy/` | Configuración HTTPS/TLS para una VM externa; despliegue pendiente |
+| `deploy/` | Configuración HTTPS/TLS alternativa para una VM externa |
 | `docs/` | Fuentes, modelo, normalización, diccionario, informes y evidencias |
 
 [DER original editable](docs/DER.drawio.xml) · [Modelo relacional](docs/modelo_relacional.dbml) ·
@@ -231,22 +226,29 @@ académica aislada del esquema de las 29 tablas.
 [Reglas y decisiones](database/README.md) · [Índices medidos](docs/informe_rendimiento_indices.md) ·
 [API](api/README.md) · [Frontend](frontend/README.md).
 
-## Cumplimiento y despliegue
+## Despliegue público en Render y Neon
 
-Están implementadas y probadas localmente las etapas de modelo/integridad,
-carga, consultas, índices, API y frontend, más concurrencia y restauración.
-El informe final reúne la trazabilidad y los documentos de cada etapa sin
-duplicar sus desarrollos. Las capturas y planes están en `docs/evidencias/`.
+- **Aplicación web:** https://bodegas-atuel-web.onrender.com
+- **API:** https://tp-integrador-bd.onrender.com
+- **Salud:** https://bodegas-atuel-web.onrender.com/api/salud
+- **Arquitectura:** frontend estático en Render, reescritura `/api/*` hacia FastAPI en Render y PostgreSQL 18 en Neon (São Paulo). La API utiliza un usuario de base con rol de aplicación; las contraseñas permanecen en la configuración del servicio, fuera de Git.
+- **Configuración:** servicio Python con raíz del repositorio, build `pip install -r api/requirements.txt` y arranque `uvicorn api.main:app --host 0.0.0.0 --port $PORT`. El sitio estático publica `public_web` generado con `mkdir -p public_web && cp frontend/*.html frontend/*.js frontend/*.css public_web/`; la regla Rewrite `/api/*` apunta a `https://tp-integrador-bd.onrender.com/*`.
+- **Variables privadas de la API:** `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` y `DB_SSLMODE`; no incluir valores secretos en el repositorio.
 
-Para nube se preparó `deploy/compose.https.yml`, que reutiliza los tres servicios
-y exige certificados externos: HTTPS público y conexión API–PostgreSQL con TLS.
-La comparación de proveedores, requisitos y pasos pendientes está en el
-[informe final, sección 8](docs/informe_integracion_final.md#8-despliegue-seguridad-y-límites).
-No se creó ningún recurso pago ni se publica una URL ficticia.
-El **principal requisito técnico pendiente es el despliegue público en la nube
-con HTTPS**; todavía no existe una URL pública verificada. El laboratorio TLS
-local no constituye producción.
+### Comprobaciones de la puesta en marcha
 
-La revisión nativa final de cardinalidades del DER, la acreditación de aportes
-reales de ambos integrantes y su defensa oral deben ser realizados/confirmados
-por el grupo.
+Durante la sesión guiada del 10/11/2026 se observó la respuesta `api: ok, postgresql: ok`; el catálogo, detalle de vino, filtro por cepa y tablero mostraron datos. Se rechazó una venta sin stock y se consultó que no existiera el comprobante de prueba. Una venta válida se registró con total $847. No se verificó mediante comparación antes/después el saldo de stock. La prueba es manual, no reemplaza las suites automatizadas.
+
+La carga inicial reportó 20.000 clientes, 100.001 comprobantes y 200.002 renglones. Antes de la venta válida se generó un respaldo `pg_dump` formato custom fuera del repositorio y se restauró en una base Neon separada. Ambas operaciones devolvieron código 0; en la copia se observaron los tres conteos anteriores y 29 tablas, 3 vistas y 22 triggers. La restauración usó `--single-transaction --exit-on-error --no-owner --no-acl`: no acredita la recuperación de propietarios ni permisos. Los conteos no verifican por sí solos todos los datos; el respaldo es anterior a la venta de prueba. Los roles globales deben respaldarse o recrearse aparte.
+
+### Límites y tareas pendientes
+
+- El servicio gratuito de Render puede suspenderse por inactividad y demorar al reanudarse; se observó un error transitorio antes de una respuesta de salud correcta. Evaluar la recuperación del pool y repetir las pruebas tras inactividad.
+- La conexión actual de la API utiliza `DB_SSLMODE=require`; cifra la conexión, pero no demuestra verificación de identidad del servidor como `verify-full`. Quedan por verificar certificado y configuración efectiva, restricciones de acceso de Neon y pruebas desde otra red.
+- La API de demostración está expuesta públicamente y tiene operaciones de escritura sin autenticación de usuario; usar únicamente datos ficticios y restringir el acceso o incorporar protección antes de un uso real. Rotar la credencial administrativa de Neon que se expuso durante la puesta en marcha.
+- Verificar recuperación de roles, propietarios y privilegios en un entorno aislado; guardar otra copia del respaldo fuera del equipo y documentar su proceso. Comprobar también un flujo con permisos restaurados.
+- La adaptación local del generador para aceptar `neondb` se ejecutó fuera de las migraciones oficiales y no es una guía reproducible versionada; no desactivar controles ni volver a cargar una base con datos.
+- El enlace `/docs` del frontend y los demás recorridos, incluido el procesamiento de transferencias, deben verificarse en el despliegue. La revisión del DER, las interpretaciones U1/D1/D5 y la defensa siguen pendientes según el informe.
+
+La revisión nativa de cardinalidades del DER, la acreditación de aportes y la defensa individual deben ser realizados o confirmados por el grupo.
+
