@@ -12,12 +12,7 @@ entregables existentes y completa los faltantes, siguiendo §10.2 de la
 [consigna original](TPI_Bodegas_del_Atuel.md). La
 [evidencia H](evidencias/fase_h_resultados.json) conserva su corte histórico;
 la [evidencia I](evidencias/fase_i_resultados.json) registra las comprobaciones
-actuales. La entrega global no se declara terminada: quedan publicación pública,
-revisión nativa del DER y defensa oral. El principal requisito técnico pendiente
-es el despliegue público en la nube con HTTPS: no existe una URL pública verificada
-y el laboratorio TLS local no constituye producción. La cátedra autorizó el grupo
-de dos integrantes, según confirmación del usuario; la cantidad no es un
-incumplimiento ni requiere agregar personas. No se atribuye una constancia
+actuales. Desde el 10/11/2026 existe una publicación pública en Render y Neon; su alcance y las pruebas manuales se describen en la sección 8. Siguen pendientes verificaciones de seguridad, revisión nativa del DER y defensa oral. La cátedra autorizó el grupo de dos integrantes, según confirmación del usuario; la cantidad no es un incumplimiento ni requiere agregar personas. No se atribuye una constancia
 documental al docente. Los alias Git no se convierten en nombres académicos.
 
 ### Índice académico de cobertura
@@ -33,7 +28,7 @@ documental al docente. Los alias Git no se convierten en nombres académicos.
 | 13–14. Consultas e índices/rendimiento | §6 y §5, con fuentes y planes |
 | 15–16. API y frontend | §7 y contratos/documentación existentes |
 | 17–18. Concurrencia, Docker y arquitectura | §3 y §1/§7 |
-| 19–21. Recuperación, seguridad y despliegue | §8; local comprobado y nube pendiente diferenciados |
+| 19–21. Recuperación, seguridad y despliegue | §8; pruebas locales, despliegue público y límites diferenciados |
 | 22–23. Resultados y conclusiones | §9, evidencias I y matriz |
 
 La [defensa de 14 minutos y sus 20 preguntas](guion_defensa.md) es material de
@@ -220,6 +215,31 @@ para simular una caída ni se escribieron ventas en el dataset activo.
 
 ## 8. Despliegue, seguridad y límites
 
+### Despliegue público en Render y Neon
+
+- **Aplicación web:** https://bodegas-atuel-web.onrender.com
+- **API:** https://tp-integrador-bd.onrender.com
+- **Salud:** https://bodegas-atuel-web.onrender.com/api/salud
+- **Arquitectura:** frontend estático en Render, reescritura `/api/*` hacia FastAPI en Render y PostgreSQL 18 en Neon (São Paulo). La API utiliza un usuario de base con rol de aplicación; las contraseñas permanecen en la configuración del servicio, fuera de Git.
+- **Configuración:** servicio Python con raíz del repositorio, build `pip install -r api/requirements.txt` y arranque `uvicorn api.main:app --host 0.0.0.0 --port $PORT`. El sitio estático publica `public_web` generado con `mkdir -p public_web && cp frontend/*.html frontend/*.js frontend/*.css public_web/`; la regla Rewrite `/api/*` apunta a `https://tp-integrador-bd.onrender.com/*`.
+- **Variables privadas de la API:** `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` y `DB_SSLMODE`; no incluir valores secretos en el repositorio.
+
+### Comprobaciones de la puesta en marcha
+
+Durante la sesión guiada del 10/11/2026 se observó la respuesta `api: ok, postgresql: ok`; el catálogo, detalle de vino, filtro por cepa y tablero mostraron datos. Se rechazó una venta sin stock y se consultó que no existiera el comprobante de prueba. Una venta válida se registró con total $847. No se verificó mediante comparación antes/después el saldo de stock. La prueba es manual, no reemplaza las suites automatizadas.
+
+La carga inicial reportó 20.000 clientes, 100.001 comprobantes y 200.002 renglones. Antes de la venta válida se generó un respaldo `pg_dump` formato custom fuera del repositorio y se restauró en una base Neon separada. Ambas operaciones devolvieron código 0; en la copia se observaron los tres conteos anteriores y 29 tablas, 3 vistas y 22 triggers. La restauración usó `--single-transaction --exit-on-error --no-owner --no-acl`: no acredita la recuperación de propietarios ni permisos. Los conteos no verifican por sí solos todos los datos; el respaldo es anterior a la venta de prueba. Los roles globales deben respaldarse o recrearse aparte.
+
+### Límites y tareas pendientes
+
+- El servicio gratuito de Render puede suspenderse por inactividad y demorar al reanudarse; se observó un error transitorio antes de una respuesta de salud correcta. Evaluar la recuperación del pool y repetir las pruebas tras inactividad.
+- La conexión actual de la API utiliza `DB_SSLMODE=require`; cifra la conexión, pero no demuestra verificación de identidad del servidor como `verify-full`. Quedan por verificar certificado y configuración efectiva, restricciones de acceso de Neon y pruebas desde otra red.
+- La API de demostración está expuesta públicamente y tiene operaciones de escritura sin autenticación de usuario; usar únicamente datos ficticios y restringir el acceso o incorporar protección antes de un uso real. Rotar la credencial administrativa de Neon que se expuso durante la puesta en marcha.
+- Verificar recuperación de roles, propietarios y privilegios en un entorno aislado; guardar otra copia del respaldo fuera del equipo y documentar su proceso. Comprobar también un flujo con permisos restaurados.
+- La adaptación local del generador para aceptar `neondb` se ejecutó fuera de las migraciones oficiales y no es una guía reproducible versionada; no desactivar controles ni volver a cargar una base con datos.
+- El enlace `/docs` del frontend y los demás recorridos, incluido el procesamiento de transferencias, deben verificarse en el despliegue. La revisión del DER, las interpretaciones U1/D1/D5 y la defensa siguen pendientes según el informe.
+
+
 ### Seguridad local y respaldo probados
 
 Las contraseñas de ejemplo se rotaron realmente en PostgreSQL y `.env`, sin
@@ -237,7 +257,7 @@ no forman parte de un pg_dump por base: en otro clúster deben provisionarse por
 un administrador. [Procedimiento probado de respaldo](../README.md#respaldo-y-restauración-verificados).
 Fundamento: [pg_dump y restauración](https://www.postgresql.org/docs/18/backup-dump.html).
 
-### Comparación y decisión para nube — pendiente de cuenta externa
+### Comparación histórica de proveedores — evaluación previa al despliegue
 
 | Alternativa | Condiciones verificadas y adecuación |
 |---|---|
@@ -259,12 +279,12 @@ Fuentes oficiales consultadas: [Oracle Free Tier](https://docs.oracle.com/en-us/
 [límites Render Free](https://render.com/docs/free). Los límites se revisan antes
 de crear recursos; no se garantiza gratuidad por una captura histórica.
 
-**Decisión técnica preparada:** priorizar una VM académica sin facturación
+**Decisión técnica anterior a la publicación:** se había considerado priorizar una VM académica sin facturación
 otorgada y autorizada; reutiliza Compose sin adaptar la aplicación. El usuario
 confirmó en I que no existe infraestructura. Oracle Always Free es candidato si el grupo obtiene capacidad
 sin contratar recursos pagos. Si no la obtiene, debe escoger y validar otra
-cuenta/proveedor. No se creó ninguna instancia, DNS, certificado público ni URL.
-La limitación es acceso a cuenta/servidor/dominio, no una prueba local pendiente.
+cuenta/proveedor. En ese momento aún no se había creado ninguna instancia, DNS, certificado público ni URL.
+Ese diagnóstico describe el momento anterior a la publicación en Render y Neon documentada arriba.
 
 ### Configuración HTTPS/TLS preparada
 
@@ -296,7 +316,7 @@ sus contenedores/red se retiraron. El proyecto activo continúa en HTTP 8081.
 
 **No se arrancó el perfil con certificados públicos ni en una VM externa**.
 La CA privada fue aceptada solo al suministrarla explícitamente al cliente y
-rechazada por la confianza pública predeterminada. Esto no acredita Etapa 8.
+rechazada por la confianza pública predeterminada. Esta prueba local no acredita por sí misma la etapa 8.
 Reproducción local: `python scripts/probar_tls_local.py` (OpenSSL local requerido).
 Referencia de [verify-full e identidad de servidor](https://www.postgresql.org/docs/18/libpq-ssl.html).
 Referencia de [permisos de claves PostgreSQL](https://www.postgresql.org/docs/18/ssl-tcp.html).
@@ -331,7 +351,7 @@ aparecía con el proxy Python; se corrigió y verificó con Nginx real.
 | Concurrencia y restauración | Ejecutadas realmente, scripts y resultados conservados |
 | DER editable y diccionario | Fuente original conservada; diccionario físico completo derivado |
 | HTTPS privado y PostgreSQL verify-full | Probados en laboratorio I; no equivalen a nube |
-| HTTPS y PostgreSQL cifrado en nube | Publicación/validación externas pendientes por infraestructura inexistente |
+| HTTPS y PostgreSQL en nube | Aplicación publicada y pruebas manuales realizadas; verificación de identidad TLS, permisos y restauración completa pendientes |
 | Revisión conceptual y defensa individual | El grupo debe revisar cardinalidades visuales y preparar la demo oral |
 | Commits de todos los integrantes | Historial real detallado debajo; correspondencia con personas/aportes pendiente |
 
@@ -355,3 +375,4 @@ Guion mínimo de defensa (10–15 minutos): mostrar DER/decisión 3FN, catálogo
 composición inválida, venta válida/sin stock, transferencia, plan S2 o S3 del
 informe E, prueba de última botella y restauración. En la entrega definitiva
 esa demo debe repetirse sobre la URL de nube; una demo local no la reemplaza.
+

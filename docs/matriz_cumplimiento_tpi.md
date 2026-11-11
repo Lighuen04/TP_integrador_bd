@@ -9,19 +9,21 @@ B–H conservan su fecha y entorno; no se presentan como ejecuciones nuevas.
 ejecución, confirmación o evidencia. `P local` no implica `P nube`. Una fila
 I/D con ejecución pendiente no se cuenta como criterio de aceptación cumplido.
 
+Actualización posterior: el despliegue Render/Neon y sus pruebas manuales están documentados en el [README](../README.md#despliegue-público-en-render-y-neon). Los resultados I siguen siendo evidencia histórica.
+
 ## Estado de las nueve etapas
 
 | Etapa | Estado verificable | Qué impide declarar el cierre total |
 |---|---|---|
 | 1. Modelado | SQL/modelo/diccionario I/P/D; DER revisado parcialmente | Mínimos de participación y exportación/revisión nativa del DER pendientes |
 | 2. Integridad | I/P/D local | Explicar la política histórica D1/D5 respecto de RN-12; no equivale a aval docente |
-| 3. Carga | I/P/D local | Nube no ejecutada; no se redujo el dataset local |
+| 3. Carga | I/P/D local; carga en Neon y conteos principales observados | Validar controles completos y documentar la adaptación de carga |
 | 4. Índices | I/P/D, experimento E conservado y fuentes verificadas | Tiempos son del entorno E; no se extrapolan al servidor futuro |
 | 5. Consultas | I/P/D, cuatro archivos reejecutados en I con rollback | U1 conserva interpretación histórica; lectura literal requiere validación académica |
-| 6. API | I/P/D local y Docker | Operaciones en URL pública pendientes |
-| 7. Frontend | I/P/D local y Docker/Nginx | Navegación contra la URL pública pendiente |
-| 8. Nube | Configuración I/D; TLS privado P local | Sin cuenta/VM/dominio autorizados; todos los criterios de nube pendientes |
-| 9. Documentación/defensa | Informe y guion D; pruebas locales P; grupo de dos autorizado | Defensa real, demo en nube y acreditación de contribuciones reales pendientes |
+| 6. API | I/P/D local; salud y dos ventas probadas en nube | Repetir pruebas restantes y revisar seguridad de acceso |
+| 7. Frontend | I/P/D local; catálogo, detalle, filtro y tablero probados en nube | Verificar transferencias y demás recorridos |
+| 8. Nube | Render/Neon publicados; salud, ventas y restauración parcial probadas | Verificar identidad TLS, restricciones y restauración de permisos |
+| 9. Documentación/defensa | Informe y guion D; pruebas locales y manuales en nube | Defensa real, demo integral y acreditación de contribuciones pendientes |
 
 ## Requisitos verificables por etapa
 
@@ -102,13 +104,13 @@ I/D con ejecución pendiente no se cuenta como criterio de aceptación cumplido.
 
 | Requisito / referencia | Implementación o preparación | Evidencia disponible | Estado | Qué falta |
 |---|---|---|---|---|
-| Comparar ≥2 proveedores y elegir sin gastos obligatorios; paso 1 | [Informe §8](informe_integracion_final.md#8-despliegue-seguridad-y-límites) | Documentación oficial reconsultada I; usuario confirma ausencia de infraestructura | D | Obtener una VM académica sin facturación; Oracle candidato condicional, no alta realizada |
-| PostgreSQL, API y frontend ejecutándose en nube | [perfil Compose TLS](../deploy/compose.https.yml) | Topología local y laboratorio TLS aislado | I/D; nube pendiente | Cuenta/VM autorizada; no crear ni contratar recursos sin autorización |
-| URL pública HTTPS con certificado válido | [Nginx HTTPS](../deploy/nginx.https.conf) | HTTPS privado local con CA de laboratorio; confianza pública rechazada como corresponde | I/D; nube pendiente | Dominio real y certificado de CA pública; prueba desde otra red |
-| Conexión DB cifrada y restringida; aceptación | verify-full, CA y clave privada por servicio | pg_stat_ssl TLS 1.3; nombre y CA incorrectos rechazados en laboratorio I | I/P/D local; nube pendiente | Repetir en VM, verificar firewall y acceso externo a 5432 denegado |
-| Roles, secretos, migraciones y datos en nube | Scripts SQL y configuración de secretos existentes | SQL/bootstrap/carga locales comprobados | I/D; nube pendiente | Ejecutar en el servidor; no subir .env ni reducir datos sin límite justificado |
-| Backup/restauración y regla con trigger en nube; pasos 8–9 | [herramientas](../scripts/operar_docker.py) | Respaldo restaurado y regla negativa I en copias locales | I/P/D local; nube pendiente | Ejecutar y conservar evidencia en la nube; local no satisface este criterio |
-| URL y pasos reales en README; paso 10 | [README](../README.md) | Estado pendiente explícito, sin URL ficticia | D | Incorporar URL solo después de verificarla |
+| Comparación de proveedores | [Informe §8](informe_integracion_final.md#8-despliegue-seguridad-y-límites) | Comparación histórica; elección efectiva Render + Neon | D | Revisar límites actuales de los planes |
+| Base, API y frontend en nube | [Aplicación](https://bodegas-atuel-web.onrender.com) | Salud, catálogo, detalle, filtro y tablero observados | I/P manual | Probar desde otra red y verificar recorridos restantes |
+| URL pública HTTPS | [Web](https://bodegas-atuel-web.onrender.com) | Acceso desde navegador y `/api/salud` | I/P manual | Comprobar certificado y disponibilidad externa de forma independiente |
+| Conexión a base y seguridad | `DB_SSLMODE=require`, rol API | Salud de PostgreSQL y ventas comprobadas | Parcial | Verificar certificado/identidad, restricciones de acceso y proteger API pública de escritura |
+| Carga y roles | Migraciones SQL y generador adaptado localmente | 20.000 clientes, 100.001 comprobantes y 200.002 renglones al corte inicial | I/P manual | Documentar adaptación reproducible y validar controles completos |
+| Respaldo y restauración | pg_dump/pg_restore en Neon | Código 0 y conteos principales + 29 tablas, 3 vistas, 22 triggers observados | P parcial | La copia omite propietarios y privilegios; verificar restauración completa |
+| Prueba de regla | Venta sin stock rechazada | Comprobante de prueba ausente; venta válida registrada | P manual | Conservar evidencia reproducible y verificar más reglas |
 
 ### 9. Informe, demo y defensa — §7, Etapa 9 y §10
 
@@ -116,7 +118,7 @@ I/D con ejecución pendiente no se cuenta como criterio de aceptación cumplido.
 |---|---|---|---|---|
 | README e informe final con estructura §10.2 | [Informe único](informe_integracion_final.md), README | Portada confirmada, índice de temas y enlaces verificables | D | No se creó un segundo informe duplicado |
 | Trazabilidad RN→mecanismo→prueba; paso 3 | Informe §3 y esta matriz | RN-01–15 y suites SQL/API | I/P/D | Contrastar observaciones históricas con texto literal |
-| Demo de 10–15 minutos sobre nube; paso 4 | [Guion](guion_defensa.md) | Ensayos técnicos locales; comandos reproducibles | D; realización pendiente | Debe repetirse en URL pública cuando exista |
+| Demo de 10–15 minutos sobre nube; paso 4 | [Guion](guion_defensa.md) | Ensayos técnicos locales; comandos reproducibles | D; realización pendiente | Completar demostración integral en la URL pública |
 | Defensa individual; paso 5 | Guion con 20 preguntas y respuestas de código | Material preparado, no examen realizado | D; realización pendiente | Cada integrante debe explicar y operar, no solo leer |
 | Cantidad de integrantes; §2.1 | Amigo L. y Perez M. | El usuario confirmó que la cátedra autorizó el grupo de dos | Cumplido por autorización | No se exige agregar integrantes ni se atribuye una constancia documental al docente |
 | Commits y aportes de todos; §10.3 | Historial Git real, informe §9 | Los alias Git no identifican por sí solos a personas o aportes académicos | Acreditación pendiente | Conservar autores e historial; acreditar contribuciones reales, sin commits ni atribuciones ficticios |
@@ -126,8 +128,5 @@ rama por fase ni el volumen recomendado de 500.000 renglones. Sí son obligatori
 los mínimos de volumen, las cinco pantallas, el pool, las pruebas, la URL pública
 HTTPS y la participación/defensa que fija el enunciado.
 
-El **principal requisito técnico pendiente es el despliegue público en la nube
-con HTTPS**. No existe una URL pública verificada; el laboratorio TLS local no
-es producción. Se mantienen la revisión nativa del DER y la defensa oral como
-tareas de revisión final. La cantidad de dos integrantes ya está autorizada,
-según confirmación del usuario; no se inventa una constancia docente.
+La publicación pública está activa según la prueba manual; quedan verificaciones de seguridad y restauración de permisos, además de revisión del DER, aportes y defensa. La cantidad de dos integrantes se consigna según confirmación del usuario.
+
